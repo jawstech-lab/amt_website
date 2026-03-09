@@ -1,0 +1,87 @@
+.hero-section {
+    position: relative;
+    height: 90vh; /* Ocupa quase toda a altura da tela */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    overflow: hidden;
+  }
+  
+  .video-bg {
+  
+   
+    min-width: 100%;
+    min-height: 100%;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    transform: translate(-50%, -50%);
+    object-position: center;
+    object-fit: cover; /* Faz o vídeo cobrir a tela sem esticar */
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Escurece o vídeo para o texto brilhar */
+    z-index: -1;
+  }
+  
+  .content h1 {
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+    letter-spacing: 2px;
+  }
+  
+  .text-primary {
+    color: var(--cor-primaria) !important;
+  }
+  
+  /* Animação suave para o texto entrar */
+  .content {
+    animation: fadeInUp 1.5s ease;
+  }
+  
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .video-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -2;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+  
+    /* === NOVA MÁSCARA PARA EFEITO FADE OUT === */
+    /* Sintaxe para navegadores Webkit (Chrome, Safari, Edge novos) */
+    -webkit-mask-image: radial-gradient(
+      circle,
+      rgba(0, 0, 0, 1) 60%,    /* Centro: total transparência da máscara (vídeo visível) */
+      rgba(0, 0, 0, 0) 98%     /* Borda extrema: total opacidade da máscara (vídeo oculto) */
+    );
+    
+    /* Sintaxe Padrão */
+    mask-image: radial-gradient(
+      circle,
+      rgba(0, 0, 0, 1) 60%,
+      rgba(0, 0, 0, 0) 98%
+    );
+  
+    /* Garante que a máscara cubra todo o elemento */
+    -webkit-mask-size: cover;
+    mask-size: cover;
+    -webkit-mask-position: center;
+    mask-position: center;
+  }

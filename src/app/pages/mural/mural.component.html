@@ -1,0 +1,16 @@
+<div class="container mt-5">
+    <h2 class="text-center mb-5" style="color: var(--cor-secundaria)">MURAL DE AVISOS</h2>
+  
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+      <div class="col" *ngFor="let item of recados">
+        <div class="post-it shadow">
+          <div class="pin"></div>
+          <h5 class="autor">{{ item.autor }}:</h5>
+          <p class="texto-recado">{{ item.recado }}</p>
+          <div class="data-publicacao">
+            Publicado em {{ item.data | date: "dd 'de' MMMM 'de' yyyy" : '' : 'pt-BR' }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

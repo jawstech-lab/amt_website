@@ -1,0 +1,61 @@
+.post-it {
+    background-color: #ffeb3b; /* Amarelo Post-it */
+    color: #333;
+    padding: 25px;
+    min-height: 250px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* Efeito de papel levemente torto */
+    transform: rotate(-1deg);
+    transition: transform 0.3s ease;
+    border-bottom-right-radius: 60px 5px; /* Dobra de papel */
+  }
+  
+  .post-it:nth-child(even) {
+    transform: rotate(1.5deg);
+  }
+  
+  .post-it:hover {
+    transform: rotate(0deg) scale(1.05);
+    z-index: 10;
+  }
+  
+  /* O "alfinete" ou tachinha no topo */
+  .pin {
+    width: 15px;
+    height: 15px;
+    background-color: var(--cor-primaria);
+    border-radius: 50%;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  }
+  
+  .autor {
+    font-weight: 900;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+  }
+  
+  .texto-recado {
+    font-family: 'Comic Sans MS', 'Cursive', sans-serif; /* Opcional para dar cara de escrita à mão */
+    font-size: 1.1rem;
+    line-height: 1.4;
+    flex-grow: 1;
+    max-height: 120px;
+    overflow-y: overlay;
+  }
+  
+  .data-publicacao {
+    text-align: right;
+    font-size: 0.8rem;
+    font-style: italic;
+    margin-top: 10px;
+    color: #666;
+  }

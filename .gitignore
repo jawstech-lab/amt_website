@@ -40,3 +40,50 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# --- Dependências ---
+node_modules/
+
+# --- Saídas de Build ---
+dist/
+tmp/
+out-tsc/
+bazel-out/
+
+# --- Logs ---
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs/
+*.log
+
+# --- IDEs e Editores ---
+.vscode/*
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/tasks.json
+.idea/
+*.swp
+*.bak
+*.tmp
+*.sql
+.history/
+
+# --- Sistema Operacional ---
+.DS_Store
+Thumbs.db
+
+# --- Testes e Cobertura ---
+/coverage
+/reports
+/test-results
+.nyc_output/
+
+# --- Configurações Locais / Segredos ---
+# Se você usa arquivos de ambiente com chaves reais, ignore-os:
+src/environments/environment.custom.ts
+.env
+.env.*
+
+# --- Angular Cache ---
+.angular/
