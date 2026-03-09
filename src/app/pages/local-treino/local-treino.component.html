@@ -1,1 +1,38 @@
-<p>local-treino works!</p>
+<div class="container mt-5 mb-5">
+  
+  <h2 class="text-center titulo-secao mb-5">NOSSOS <span class="text-primary">CTs</span></h2>
+
+  <div class="row g-4">
+    
+    <div class="col-12" *ngFor="let local of locais">
+      
+      <div class="local-card shadow-lg d-flex flex-column flex-lg-row">
+        
+        <div class="local-img-container">
+          <img [src]="local.imagemUrl" [alt]="local.nome" class="local-img">
+        </div>
+
+        <div class="local-info p-4 d-flex flex-column justify-content-center">
+          <h3 class="text-primary fw-bold text-uppercase mb-3">{{ local.nome }}</h3>
+          
+          <p class="text-light fs-6 mb-2">
+            <i class="bi bi-geo-alt-fill text-warning me-2"></i> 
+            {{ local.endereco }}
+          </p>
+          
+          <p class="text-light mb-4">
+            <i class="bi bi-clock-fill text-warning me-2"></i> 
+            {{ local.horarios }}
+          </p>
+          
+          <a [href]="local.linkDireto" target="_blank" class="btn btn-outline-warning align-self-start">
+            <i class="bi bi-map-fill me-1"></i> Abrir no App
+          </a>
+        </div>
+
+      </div>
+      
+    </div>
+
+  </div>
+</div>

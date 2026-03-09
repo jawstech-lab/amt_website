@@ -1,1 +1,131 @@
-<p>equipe works!</p>
+<div class="container mt-5 mb-5">
+  
+  <section class="sobre-equipe mb-5">
+    <div class="row align-items-center">
+      <div class="col-lg-6 mb-4 mb-lg-0 text-sobre">
+        <h2 class="titulo-secao">NOSSA <span class="text-primary">HISTÓRIA</span></h2>
+        <p class="lead mt-3">
+          Fundada com o propósito de forjar não apenas atletas, mas pessoas de caráter. Nossa equipe carrega a tradição tailandesa com orgulho.
+        </p>
+        <p>
+          Os treinos são duros, a disciplina é rigorosa, mas a recompensa é a evolução constante. Seja você um iniciante buscando qualidade de vida ou um lutador visando o topo do pódio, aqui é o seu lugar. 
+        </p>
+      </div>
+      <div class="col-lg-6">
+        <div class="row g-2">
+          <div class="col-6">
+            <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=400&q=60" class="img-fluid rounded shadow" alt="Treino">
+          </div>
+          <div class="col-6">
+            <img src="https://images.unsplash.com/photo-1519766304817-4f37bda74a26?auto=format&fit=crop&w=400&q=60" class="img-fluid rounded shadow mt-4" alt="Luvas">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divisor">
+
+  <section class="mb-5 mt-5">
+    <h2 class="text-center titulo-secao mb-4">NOSSOS <span class="text-primary">TREINADORES</span></h2>
+    
+    <div class="carousel-wrapper">
+      <button class="scroll-btn left" (click)="rolarLista(scrollTreinadores, -1)">&#10094;</button>
+
+      <div class="scroll-horizontal" #scrollTreinadores>
+        <div class="fight-card shadow" 
+             *ngFor="let treinador of treinadores"
+             [class.expandido]="cardAtivo === treinador"
+             (click)="toggleCard(treinador)">
+             
+          <div class="collapsed-view">
+            <img [src]="treinador.imagemUrl" [alt]="treinador.nome" class="avatar-img">
+          </div>
+
+          <div class="expanded-content" (click)="$event.stopPropagation()">
+            
+            <button class="btn-fechar" (click)="fecharCard($event)">&times;</button>
+
+            <div class="expanded-header">
+              <div class="header-icon">
+                <img [src]="treinador.imagemUrl" [alt]="treinador.nome" class="header-img-circle">
+              </div>
+              <div class="header-info">
+                <h4 class="mb-0 text-primary">{{ treinador.nome }}</h4>
+                <p class="apelido text-warning mb-1">{{ treinador.apelido }}</p>
+                <span class="badge badge-grau">{{ treinador.grau }}</span>
+              </div>
+            </div>
+            
+            <div class="bio-container">
+              <p class="bio">{{ treinador.descricao }}</p>
+            </div>
+
+            <div class="local-treino-container mt-2 pt-2 border-top border-secondary">
+              <small class="text-secondary">Locais de Treino:</small>
+              <div class="mt-1">
+                <p class="local-treino mb-1 text-warning" *ngFor="let local of getLocaisArray(treinador.localTreino)">
+                  <i class="bi bi-geo-alt-fill"></i> {{ local }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="scroll-btn right" (click)="rolarLista(scrollTreinadores, 1)">&#10095;</button>
+    </div>
+  </section>
+
+  <section class="mb-5">
+    <h2 class="text-center titulo-secao mb-4">NOSSOS <span class="text-primary">LUTADORES</span></h2>
+    
+    <div class="carousel-wrapper">
+      <button class="scroll-btn left" (click)="rolarLista(scrollLutadores, -1)">&#10094;</button>
+
+      <div class="scroll-horizontal" #scrollLutadores>
+        <div class="fight-card shadow" 
+             *ngFor="let lutador of lutadores"
+             [class.expandido]="cardAtivo === lutador"
+             (click)="toggleCard(lutador)">
+             
+          <div class="collapsed-view">
+            <img [src]="lutador.imagemUrl" [alt]="lutador.nome" class="avatar-img">
+          </div>
+
+          <div class="expanded-content" (click)="$event.stopPropagation()">
+            
+            <button class="btn-fechar" (click)="fecharCard($event)">&times;</button>
+
+            <div class="expanded-header">
+              <div class="header-icon">
+                <img [src]="lutador.imagemUrl" [alt]="lutador.nome" class="header-img-circle">
+              </div>
+              <div class="header-info">
+                <h4 class="mb-0 text-primary">{{ lutador.nome }}</h4>
+                <p class="apelido text-warning mb-1">{{ lutador.apelido }}</p>
+                <span class="badge badge-grau">{{ lutador.grau }}</span>
+              </div>
+            </div>
+            
+            <div class="bio-container">
+              <p class="bio">{{ lutador.descricao }}</p>
+            </div>
+
+            <div class="local-treino-container mt-2 pt-2 border-top border-secondary">
+              <small class="text-secondary">Locais de Treino:</small>
+              <div class="mt-1">
+                <p class="local-treino mb-1 text-warning" *ngFor="let local of getLocaisArray(lutador.localTreino)">
+                  <i class="bi bi-geo-alt-fill"></i> {{ local }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="scroll-btn right" (click)="rolarLista(scrollLutadores, 1)">&#10095;</button>
+    </div>
+  </section>
+
+</div>
