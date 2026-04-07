@@ -81,8 +81,15 @@
 .fight-card {
   position: relative;
   width: 130px;        
-  height: 130px;       
+  height: 230px;       
   flex: 0 0 auto;
+  text-align: center;
+  display: inline;
+}
+.fight-card > span{
+  width: 100%;  
+}
+.fight-card img{
   border-radius: 50%;  
   overflow: hidden; 
   background-color: #1a1a1a;
@@ -90,6 +97,8 @@
   cursor: pointer;
   transition: all 0.3s ease-in-out; 
   z-index: 1;
+  width: 130px;
+  height: 130px;
 }
 
 .fight-card:not(.expandido):hover {

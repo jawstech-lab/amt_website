@@ -57,19 +57,19 @@ export class EquipeComponent {
   // Lista de Treinadores
   treinadores: Membro[] = [
     {
-      nome: 'Carlos Silva',
-      apelido: '"apelido"',
+      nome: 'Kru Jefferson Erbas',
+      apelido: '"Head"',
       grau: 'grau',
       descricao: 'descricao',
-      imagemUrl: '' ,
+      imagemUrl: 'https://i.pinimg.com/736x/8f/d7/3c/8fd73cbf5fdc318d696e57e8fff1ec98.jpg' ,
       localTreino:''
     },
     {
-      nome: 'Amanda Souza',
-      apelido: '"apelido"',
+      nome: 'Kru Marlus Maciel',
+      apelido: '""',
       grau: 'grau',
       descricao: 'descricao',
-      imagemUrl: '',
+      imagemUrl: 'https://i.pinimg.com/736x/8f/d7/3c/8fd73cbf5fdc318d696e57e8fff1ec98.jpg',
       localTreino:''
     }
   ];
@@ -81,7 +81,7 @@ export class EquipeComponent {
       apelido: '" apelido"',
       grau: 'grau',
       descricao: 'descricao',
-      imagemUrl: ' ',
+      imagemUrl: 'https://i.pinimg.com/736x/8f/d7/3c/8fd73cbf5fdc318d696e57e8fff1ec98.jpg',
       localTreino:''
     },
     {
@@ -89,7 +89,7 @@ export class EquipeComponent {
       apelido: '" apelido"',
       grau: 'grau',
       descricao: 'descricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaoescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaoescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaoescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaoescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaoescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricao',
-      imagemUrl: 'https://i.pinimg.com/736x/8f/d7/3c/8fd73cbf5fdc318d696e57e8fff1ec98.jpg ',
+      imagemUrl: 'https://i.pinimg.com/736x/8f/d7/3c/8fd73cbf5fdc318d696e57e8fff1ec98.jpg',
       localTreino:'treino 1 treino 2; treino 3'
     },
     {
@@ -97,7 +97,7 @@ export class EquipeComponent {
       apelido: '" apelido"',
       grau: 'grau',
       descricao: 'descricao',
-      imagemUrl: ' ',
+      imagemUrl: 'https://i.pinimg.com/736x/8f/d7/3c/8fd73cbf5fdc318d696e57e8fff1ec98.jpg',
       localTreino:''
     },
     {
@@ -105,7 +105,7 @@ export class EquipeComponent {
       apelido: '" apelido"',
       grau: 'grau',
       descricao: 'descricao',
-      imagemUrl: ' ',
+      imagemUrl: 'https://i.pinimg.com/736x/8f/d7/3c/8fd73cbf5fdc318d696e57e8fff1ec98.jpg',
       localTreino:''
     },
     {
@@ -113,7 +113,7 @@ export class EquipeComponent {
       apelido: '" apelido"',
       grau: 'grau',
       descricao: 'descricao',
-      imagemUrl: ' ',
+      imagemUrl: 'https://i.pinimg.com/736x/8f/d7/3c/8fd73cbf5fdc318d696e57e8fff1ec98.jpg',
       localTreino:''
     },
     {
@@ -121,7 +121,7 @@ export class EquipeComponent {
       apelido: '" apelido"',
       grau: 'grau',
       descricao: 'descricao',
-      imagemUrl: ' ',
+      imagemUrl: 'https://i.pinimg.com/736x/8f/d7/3c/8fd73cbf5fdc318d696e57e8fff1ec98.jpg',
       localTreino:''
     },
     {
@@ -129,7 +129,7 @@ export class EquipeComponent {
       apelido: '" apelido"',
       grau: 'grau',
       descricao: 'descricao',
-      imagemUrl: ' ',
+      imagemUrl: 'https://i.pinimg.com/736x/8f/d7/3c/8fd73cbf5fdc318d696e57e8fff1ec98.jpg',
       localTreino:''
     },
     {
@@ -137,7 +137,7 @@ export class EquipeComponent {
       apelido: '" apelido"',
       grau: 'grau',
       descricao: 'descricao',
-      imagemUrl: ' ',
+      imagemUrl: 'https://i.pinimg.com/736x/8f/d7/3c/8fd73cbf5fdc318d696e57e8fff1ec98.jpg',
       localTreino:''
     },
     {
@@ -145,7 +145,7 @@ export class EquipeComponent {
       apelido: '" apelido"',
       grau: 'grau',
       descricao: 'descricao',
-      imagemUrl: ' ',
+      imagemUrl: 'https://i.pinimg.com/736x/8f/d7/3c/8fd73cbf5fdc318d696e57e8fff1ec98.jpg',
       localTreino:''
     },
     {
@@ -153,7 +153,7 @@ export class EquipeComponent {
       apelido: '" apelido"',
       grau: 'grau',
       descricao: 'descricao',
-      imagemUrl: ' ',
+      imagemUrl: 'https://i.pinimg.com/736x/8f/d7/3c/8fd73cbf5fdc318d696e57e8fff1ec98.jpg',
       localTreino:''
     },
     {
@@ -161,7 +161,7 @@ export class EquipeComponent {
       apelido: '" apelido"',
       grau: 'grau',
       descricao: 'descricao',
-      imagemUrl: ' ',
+      imagemUrl: 'https://i.pinimg.com/736x/8f/d7/3c/8fd73cbf5fdc318d696e57e8fff1ec98.jpg',
       localTreino:''
     },
     {
