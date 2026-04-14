@@ -110,9 +110,11 @@ export class LocalTreinoComponent {
     }
   }
 
-  async iniciarMapa() {
+ async iniciarMapa() {
     if (isPlatformBrowser(this.platformId)) {
-      const L = await import('leaflet');
+      // 1. Corrige a resolução do import dinâmico
+      const leafletModule = await import('leaflet');
+      const L = leafletModule.default || leafletModule; 
 
       const iconePino = L.icon({
         iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
@@ -141,6 +143,11 @@ export class LocalTreinoComponent {
 
         this.marcadoresMapa[local.nome] = marker;
       });
+      
+      // 2. Força o mapa a recalcular seu tamanho (Evita bugs visuais em modais)
+      setTimeout(() => {
+        this.mapa.invalidateSize();
+      }, 200);
     }
   }
 }
