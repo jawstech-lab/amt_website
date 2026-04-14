@@ -38,9 +38,9 @@ export class LocalTreinoComponent {
       horarios: '<strong>Seg, Qua e Sex:</strong> 20h30 às 21h30',
       contato: '(12) 98845-2411',
       imagemUrl: 'imagens local de treinamento/ITA maroma.png',
-      linkDireto: 'https://maps.google.com/?q=DCTA+H8-B+Sao+Jose+dos+Campos',
-      lat: -23.2200,
-      lng: -45.8800
+      linkDireto: 'https://maps.app.goo.gl/ebvSbDSQzJCxSrBZ8',
+      lat: -23.20267039402918, 
+      lng: -45.87465798202034
     },
     {
       nome: 'CT QUINTHAI',
@@ -53,8 +53,8 @@ export class LocalTreinoComponent {
       `,
       imagemUrl: 'imagens local de treinamento/QUINTHAI.png',
       linkDireto: 'https://maps.google.com/?q=Rua+Cristovao+de+Alencar+20+Vila+Tesouro+Sao+Jose+dos+Campos',
-      lat: -23.1790,
-      lng: -45.8500
+      lat: -23.172931024550035,
+      lng: -45.84504900675579
     },
     {
       nome: 'KM SCHOOL',
@@ -67,8 +67,8 @@ export class LocalTreinoComponent {
       contato: '(12) 98835-2826',
       imagemUrl: 'imagens local de treinamento/km school.png',
       linkDireto: 'https://maps.google.com/?q=Rua+Icatu+718+Parque+Industrial+Sao+Jose+dos+Campos',
-      lat: -23.2350,
-      lng: -45.9000
+      lat: -23.244681976515377, 
+      lng: -45.91052097556601
     },
     {
       nome: 'Academia Giant Fitness',
@@ -77,8 +77,8 @@ export class LocalTreinoComponent {
       contato: '(12) 99253-1885',
       imagemUrl: 'imagens local de treinamento/giant fitness.png', 
       linkDireto: 'https://maps.app.goo.gl/4mYK2sWxo7W6mw168',
-      lat: -23.1585,
-      lng: -45.8322
+      lat: -23.201787965430107,
+      lng: -45.777435681746304
     },
 
   ];
