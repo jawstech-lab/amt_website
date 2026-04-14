@@ -68,6 +68,7 @@ export class EquipeComponent {
 
   treinadores: Membro[] = [
     {
+
       nome: 'Francisco Openheimer',
       grau: 'Instrutor',
       descricao: `
@@ -98,4 +99,5 @@ export class EquipeComponent {
   ];
 
   lutadores: Membro[] = [];
+
 }
