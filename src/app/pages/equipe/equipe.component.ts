@@ -79,21 +79,21 @@ export class EquipeComponent {
       nome: 'Francisco Openheimer',
       grau: 'Instrutor',
       descricao: ``,
-      imagemUrl: 'imagens/Francisco Openheimer.png',
+      imagemUrl: 'imagens/Treinadores/Francisco Openheimer.png',
       localTreino: ''
     },
     {
       nome: 'jeferson',
       grau: 'Instrutor',
       descricao: ``,
-      imagemUrl: 'imagens/CT QUINTHAI.png',
+      imagemUrl: 'imagens/Treinadores/CT QUINTHAI.png',
       localTreino: ''
     },
     {
       nome: 'Jéssica Telles',
       grau: 'Instrutor',
       descricao: ``,
-      imagemUrl: 'imagens/Jéssica Telles.png',
+      imagemUrl: 'imagens/Treinadores/Jéssica Telles.png',
       localTreino: ''
     }
   ];
