@@ -1,0 +1,142 @@
+/* === ESTILOS GERAIS === */
+.titulo-secao {
+  color: #fff;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.text-primary { color: var(--cor-primaria, #d2042d) !important; }
+.text-warning { color: var(--cor-secundaria, #ffc107) !important; }
+
+/* === BARRA LATERAL (ÍNDICE) === */
+.sidebar-apostila {
+  background-color: #1a1a1a;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  height: calc(100vh - 200px); 
+  display: flex;
+  flex-direction: column;
+}
+
+.lista-topicos {
+  flex-grow: 1;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--cor-secundaria) transparent;
+  padding-right: 5px;
+}
+
+.btn-topico {
+  background-color: #222;
+  color: #ccc;
+  border: 1px solid transparent;
+  border-left: 3px solid transparent;
+  border-radius: 6px;
+  padding: 12px 15px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.btn-topico:hover {
+  background-color: #2a2a2a;
+  color: #fff;
+}
+
+.btn-topico.ativo {
+  background-color: rgba(210, 4, 45, 0.1);
+  color: #fff;
+  border-left: 4px solid var(--cor-primaria);
+  font-weight: bold;
+}
+
+/* === BARRA DE PESQUISA E SETAS === */
+.search-box input::placeholder { color: #777; }
+.search-box input:focus { border-color: var(--cor-secundaria); }
+.input-group-text { transition: border-color 0.3s; }
+.search-box:focus-within .input-group-text { border-color: var(--cor-secundaria); }
+
+.nav-palavras {
+  border-left: none !important;
+  display: flex;
+  align-items: center;
+}
+
+.nav-palavras button:hover {
+  color: #fff !important;
+  transform: scale(1.1);
+}
+
+/* === ÁREA DE CONTEÚDO PRINCIPAL === */
+.conteudo-apostila {
+  background-color: #1a1a1a;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  height: calc(100vh - 200px); 
+  overflow-y: auto;           
+  scroll-behavior: smooth;    
+  scrollbar-width: thin;
+  scrollbar-color: var(--cor-primaria) #1a1a1a;
+}
+
+.conteudo-apostila::after {
+  content: "";
+  display: block;
+  height: 50px; 
+}
+
+::ng-deep .secao-texto p, 
+::ng-deep .secao-texto li {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #d1d1d1;
+}
+
+::ng-deep .secao-texto ul {
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+::ng-deep .table th { background-color: #222; color: #fff; }
+::ng-deep .table td { color: #ccc; }
+
+/* === MARCADOR DE TEXTO DAS PALAVRAS BUSCADAS === */
+::ng-deep mark.search-match {
+  background-color: #ffc107 !important;
+  color: #000 !important;
+  padding: 0.1em 0.2em;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+/* DESTAQUE PARA A PALAVRA QUE O USUÁRIO ESTÁ LENDO AGORA */
+::ng-deep mark.active-match {
+  background-color: #ff5722 !important; 
+   color: #000 !important;
+
+}
+
+/* === RESPONSIVIDADE === */
+@media (max-width: 991px) {
+  .sidebar-apostila { height: 300px; }
+  .conteudo-apostila { height: 600px; }
+}
+
+.nav-palavras {
+  border-left: none !important;
+  display: flex;
+  align-items: center;
+}
+
+.nav-palavras button {
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-palavras button:hover {
+  color: #fff !important;
+  transform: scale(1.2);
+}
+

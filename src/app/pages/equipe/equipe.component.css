@@ -64,12 +64,14 @@
   flex-wrap: nowrap;
   overflow-x: auto;
   gap: 20px;
-  padding: 30px 40px; 
+  padding: 30px 50px; 
   align-items: center; 
   min-height: 450px;   
   width: 100%;
   scrollbar-width: none; 
   -webkit-overflow-scrolling: touch; 
+  scroll-behavior: smooth; 
+  scroll-snap-type: x mandatory; 
 }
 
 .scroll-horizontal::-webkit-scrollbar {
@@ -90,6 +92,7 @@
   cursor: pointer;
   transition: all 0.3s ease-in-out; 
   z-index: 1;
+  scroll-snap-align: start;
 }
 
 .fight-card:not(.expandido):hover {
@@ -99,7 +102,6 @@
 }
 
 
-/* === COMPORTAMENTO NO COMPUTADOR (MOUSE HOVER FUNCIONA E ABRE O CARD) === */
 @media (hover: hover) and (pointer: fine) {
   .fight-card:not(.expandido):hover {
     width: 320px;           
@@ -118,11 +120,10 @@
 
   .fight-card:not(.expandido):hover .expanded-content { 
     opacity: 1; 
-    pointer-events: none; 
+    pointer-events: auto; 
   }
 }
 
-/* === ESTADO EXPANDIDO ATIVADO PELO CLIQUE === */
 .fight-card.expandido {
   width: 320px;           
   height: 420px;          
@@ -278,6 +279,7 @@
   margin-bottom: 10px;
   scrollbar-width: thin;
   scrollbar-color: var(--cor-primaria) transparent;
+  overscroll-behavior: contain;
 }
 
 .bio {

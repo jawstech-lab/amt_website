@@ -1,4 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
+@import "leaflet/dist/leaflet.css";
 :root {
     --cor-fundo: #000000;
     --cor-primaria: #D2042D; /* Vermelho Muay Thai */
@@ -26,3 +26,5 @@
     border-color: var(--cor-secundaria);
     box-shadow: 0 0 10px var(--cor-secundaria);
   }
+
+  

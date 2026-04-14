@@ -1,33 +1,36 @@
 import { Component, ElementRef, ViewChild, AfterViewInit, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser, CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    RouterModule
+  ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements AfterViewInit {
-  // Usamos HTMLVideoElement explicitamente para ajudar o IntelliSense
+  // Usamos HTMLVideoElement para o IntelliSense
   @ViewChild('bgVideo') videoRef!: ElementRef<HTMLVideoElement>;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
   ngAfterViewInit() {
-    // 1. Verificamos se estamos no Navegador (evita erros de SSR/Hydration)
+    // Verificamos se estamos no Navegador para evitar erros de SSR
     if (isPlatformBrowser(this.platformId)) {
       this.iniciarVideo();
     }
   }
 
   private iniciarVideo() {
-    // 2. Verificação de segurança: o elemento existe?
+    // Verificação de segurança: o elemento existe?
     if (this.videoRef && this.videoRef.nativeElement) {
       const video = this.videoRef.nativeElement;
 
-      // 3. O erro "is not a function" acontece se 'video' não for um HTMLVideoElement
-      // Vamos garantir que ele entenda o tipo antes de chamar o play
+      // Garante que o elemento seja tratado como vídeo antes de chamar o play
       if (typeof video.play === 'function') {
         video.currentTime = 1;
         
@@ -35,6 +38,7 @@ export class HomeComponent implements AfterViewInit {
           console.warn("Autoplay bloqueado pelo browser. O usuário precisa interagir com a página primeiro.", err);
         });
 
+        // Pausa o vídeo quando terminar (se não estiver em loop)
         video.onended = () => video.pause();
       } else {
         console.error("O elemento #bgVideo não é um elemento de vídeo válido.");

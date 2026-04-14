@@ -3,7 +3,7 @@ import { CommonModule, DOCUMENT } from '@angular/common';
 
 interface Membro {
   nome: string;
-  apelido: string;
+  apelido?: string; 
   grau: string;
   descricao: string;
   imagemUrl: string;
@@ -30,7 +30,6 @@ export class EquipeComponent {
       this.fecharCardAberto();
     } else {
       this.cardAtivo = membro;
-
       this.renderer.addClass(this.document.body, 'no-scroll-body');
     }
   }
@@ -45,8 +44,21 @@ export class EquipeComponent {
     this.renderer.removeClass(this.document.body, 'no-scroll-body');
   }
 
+  // Adicione esta nova função
+  manterAbertoAoClicar(event: Event, membro: Membro) {
+
+    if (this.cardAtivo === membro) {
+      event.stopPropagation();
+    }
+  }
+
   rolarLista(container: HTMLElement, direcao: number) {
-    container.scrollBy({ left: direcao * 300, behavior: 'smooth' });
+   const tamanhoDoPulo = container.clientWidth > 600 ? 350 : container.clientWidth * 0.8;
+    
+    container.scrollBy({ 
+      left: direcao * tamanhoDoPulo, 
+      behavior: 'smooth' 
+    });
   }
 
   getLocaisArray(locais: string): string[] {
@@ -54,131 +66,36 @@ export class EquipeComponent {
     return locais.split(';').map(local => local.trim());
   }
 
-  // Lista de Treinadores
   treinadores: Membro[] = [
     {
-      nome: 'Carlos Silva',
-      apelido: '"apelido"',
-      grau: 'grau',
-      descricao: 'descricao',
-      imagemUrl: '' ,
-      localTreino:''
+      nome: 'Francisco Openheimer',
+      grau: 'Instrutor',
+      descricao: `
+       
+      `,
+      imagemUrl: 'imagens/Francisco Openheimer.png',
+      // O ";" aqui separa o local da cidade na hora de exibir na tela
+      localTreino: ''
     },
     {
-      nome: 'Amanda Souza',
-      apelido: '"apelido"',
-      grau: 'grau',
-      descricao: 'descricao',
-      imagemUrl: '',
-      localTreino:''
+      nome: 'jeferson',
+      grau: 'Instrutor',
+      descricao: `
+        
+      `,
+      imagemUrl: 'imagens/CT QUINTHAI.png',
+      localTreino: ''
+    },
+    {
+      nome: 'Jéssica Telles',
+      grau: 'Instrutor',
+      descricao: `
+        
+      `,
+      imagemUrl: 'imagens/Jéssica Telles.png',
+      localTreino: ''
     }
   ];
 
-  // Lista de Lutadores
-  lutadores: Membro[] = [
-    {
-      nome: 'Roberto Santos',
-      apelido: '" apelido"',
-      grau: 'grau',
-      descricao: 'descricao',
-      imagemUrl: ' ',
-      localTreino:''
-    },
-    {
-      nome: 'Juliana Costa',
-      apelido: '" apelido"',
-      grau: 'grau',
-      descricao: 'descricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaoescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaoescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaoescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaoescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaoescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricaodescricao',
-      imagemUrl: 'https://i.pinimg.com/736x/8f/d7/3c/8fd73cbf5fdc318d696e57e8fff1ec98.jpg ',
-      localTreino:'treino 1 treino 2; treino 3'
-    },
-    {
-      nome: 'Roberto Santos',
-      apelido: '" apelido"',
-      grau: 'grau',
-      descricao: 'descricao',
-      imagemUrl: ' ',
-      localTreino:''
-    },
-    {
-      nome: 'Juliana Costa',
-      apelido: '" apelido"',
-      grau: 'grau',
-      descricao: 'descricao',
-      imagemUrl: ' ',
-      localTreino:''
-    },
-    {
-      nome: 'Roberto Santos',
-      apelido: '" apelido"',
-      grau: 'grau',
-      descricao: 'descricao',
-      imagemUrl: ' ',
-      localTreino:''
-    },
-    {
-      nome: 'Juliana Costa',
-      apelido: '" apelido"',
-      grau: 'grau',
-      descricao: 'descricao',
-      imagemUrl: ' ',
-      localTreino:''
-    },
-    {
-      nome: 'Roberto Santos',
-      apelido: '" apelido"',
-      grau: 'grau',
-      descricao: 'descricao',
-      imagemUrl: ' ',
-      localTreino:''
-    },
-    {
-      nome: 'Juliana Costa',
-      apelido: '" apelido"',
-      grau: 'grau',
-      descricao: 'descricao',
-      imagemUrl: ' ',
-      localTreino:''
-    },
-    {
-      nome: 'Roberto Santos',
-      apelido: '" apelido"',
-      grau: 'grau',
-      descricao: 'descricao',
-      imagemUrl: ' ',
-      localTreino:''
-    },
-    {
-      nome: 'Juliana Costa',
-      apelido: '" apelido"',
-      grau: 'grau',
-      descricao: 'descricao',
-      imagemUrl: ' ',
-      localTreino:''
-    },
-    {
-      nome: 'Roberto Santos',
-      apelido: '" apelido"',
-      grau: 'grau',
-      descricao: 'descricao',
-      imagemUrl: ' ',
-      localTreino:''
-    },
-    {
-      nome: 'Juliana Costa',
-      apelido: '" apelido"',
-      grau: 'grau',
-      descricao: 'descricao',
-      imagemUrl: ' ',
-      localTreino:''
-    },
-    {
-      nome: 'Marcos Paulo',
-      apelido: '" apelido"',
-      grau: 'grau',
-      descricao: 'descricao',
-      imagemUrl: '',
-      localTreino:''
-    }
-  ];
+  lutadores: Membro[] = [];
 }

@@ -1,0 +1,55 @@
+<div class="container mt-5 mb-5">
+  <div class="row mb-4">
+    <div class="col-12 text-center">
+      <h2 class="titulo-secao">APOSTILA <span class="text-primary">AMT</span></h2>
+      <p class="text-light">Caderno de estudos MUAY THAI</p>
+    </div>
+  </div>
+
+  <div class="row g-4">
+    <div class="col-lg-4">
+      <div class="sidebar-apostila p-3 shadow-lg rounded">
+        
+        <div class="input-group mb-4 search-box">
+          <span class="input-group-text bg-transparent border-end-0 border-secondary text-warning">
+            <i class="bi bi-search"></i>
+          </span>
+          <input type="text" class="form-control bg-transparent border-start-0 border-secondary text-light shadow-none" 
+                 placeholder="Pesquisar..." 
+                 [(ngModel)]="termoBusca"
+                 (ngModelChange)="aoDigitar()">
+          
+          <div class="input-group-text bg-transparent border-start-0 border-secondary nav-palavras" 
+               *ngIf="termoBusca && totalPalavras > 0">
+            <span class="text-light me-3 small">{{ indiceAtual + 1 }} / {{ totalPalavras }}</span>
+            
+            <button class="btn btn-sm text-warning p-0 me-2 fs-5 lh-1" (click)="palavraAnterior()" title="Anterior">
+              &#9650;
+            </button>
+            <button class="btn btn-sm text-warning p-0 fs-5 lh-1" (click)="proximaPalavra()" title="Próxima">
+              &#9660;
+            </button>
+          </div>
+        </div>
+
+        <div class="lista-topicos">
+          <button *ngFor="let item of secoesFiltradas" 
+                  class="btn-topico w-100 text-start mb-2"
+                  [class.ativo]="topicoAtivo === item.id"
+                  (click)="rolarParaTopico(item.id)">
+            {{ item.tituloMenu }}
+          </button>
+          <p *ngIf="secoesFiltradas.length === 0" class="text-muted text-center mt-4">Nenhum resultado encontrado.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-8">
+      <div class="conteudo-apostila scroll-conteudo p-4 p-md-5 shadow-lg rounded">
+        <div *ngFor="let secao of secoes" [id]="secao.id" class="secao-texto mb-5">
+           <div [innerHTML]="secao.conteudoHtml | highlight: termoBusca"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

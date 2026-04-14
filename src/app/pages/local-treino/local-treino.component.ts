@@ -1,12 +1,15 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, Inject, PLATFORM_ID, NgZone } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 
 interface LocalTreino {
   nome: string;
   endereco: string;
   horarios: string;
   imagemUrl: string;
-  linkDireto: string; 
+  linkDireto: string;
+  contato?: string;
+  lat: number; // Adicionado para o mapa
+  lng: number; // Adicionado para o mapa
 }
 
 @Component({
@@ -17,22 +20,132 @@ interface LocalTreino {
   styleUrls: ['./local-treino.component.css']
 })
 export class LocalTreinoComponent {
-  
+
+  mostrarMapa = false;
+  mapa: any;
+  marcadoresMapa: any = {}; // Salva os "pins" para podermos controlá-los
+  localSelecionado: LocalTreino | null = null; // Controla quem está aberto na barra lateral
+
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private zone: NgZone // Usado para atualizar o Angular quando clica no mapa
+  ) { }
+
   locais: LocalTreino[] = [
     {
-      nome: 'Matriz (Centro)',
-      endereco: 'Rua das Flores, 123 - Centro, São José dos Campos - SP',
-      horarios: 'Seg a Sex: 07h às 22h | Sáb: 08h às 12h',
-      imagemUrl: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
-       // aqui cola literalmente o que copiar no "compartilhar" "enviar um link"
-      linkDireto: 'https://maps.app.goo.gl/SpV7A9Cm18FGtfa68'
+      nome: 'Academia Maromba (DCTA)',
+      endereco: 'DCTA H8-B - São José dos Campos, SP (CEP: 12224-300)',
+      horarios: '<strong>Seg, Qua e Sex:</strong> 20h30 às 21h30',
+      contato: '(12) 98845-2411',
+      imagemUrl: 'imagens local de treinamento/ITA maroma.png',
+      linkDireto: 'https://maps.google.com/?q=DCTA+H8-B+Sao+Jose+dos+Campos',
+      lat: -23.2200,
+      lng: -45.8800
     },
     {
-      nome: 'Filial Zona Sul',
-      endereco: 'Av. dos Esportes, 987 - Jd. Sul, São José dos Campos - SP',
-      horarios: 'Seg a Sex: 18h às 22h',
-      imagemUrl: 'https://images.unsplash.com/photo-1574680096145-d05b474e2155?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
-      linkDireto: 'https://maps.app.goo.gl/SpV7A9Cm18FGtfa68'
-    }
+      nome: 'CT QUINTHAI',
+      endereco: 'R. Cristóvão de Alençar, 20 - Vila Tesouro, São José dos Campos - SP (12221-190)',
+      horarios: `
+        <strong>Ter / Qui:</strong> 08h, 09h, 19h e 20h<br>
+        <strong>Seg / Qua:</strong> 20h<br>
+        <strong>Juvenil (12 a 16 anos):</strong> Ter / Qui às 17h<br>
+        <strong>Intermediário / Avançado:</strong> Seg, Qua e Sex às 19h
+      `,
+      imagemUrl: 'imagens local de treinamento/QUINTHAI.png',
+      linkDireto: 'https://maps.google.com/?q=Rua+Cristovao+de+Alencar+20+Vila+Tesouro+Sao+Jose+dos+Campos',
+      lat: -23.1790,
+      lng: -45.8500
+    },
+    {
+      nome: 'KM SCHOOL',
+      endereco: 'Rua Icatu, 718 - Parque Industrial, São José dos Campos - SP',
+      horarios: `
+        <strong>Modalidades:</strong><br>
+        Jiu Jitsu • Muay Thai • MMA<br>
+        Capoeira • Boxe • Kickboxe
+      `,
+      contato: '(12) 98835-2826',
+      imagemUrl: 'imagens local de treinamento/km school.png',
+      linkDireto: 'https://maps.google.com/?q=Rua+Icatu+718+Parque+Industrial+Sao+Jose+dos+Campos',
+      lat: -23.2350,
+      lng: -45.9000
+    },
+    {
+      nome: 'Academia Giant Fitness',
+      endereco: 'Estr. Mun. Nelson Tavares da Silva, 1310 - Bom Retiro, São José dos Campos - SP (CEP: 12226-206)',
+      horarios: '<strong>Sábados:</strong> 09h às 10h30',
+      contato: '(12) 99253-1885',
+      imagemUrl: 'imagens local de treinamento/giant fitness.png', // Lembre-se de adicionar a imagem nesta pasta
+      linkDireto: 'https://maps.app.goo.gl/4mYK2sWxo7W6mw168',
+      lat: -23.1585,
+      lng: -45.8322
+    },
+
   ];
+
+  abrirMapa() {
+    this.mostrarMapa = true;
+    this.localSelecionado = null; // Reseta a seleção
+    setTimeout(() => {
+      this.iniciarMapa();
+    }, 100);
+  }
+
+  fecharMapa() {
+    this.mostrarMapa = false;
+    this.localSelecionado = null;
+    if (this.mapa) {
+      this.mapa.remove();
+      this.mapa = undefined;
+      this.marcadoresMapa = {};
+    }
+  }
+
+  // Quando o usuário clica na foto na barra lateral
+  selecionarLocalDaLista(local: LocalTreino) {
+    this.localSelecionado = local;
+
+    // Centraliza o mapa e abre o balão do pin
+    if (this.mapa && this.marcadoresMapa[local.nome]) {
+      this.mapa.flyTo([local.lat, local.lng], 14, { animate: true, duration: 1 });
+      this.marcadoresMapa[local.nome].openPopup();
+    }
+  }
+
+  async iniciarMapa() {
+    if (isPlatformBrowser(this.platformId)) {
+      const L = await import('leaflet');
+
+      const iconePino = L.icon({
+        iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
+        shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+      });
+
+      this.mapa = L.map('mapa-cts').setView([-23.2000, -45.8800], 12);
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+      }).addTo(this.mapa);
+
+      // Cria um pin para cada local dinamicamente
+      this.locais.forEach(local => {
+        const marker = L.marker([local.lat, local.lng], { icon: iconePino })
+          .addTo(this.mapa)
+          .bindPopup(`<b>${local.nome}</b>`);
+
+        // Evento: Clicar no pino do mapa seleciona na lista esquerda
+        marker.on('click', () => {
+          this.zone.run(() => {
+            this.localSelecionado = local;
+          });
+        });
+
+        // Salva o marcador na memória para usarmos depois
+        this.marcadoresMapa[local.nome] = marker;
+      });
+    }
+  }
 }
