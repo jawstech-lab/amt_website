@@ -7,7 +7,6 @@ import { EquipeComponent } from './pages/equipe/equipe.component';
 import { LocalTreinoComponent } from './pages/local-treino/local-treino.component';
 import { ApostilaComponent } from './pages/apostila/apostila.component'; 
 
-// Importamos o "segurança" da rota
 import { authGuard } from './auth.guard';
 
 export const routes: Routes = [
@@ -16,7 +15,6 @@ export const routes: Routes = [
     { path: 'equipe', component: EquipeComponent },
     { path: 'local', component: LocalTreinoComponent },
     
-    // Adicionamos o canActivate nestas duas rotas
     { 
       path: 'mural', 
       component: MuralComponent, 

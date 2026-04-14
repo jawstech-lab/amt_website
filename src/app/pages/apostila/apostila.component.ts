@@ -3,9 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
-// ==========================================
-// 1. O "PIPE" QUE GRIFA O TEXTO PESQUISADO
-// ==========================================
 @Pipe({
   name: 'highlight',
   standalone: true
@@ -20,15 +17,11 @@ export class HighlightPipe implements PipeTransform {
     const pattern = search.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&');
     const regex = new RegExp(`(${pattern})(?![^<]*>)`, 'gi');
     
-    // Adicionamos a classe 'search-match' para o Angular conseguir contar as palavras depois
     const replaced = value.replace(regex, match => `<mark class="bg-warning text-dark fw-bold rounded px-1 search-match">${match}</mark>`);
     return this.sanitizer.bypassSecurityTrustHtml(replaced);
   }
 }
 
-// ==========================================
-// 2. O COMPONENTE PRINCIPAL
-// ==========================================
 interface Secao {
   id: string;
   tituloMenu: string;
@@ -46,7 +39,6 @@ export class ApostilaComponent {
   termoBusca: string = '';
   topicoAtivo: string = 'sec-1';
   
-  // Controles do Navegador de Palavras
   totalPalavras: number = 0;
   indiceAtual: number = 0;
 
@@ -388,20 +380,18 @@ export class ApostilaComponent {
     );
   }
 
-  // --- NOVA LÓGICA DO NAVEGADOR DE PALAVRAS --- //
   
   aoDigitar() {
     this.indiceAtual = 0;
     this.totalPalavras = 0;
     
-    // O Angular precisa de um pequeno delay para desenhar os <mark> na tela antes de contarmos
     setTimeout(() => {
       this.atualizarContagemPalavras();
     }, 50);
   }
 
   atualizarContagemPalavras() {
-    // Procura todos os grifos na tela
+
     const matches = document.querySelectorAll('mark.search-match');
     this.totalPalavras = matches.length;
     
@@ -425,19 +415,17 @@ export class ApostilaComponent {
   destacarPalavraAtual() {
     const matches = document.querySelectorAll('mark.search-match');
     
-    // Remove o destaque forte de todas
     matches.forEach(m => m.classList.remove('active-match'));
 
     if (matches[this.indiceAtual]) {
       const el = matches[this.indiceAtual] as HTMLElement;
-      // Coloca o destaque forte na palavra atual
+
       el.classList.add('active-match');
-      // Rola a tela magicamente até a palavra, colocando-a no centro!
+   
       el.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   }
 
-  // Mantido: clique no menu lateral ainda rola para o capítulo todo
   rolarParaTopico(id: string) {
     this.topicoAtivo = id;
     const elemento = document.getElementById(id);

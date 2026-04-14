@@ -1,4 +1,4 @@
-/* === ESTILOS GERAIS DA SEÇÃO === */
+
 .titulo-secao {
   color: var(--cor-texto);
   font-weight: 900;
@@ -14,7 +14,6 @@
   color: var(--cor-secundaria) !important;
 }
 
-/* === CARD DE LOCALIZAÇÃO === */
 .local-card {
   background-color: #1a1a1a;
   border-radius: 12px;
@@ -30,7 +29,6 @@
   box-shadow: 0 10px 25px rgba(210, 4, 45, 0.25) !important;
 }
 
-/* === DIVISÃO INTERNA DO CARD (pc) === */
 .local-img-container {
   flex: 0 0 220px;
 
@@ -53,8 +51,6 @@
   flex: 1;
 }
 
-
-/* === RESPONSIVIDADE === */
 @media (max-width: 991px) {
   
   .local-img-container {
@@ -64,8 +60,6 @@
   
 }
 
-
-/* === MODAL DO MAPA === */
 .mapa-overlay {
   position: fixed;
   top: 0;
@@ -110,17 +104,14 @@
   width: 100%;
   height: 400px;
   border-radius: 8px;
-  background-color: #2a2a2a; /* cor temporária enquanto carrega */
+  background-color: #2a2a2a; 
   z-index: 1;
 }
 
-/* --- ADICIONE ISSO NO FINAL DO SEU CSS ATUAL --- */
-
-/* === ATUALIZAÇÃO DO MODAL DO MAPA === */
 .mapa-modal {
   background-color: #1a1a1a;
   width: 95%;
-  max-width: 1000px; /* Aumentei o tamanho para caber tudo confortavelmente */
+  max-width: 1000px; 
   border-radius: 12px;
   padding: 20px;
   position: relative;
@@ -130,28 +121,26 @@
 .mapa-layout-duplo {
   display: flex;
   gap: 20px;
-  height: 500px; /* Altura da janela */
+  height: 500px; 
 }
 
 .mapa-sidebar {
-  flex: 0 0 300px; /* Largura fixa da lista da esquerda */
+  flex: 0 0 300px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 12px;
-  /* Personalização do scroll */
   scrollbar-width: thin;
   scrollbar-color: var(--cor-secundaria) transparent;
 }
 
 .mapa-container-flex {
-  flex: 1; /* O mapa preenche o resto do espaço */
+  flex: 1;
   border-radius: 8px;
   background-color: #2a2a2a;
   z-index: 1;
 }
 
-/* === ITENS DA BARRA LATERAL === */
 .sidebar-item {
   background-color: #222;
   border: 2px solid transparent;
@@ -166,7 +155,6 @@
   border-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Quando Clicado/Selecionado */
 .sidebar-item.ativo {
   border-color: var(--cor-primaria);
   background-color: #2a2a2a;
@@ -193,7 +181,6 @@
   font-size: 0.95rem;
 }
 
-/* Expansão das informações */
 .sidebar-detalhes {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding-top: 15px;
@@ -210,18 +197,17 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* === RESPONSIVIDADE DO MAPA (CELULAR) === */
 @media (max-width: 768px) {
   .mapa-layout-duplo {
-    flex-direction: column-reverse; /* Coloca a lista de locais embaixo do mapa */
+    flex-direction: column-reverse;
     height: 75vh;
   }
   
   .mapa-sidebar {
-    flex: 1; /* A lista preenche o resto da tela */
+    flex: 1; 
   }
 
   .mapa-container-flex {
-    flex: 0 0 250px; /* Trava a altura do mapa no celular */
+    flex: 0 0 250px; 
   }
 }

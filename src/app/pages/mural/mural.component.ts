@@ -17,7 +17,7 @@ export class MuralComponent implements OnInit {
 
   ngOnInit() {
     this.service.getRecados().subscribe(dados => {
-      // Ordena por data: mais recentes no topo
+
       this.recados = dados.sort((a, b) => b.data.getTime() - a.data.getTime());
     });
   }

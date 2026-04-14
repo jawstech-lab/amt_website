@@ -10,7 +10,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-  // Controla se o menu do celular está aberto ou fechado
+
   menuAberto: boolean = false;
 
   alternarMenu() {

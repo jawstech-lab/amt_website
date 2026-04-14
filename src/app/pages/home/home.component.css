@@ -1,6 +1,6 @@
 .hero-section {
     position: relative;
-    height: 90vh; /* Ocupa quase toda a altura da tela */
+    height: 90vh;
     width: 100%;
     display: flex;
     align-items: center;
@@ -20,7 +20,7 @@
     z-index: -2;
     transform: translate(-50%, -50%);
     object-position: center;
-    object-fit: cover; /* Faz o vídeo cobrir a tela sem esticar */
+    object-fit: cover; 
   }
   
   .overlay {
@@ -29,7 +29,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6); /* Escurece o vídeo para o texto brilhar */
+    background: rgba(0, 0, 0, 0.6); 
     z-index: -1;
   }
   
@@ -42,7 +42,6 @@
     color: var(--cor-primaria) !important;
   }
   
-  /* Animação suave para o texto entrar */
   .content {
     animation: fadeInUp 1.5s ease;
   }
@@ -64,22 +63,18 @@
     transform: translate(-50%, -50%);
     object-fit: cover;
   
-    /* === NOVA MÁSCARA PARA EFEITO FADE OUT === */
-    /* Sintaxe para navegadores Webkit (Chrome, Safari, Edge novos) */
     -webkit-mask-image: radial-gradient(
       circle,
-      rgba(0, 0, 0, 1) 60%,    /* Centro: total transparência da máscara (vídeo visível) */
-      rgba(0, 0, 0, 0) 98%     /* Borda extrema: total opacidade da máscara (vídeo oculto) */
+      rgba(0, 0, 0, 1) 60%,    
+      rgba(0, 0, 0, 0) 98%   
     );
     
-    /* Sintaxe Padrão */
     mask-image: radial-gradient(
       circle,
       rgba(0, 0, 0, 1) 60%,
       rgba(0, 0, 0, 0) 98%
     );
   
-    /* Garante que a máscara cubra todo o elemento */
     -webkit-mask-size: cover;
     mask-size: cover;
     -webkit-mask-position: center;

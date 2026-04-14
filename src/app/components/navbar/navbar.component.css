@@ -14,12 +14,10 @@
     position: relative;
   }
   
-  /* Efeito de Hover */
   .nav-link:hover {
     color: var(--cor-secundaria) !important;
   }
   
-  /* Linha que "corre" por baixo do item ao passar o mouse */
   .nav-link::after {
     content: '';
     position: absolute;

@@ -1,4 +1,4 @@
-/* === ESTILOS GERAIS === */
+
 .titulo-secao {
   color: #fff;
   font-weight: 900;
@@ -9,7 +9,6 @@
 .text-primary { color: var(--cor-primaria, #d2042d) !important; }
 .text-warning { color: var(--cor-secundaria, #ffc107) !important; }
 
-/* === BARRA LATERAL (ÍNDICE) === */
 .sidebar-apostila {
   background-color: #1a1a1a;
   border: 1px solid rgba(255, 255, 255, 0.05);
@@ -50,7 +49,6 @@
   font-weight: bold;
 }
 
-/* === BARRA DE PESQUISA E SETAS === */
 .search-box input::placeholder { color: #777; }
 .search-box input:focus { border-color: var(--cor-secundaria); }
 .input-group-text { transition: border-color 0.3s; }
@@ -67,7 +65,6 @@
   transform: scale(1.1);
 }
 
-/* === ÁREA DE CONTEÚDO PRINCIPAL === */
 .conteudo-apostila {
   background-color: #1a1a1a;
   border: 1px solid rgba(255, 255, 255, 0.05);
@@ -99,7 +96,6 @@
 ::ng-deep .table th { background-color: #222; color: #fff; }
 ::ng-deep .table td { color: #ccc; }
 
-/* === MARCADOR DE TEXTO DAS PALAVRAS BUSCADAS === */
 ::ng-deep mark.search-match {
   background-color: #ffc107 !important;
   color: #000 !important;
@@ -108,14 +104,12 @@
   transition: all 0.3s ease;
 }
 
-/* DESTAQUE PARA A PALAVRA QUE O USUÁRIO ESTÁ LENDO AGORA */
 ::ng-deep mark.active-match {
   background-color: #ff5722 !important; 
    color: #000 !important;
 
 }
 
-/* === RESPONSIVIDADE === */
 @media (max-width: 991px) {
   .sidebar-apostila { height: 300px; }
   .conteudo-apostila { height: 600px; }

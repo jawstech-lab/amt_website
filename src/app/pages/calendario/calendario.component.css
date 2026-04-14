@@ -36,14 +36,12 @@
     margin: 0;
   }
   
-  /* Badges Customizados por tipo */
   .badge-treino { background-color: #6c757d; }
   .badge-graduação { background-color: #000; border: 1px solid var(--cor-secundaria); }
   .badge-seminário { background-color: #007bff; }
   .badge-luta { background-color: var(--cor-primaria); }
   .badge-curso { background-color: #198754; }
   
-  /* Responsividade Mobile */
   @media (max-width: 768px) {
     .date-box {
       display: flex;

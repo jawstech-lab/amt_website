@@ -8,8 +8,8 @@ interface LocalTreino {
   imagemUrl: string;
   linkDireto: string;
   contato?: string;
-  lat: number; // Adicionado para o mapa
-  lng: number; // Adicionado para o mapa
+  lat: number; 
+  lng: number; 
 }
 
 @Component({
@@ -23,12 +23,12 @@ export class LocalTreinoComponent {
 
   mostrarMapa = false;
   mapa: any;
-  marcadoresMapa: any = {}; // Salva os "pins" para podermos controlá-los
-  localSelecionado: LocalTreino | null = null; // Controla quem está aberto na barra lateral
+  marcadoresMapa: any = {}; 
+  localSelecionado: LocalTreino | null = null; 
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
-    private zone: NgZone // Usado para atualizar o Angular quando clica no mapa
+    private zone: NgZone 
   ) { }
 
   locais: LocalTreino[] = [
@@ -75,7 +75,7 @@ export class LocalTreinoComponent {
       endereco: 'Estr. Mun. Nelson Tavares da Silva, 1310 - Bom Retiro, São José dos Campos - SP (CEP: 12226-206)',
       horarios: '<strong>Sábados:</strong> 09h às 10h30',
       contato: '(12) 99253-1885',
-      imagemUrl: 'imagens local de treinamento/giant fitness.png', // Lembre-se de adicionar a imagem nesta pasta
+      imagemUrl: 'imagens local de treinamento/giant fitness.png', 
       linkDireto: 'https://maps.app.goo.gl/4mYK2sWxo7W6mw168',
       lat: -23.1585,
       lng: -45.8322
@@ -85,7 +85,7 @@ export class LocalTreinoComponent {
 
   abrirMapa() {
     this.mostrarMapa = true;
-    this.localSelecionado = null; // Reseta a seleção
+    this.localSelecionado = null; 
     setTimeout(() => {
       this.iniciarMapa();
     }, 100);
@@ -101,11 +101,9 @@ export class LocalTreinoComponent {
     }
   }
 
-  // Quando o usuário clica na foto na barra lateral
   selecionarLocalDaLista(local: LocalTreino) {
     this.localSelecionado = local;
 
-    // Centraliza o mapa e abre o balão do pin
     if (this.mapa && this.marcadoresMapa[local.nome]) {
       this.mapa.flyTo([local.lat, local.lng], 14, { animate: true, duration: 1 });
       this.marcadoresMapa[local.nome].openPopup();
@@ -130,20 +128,17 @@ export class LocalTreinoComponent {
         attribution: '© OpenStreetMap contributors'
       }).addTo(this.mapa);
 
-      // Cria um pin para cada local dinamicamente
       this.locais.forEach(local => {
         const marker = L.marker([local.lat, local.lng], { icon: iconePino })
           .addTo(this.mapa)
           .bindPopup(`<b>${local.nome}</b>`);
 
-        // Evento: Clicar no pino do mapa seleciona na lista esquerda
         marker.on('click', () => {
           this.zone.run(() => {
             this.localSelecionado = local;
           });
         });
 
-        // Salva o marcador na memória para usarmos depois
         this.marcadoresMapa[local.nome] = marker;
       });
     }

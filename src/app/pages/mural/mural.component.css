@@ -1,5 +1,5 @@
 .post-it {
-    background-color: #ffeb3b; /* Amarelo Post-it */
+    background-color: #ffeb3b; 
     color: #333;
     padding: 25px;
     min-height: 250px;
@@ -7,10 +7,10 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    /* Efeito de papel levemente torto */
+    
     transform: rotate(-1deg);
     transition: transform 0.3s ease;
-    border-bottom-right-radius: 60px 5px; /* Dobra de papel */
+    border-bottom-right-radius: 60px 5px; 
   }
   
   .post-it:nth-child(even) {
@@ -22,7 +22,6 @@
     z-index: 10;
   }
   
-  /* O "alfinete" ou tachinha no topo */
   .pin {
     width: 15px;
     height: 15px;
@@ -44,7 +43,7 @@
   }
   
   .texto-recado {
-    font-family: 'Comic Sans MS', 'Cursive', sans-serif; /* Opcional para dar cara de escrita à mão */
+    font-family: 'Comic Sans MS', 'Cursive', sans-serif; 
     font-size: 1.1rem;
     line-height: 1.4;
     flex-grow: 1;

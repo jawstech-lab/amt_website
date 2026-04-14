@@ -1,4 +1,4 @@
-/* === ESTILOS GERAIS DA SEÇÃO === */
+
 .titulo-secao {
   color: var(--cor-texto);
   font-weight: 900;
@@ -20,7 +20,6 @@
   margin: 3rem 0;
 }
 
-/* === ENVOLTÓRIO DOS BOTÕES E LISTA === */
 .carousel-wrapper {
   position: relative;
   display: flex;
@@ -58,7 +57,6 @@
 .scroll-btn.right { right: -5px; }
 
 
-/* === CONTÊINER ROLÁVEL === */
 .scroll-horizontal {
   display: flex;
   flex-wrap: nowrap;
@@ -79,7 +77,6 @@
 }
 
 
-/* === ESTILO DO CARD (BASE E ESTADO NORMAL/FECHADO) === */
 .fight-card {
   position: relative;
   width: 130px;        
@@ -100,7 +97,6 @@
   transition: all 0.3s ease-in-out; 
   z-index: 1;
 
-  scroll-snap-align: start;
   width: 130px;
   height: 130px;
 
@@ -149,7 +145,6 @@
 .fight-card.expandido .expanded-content { opacity: 1; pointer-events: auto; }
 
 
-/* === MÁGICA DO MOBILE (CELULAR E TABLETS) === */
 @media (max-width: 768px) {
   .fight-card.expandido {
     position: fixed; 
@@ -168,8 +163,6 @@
   }
 }
 
-
-/* === CONTEÚDO NO ESTADO NORMAL (IMAGEM CHEIA) === */
 .collapsed-view {
   position: absolute;
   top: 0;
@@ -192,8 +185,6 @@
   filter: grayscale(0%) brightness(1.1);
 }
 
-
-/* === CONTEÚDO NO ESTADO EXPANDIDO (TEXTOS E ÍCONE) === */
 .expanded-content {
   position: absolute;
   top: 0;
@@ -209,8 +200,6 @@
   transition: opacity 0.2s ease 0.1s; 
 }
 
-
-/* === BOTÃO DE FECHAR (X) === */
 .btn-fechar {
   position: absolute;
   top: 10px;
@@ -230,8 +219,6 @@
   color: var(--cor-primaria);
 }
 
-
-/* === CABEÇALHO DO CARD EXPANDIDO === */
 .expanded-header {
   display: flex;
   align-items: center; 
@@ -280,8 +267,6 @@
   white-space: normal;
 }
 
-
-/* === ÁREA DA BIOGRAFIA (ROLÁVEL) === */
 .bio-container {
   flex-grow: 1;     
   min-height: 0;    
@@ -317,8 +302,6 @@
   background-color: var(--cor-secundaria); 
 }
 
-
-/* === LOCAL DE TREINO === */
 .local-treino-container {
   flex-shrink: 0; 
 }
@@ -331,4 +314,14 @@
 .local-treino i {
   color: var(--cor-primaria);
   margin-right: 3px;
+}
+
+.fight-card {
+  position: relative;
+  width: 130px;        
+  height: 230px;       
+  flex: 0 0 auto;
+  text-align: center;
+  display: inline;
+  transition: all 0.3s ease-in-out;
 }

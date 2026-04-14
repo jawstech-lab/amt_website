@@ -20,11 +20,10 @@ export class CalendarioComponent implements OnInit {
       const hoje = new Date();
       hoje.setHours(0, 0, 0, 0);
 
-      // Ordenação cronológica
       const ordenados = eventos.sort((a, b) => a.data.getTime() - b.data.getTime());
 
       this.eventosFuturos = ordenados.filter(e => e.data >= hoje);
-      this.eventosPassados = ordenados.filter(e => e.data < hoje).reverse(); // Mais recentes primeiro
+      this.eventosPassados = ordenados.filter(e => e.data < hoje).reverse(); 
     });
   }
 }
