@@ -1,12 +1,12 @@
 <section class="hero-section">
     <video #bgVideo autoplay loop [muted]="true" playsinline preload="auto" class="video-bg">
         <source src="video/logo-animado.webm" type="video/webm">
-      </video>
+    </video>
   
     <div class="overlay"></div>
   
     <div class="content">
-        <div>
+        <div class="logo-container">
             <img src="logo_header.png" alt="">
         </div>
       <h1 class="display-1 fw-bold text-uppercase">
@@ -17,10 +17,9 @@
       </h3>
       <p class="lead mb-5">Tradição, disciplina e a verdadeira essência do Muay Thai.</p>
       
-      <div class="d-flex gap-3 justify-content-center">
-    <a routerLink="/equipe" class="btn btn-muaythai btn-lg">NOSSA EQUIPE</a>
-    
-    <a routerLink="/local" class="btn btn-outline-warning btn-lg">LOCAIS DE TREINOS</a>
-</div>
+      <div class="d-flex flex-column flex-md-row gap-3 justify-content-center">
+        <a routerLink="/equipe" class="btn btn-muaythai btn-lg">NOSSA EQUIPE</a>
+        <a routerLink="/local" class="btn btn-outline-warning btn-lg">LOCAIS DE TREINOS</a>
+      </div>
     </div>
-  </section>
+</section>

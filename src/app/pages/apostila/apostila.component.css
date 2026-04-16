@@ -1,4 +1,3 @@
-
 .titulo-secao {
   color: #fff;
   font-weight: 900;
@@ -60,16 +59,24 @@
   align-items: center;
 }
 
+.nav-palavras button {
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .nav-palavras button:hover {
   color: #fff !important;
-  transform: scale(1.1);
+  transform: scale(1.2);
 }
 
 .conteudo-apostila {
   background-color: #1a1a1a;
   border: 1px solid rgba(255, 255, 255, 0.05);
   height: calc(100vh - 200px); 
-  overflow-y: auto;           
+  overflow-y: auto;          
   scroll-behavior: smooth;    
   scrollbar-width: thin;
   scrollbar-color: var(--cor-primaria) #1a1a1a;
@@ -106,31 +113,55 @@
 
 ::ng-deep mark.active-match {
   background-color: #ff5722 !important; 
-   color: #000 !important;
+  color: #000 !important;
+}
 
+.btn-mobile-menu {
+  background-color: #222;
+  color: var(--cor-secundaria, #ffc107);
+  border: 2px solid var(--cor-secundaria, #ffc107);
+  border-radius: 8px;
+  padding: 12px 15px;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.btn-mobile-menu i {
+  transition: transform 0.3s ease;
+  font-size: 1.2rem;
 }
 
 @media (max-width: 991px) {
-  .sidebar-apostila { height: 300px; }
-  .conteudo-apostila { height: 600px; }
+  .sidebar-apostila {
+    height: auto !important; 
+    margin-bottom: 20px;
+  }
+
+  .lista-topicos {
+    display: none; 
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+  }
+
+  .lista-topicos.menu-visivel {
+    display: block;
+    max-height: 500px;
+    overflow-y: auto;
+    margin-top: 10px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 15px;
+  }
+
+  .conteudo-apostila {
+    height: 70vh !important; 
+  }
 }
 
-.nav-palavras {
-  border-left: none !important;
-  display: flex;
-  align-items: center;
+@media (min-width: 992px) {
+  .lista-topicos {
+    display: block !important;
+  }
 }
-
-.nav-palavras button {
-  background: none;
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.nav-palavras button:hover {
-  color: #fff !important;
-  transform: scale(1.2);
-}
-

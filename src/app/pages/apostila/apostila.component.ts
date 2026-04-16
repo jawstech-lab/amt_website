@@ -42,6 +42,8 @@ export class ApostilaComponent {
   totalPalavras: number = 0;
   indiceAtual: number = 0;
 
+  menuAberto: boolean = false;
+
   secoes: Secao[] = [
     {
       id: 'sec-1',
@@ -380,7 +382,6 @@ export class ApostilaComponent {
     );
   }
 
-  
   aoDigitar() {
     this.indiceAtual = 0;
     this.totalPalavras = 0;
@@ -391,7 +392,6 @@ export class ApostilaComponent {
   }
 
   atualizarContagemPalavras() {
-
     const matches = document.querySelectorAll('mark.search-match');
     this.totalPalavras = matches.length;
     
@@ -419,18 +419,22 @@ export class ApostilaComponent {
 
     if (matches[this.indiceAtual]) {
       const el = matches[this.indiceAtual] as HTMLElement;
-
       el.classList.add('active-match');
-   
       el.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   }
 
   rolarParaTopico(id: string) {
     this.topicoAtivo = id;
+    this.menuAberto = false; 
     const elemento = document.getElementById(id);
     if (elemento) {
       elemento.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
+  }
+
+  getTituloAtivo(): string {
+    const secao = this.secoes.find(s => s.id === this.topicoAtivo);
+    return secao ? secao.tituloMenu : 'Selecione um tópico';
   }
 }
