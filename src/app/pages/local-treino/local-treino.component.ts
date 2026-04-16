@@ -10,6 +10,7 @@ interface LocalTreino {
   contato?: string;
   lat: number; 
   lng: number; 
+  treinador?: string;
 }
 
 @Component({
@@ -32,56 +33,58 @@ export class LocalTreinoComponent {
   ) { }
 
   locais: LocalTreino[] = [
-    {
-      nome: 'Academia Maromba (DCTA)',
-      endereco: 'DCTA H8-B - São José dos Campos, SP (CEP: 12224-300)',
-      horarios: '<strong>Seg, Qua e Sex:</strong> 20h30 às 21h30',
-      contato: '(12) 98845-2411',
-      imagemUrl: 'imagens local de treinamento/ITA maroma.png',
-      linkDireto: 'https://maps.app.goo.gl/ebvSbDSQzJCxSrBZ8',
-      lat: -23.20267039402918, 
-      lng: -45.87465798202034
-    },
-    {
-      nome: 'CT QUINTHAI',
-      endereco: 'R. Cristóvão de Alençar, 20 - Vila Tesouro, São José dos Campos - SP (12221-190)',
-      horarios: `
-        <strong>Ter / Qui:</strong> 08h, 09h, 19h e 20h<br>
-        <strong>Seg / Qua:</strong> 20h<br>
-        <strong>Juvenil (12 a 16 anos):</strong> Ter / Qui às 17h<br>
-        <strong>Intermediário / Avançado:</strong> Seg, Qua e Sex às 19h
-      `,
-      imagemUrl: 'imagens local de treinamento/QUINTHAI.png',
-      linkDireto: 'https://maps.google.com/?q=Rua+Cristovao+de+Alencar+20+Vila+Tesouro+Sao+Jose+dos+Campos',
-      lat: -23.172931024550035,
-      lng: -45.84504900675579
-    },
-    {
-      nome: 'KM SCHOOL',
-      endereco: 'Rua Icatu, 718 - Parque Industrial, São José dos Campos - SP',
-      horarios: `
-        <strong>Modalidades:</strong><br>
-        Jiu Jitsu • Muay Thai • MMA<br>
-        Capoeira • Boxe • Kickboxe
-      `,
-      contato: '(12) 98835-2826',
-      imagemUrl: 'imagens local de treinamento/km school.png',
-      linkDireto: 'https://maps.google.com/?q=Rua+Icatu+718+Parque+Industrial+Sao+Jose+dos+Campos',
-      lat: -23.244681976515377, 
-      lng: -45.91052097556601
-    },
-    {
-      nome: 'Academia Giant Fitness',
-      endereco: 'Estr. Mun. Nelson Tavares da Silva, 1310 - Bom Retiro, São José dos Campos - SP (CEP: 12226-206)',
-      horarios: '<strong>Sábados:</strong> 09h às 10h30',
-      contato: '(12) 99253-1885',
-      imagemUrl: 'imagens local de treinamento/giant fitness.png', 
-      linkDireto: 'https://maps.app.goo.gl/4mYK2sWxo7W6mw168',
-      lat: -23.201787965430107,
-      lng: -45.777435681746304
-    },
-
-  ];
+  {
+    nome: 'Academia Maromba (DCTA)',
+    endereco: 'DCTA H8-B - São José dos Campos, SP (CEP: 12224-300)',
+    horarios: '<strong>Seg, Qua e Sex:</strong> 20h30 às 21h30',
+    contato: '(12) 98845-2411',
+    imagemUrl: 'imagens local de treinamento/ITA maroma.png',
+    linkDireto: 'https://maps.app.goo.gl/ebvSbDSQzJCxSrBZ8',
+    lat: -23.20267039402918, 
+    lng: -45.87465798202034,
+    treinador: 'Francisco Openheimer'
+  },
+  {
+    nome: 'CT QUINTHAI',
+    endereco: 'R. Cristóvão de Alençar, 20 - Vila Tesouro, São José dos Campos - SP (12221-190)',
+    horarios: `
+      <strong>Ter / Qui:</strong> 08h, 09h, 19h e 20h<br>
+      <strong>Seg / Qua:</strong> 20h<br>
+      <strong>Juvenil (12 a 16 anos):</strong> Ter / Qui às 17h<br>
+      <strong>Intermediário / Avançado:</strong> Seg, Qua e Sex às 19h
+    `,
+    imagemUrl: 'imagens local de treinamento/QUINTHAI.png',
+    linkDireto: 'https://maps.google.com/?q=Rua+Cristovao+de+Alencar+20+Vila+Tesouro+Sao+Jose+dos+Campos',
+    lat: -23.172931024550035,
+    lng: -45.84504900675579,
+    treinador: 'Jefferson Erbas'
+  },
+  {
+    nome: 'KM SCHOOL',
+    endereco: 'Rua Icatu, 718 - Parque Industrial, São José dos Campos - SP',
+    horarios: `
+      <strong>Muay Thai</strong><br>
+      Terça e Quinta as 19h
+    `,
+    contato: '(12) 98835-2826',
+    imagemUrl: 'imagens local de treinamento/km school.png',
+    linkDireto: 'https://maps.google.com/?q=Rua+Icatu+718+Parque+Industrial+Sao+Jose+dos+Campos',
+    lat: -23.244681976515377, 
+    lng: -45.91052097556601,
+    treinador: 'Marlus Maciel'
+  },
+  {
+    nome: 'Academia Giant Fitness',
+    endereco: 'Estr. Mun. Nelson Tavares da Silva, 1310 - Bom Retiro, São José dos Campos - SP (CEP: 12226-206)',
+    horarios: '<strong>Sábados:</strong> 09h às 10h30',
+    contato: '(12) 99253-1885',
+    imagemUrl: 'imagens local de treinamento/giant fitness.png', 
+    linkDireto: 'https://maps.app.goo.gl/4mYK2sWxo7W6mw168',
+    lat: -23.201787965430107,
+    lng: -45.777435681746304,
+    treinador: 'Jéssica Telles'
+  }
+];
 
   abrirMapa() {
     this.mostrarMapa = true;

@@ -19,10 +19,16 @@
             <i class="bi bi-geo-alt-fill text-warning me-2 mt-1"></i> 
             <span>{{ local.endereco }}</span>
           </p>
-          <p class="text-light fs-6 mb-2 d-flex align-items-start" *ngIf="local.contato">
+         <p class="text-light fs-6 mb-2 d-flex align-items-start" *ngIf="local.contato">
             <i class="bi bi-whatsapp text-warning me-2 mt-1"></i> 
             <span>{{ local.contato }}</span>
           </p>
+          
+          <p class="text-light fs-6 mb-2 d-flex align-items-start" *ngIf="local.treinador">
+            <i class="bi bi-person-fill text-warning me-2 mt-1"></i> 
+            <span class="text-warning fw-bold">Treinador: {{ local.treinador }}</span>
+          </p>
+
           <div class="text-light mb-4 d-flex align-items-start">
             <i class="bi bi-clock-fill text-warning me-2 mt-1"></i> 
             <div [innerHTML]="local.horarios"></div>

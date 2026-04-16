@@ -31,13 +31,14 @@ export class HomeComponent implements AfterViewInit {
       const video = this.videoRef.nativeElement;
 
       if (typeof video.play === 'function') {
-        video.currentTime = 1;
+        video.muted = true;
+        video.defaultMuted = true;
+        video.playsInline = true;
         
         video.play().catch(err => {
           console.warn("Autoplay bloqueado pelo browser. O usuário precisa interagir com a página primeiro.", err);
         });
 
-        video.onended = () => video.pause();
       } else {
         console.error("O elemento #bgVideo não é um elemento de vídeo válido.");
       }

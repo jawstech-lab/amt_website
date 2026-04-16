@@ -75,28 +75,35 @@ export class EquipeComponent {
   }
 
   treinadores: Membro[] = [
-    {
-      nome: 'Francisco Openheimer',
-      grau: 'Instrutor',
-      descricao: ``,
-      imagemUrl: 'imagens/Treinadores/Francisco Openheimer.png',
-      localTreino: ''
-    },
-    {
-      nome: 'jeferson',
-      grau: 'Instrutor',
-      descricao: ``,
-      imagemUrl: 'imagens/Treinadores/CT QUINTHAI.png',
-      localTreino: ''
-    },
-    {
-      nome: 'Jéssica Telles',
-      grau: 'Instrutor',
-      descricao: ``,
-      imagemUrl: 'imagens/Treinadores/Jéssica Telles.png',
-      localTreino: ''
-    }
-  ];
+  {
+    nome: 'Jefferson Erbas',
+    grau: 'Líder da Equipe AMT / Kru',
+    descricao: `Meu nome é Jefferson Erbas, tenho 39 anos e resido em São José dos Campos... (biografia completa aqui) ...`,
+    imagemUrl: 'imagens/Treinadores/CT QUINTHAI.png',
+    localTreino: 'CT QUINTHAI'
+  },
+  {
+    nome: 'Francisco Openheimer',
+    grau: 'Instrutor',
+    descricao: `Instrutor responsável pela unidade Maromba no DCTA.`,
+    imagemUrl: 'imagens/Treinadores/Francisco Openheimer.png',
+    localTreino: 'Academia Maromba (DCTA)'
+  },
+  {
+    nome: 'Jéssica Telles',
+    grau: 'Instrutora',
+    descricao: `Instrutora responsável pelos treinos na Academia Giant.`,
+    imagemUrl: 'imagens/Treinadores/Jéssica Telles.png',
+    localTreino: 'Academia Giant Fitness'
+  },
+  {
+    nome: 'Marlus Maciel',
+    grau: 'Instrutor',
+    descricao: `Instrutor responsável pela KM School.`,
+    imagemUrl: 'imagens/Treinadores/Marlus.png',
+    localTreino: 'KM SCHOOL'
+  }
+];
 
   lutadores: Membro[] = [];
 

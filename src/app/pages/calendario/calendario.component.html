@@ -14,11 +14,13 @@
             <small class="text-warning"><i class="bi bi-clock"></i> {{ evento.hora }}</small>
           </div>
           <h4 class="titulo">{{ evento.titulo }}</h4>
-          <p class="descricao mb-1">{{ evento.descricao }}</p>
+          
+          <p class="descricao mb-1" style="white-space: pre-wrap;">{{ evento.descricao }}</p>
+          
           <small class="local"><i class="bi bi-geo-alt-fill"></i> {{ evento.local }}</small>
         </div>
   
-        <div class="col-md-3 d-none d-md-block p-2">
+        <div class="col-md-3 d-none d-md-block p-2" *ngIf="evento.imageUrl && evento.imageUrl.trim() !== ''">
           <img [src]="evento.imageUrl" class="img-fluid rounded shadow-sm" alt="Evento">
         </div>
       </div>

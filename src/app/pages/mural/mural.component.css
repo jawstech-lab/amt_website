@@ -49,6 +49,7 @@
     flex-grow: 1;
     max-height: 120px;
     overflow-y: overlay;
+    white-space: pre-wrap;
   }
   
   .data-publicacao {
