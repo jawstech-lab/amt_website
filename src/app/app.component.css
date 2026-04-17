@@ -1,0 +1,16 @@
+
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.conteudo-principal {
+  flex: 1 0 auto;
+}
+
+.footer-custom {
+  background-color: #111;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  flex-shrink: 0;
+}

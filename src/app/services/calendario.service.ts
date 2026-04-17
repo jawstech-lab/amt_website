@@ -17,11 +17,17 @@ export class CalendarioService {
   }
 
   private csvParaEventos(csv: string): Evento[] {
-    const linhas = csv.split('\n').slice(1); 
-    return linhas.map(linha => {
-      const colunas = linha.split(',');
+    const linhas = this.parseCSV(csv).slice(1); 
+    
+    return linhas.filter(linha => linha.length >= 1 && linha[0].trim() !== '').map(linha => {
       
-      const [dataStr, hora, local, titulo, descricao, tipo, imageUrl] = colunas;
+      const dataStr = linha[0] || '';
+      const hora = linha[1] || '';
+      const local = linha[2] || '';
+      const titulo = linha[3] || '';
+      const descricao = linha[4] || '';
+      const tipo = linha[5] || 'Treino'; 
+      const imageUrl = linha[6] || '';
   
       const partesData = dataStr.trim().split('/');
       const dia = parseInt(partesData[0], 10);
@@ -32,13 +38,29 @@ export class CalendarioService {
   
       return {
         data: dataObjeto,
-        hora: hora?.trim(),
-        local: local?.trim(),
-        titulo: titulo?.trim(),
-        descricao: descricao?.trim(),
-        imageUrl: imageUrl?.trim(),
-        tipo: (tipo?.trim() as any) || 'Treino'
+        hora: hora.trim(),
+        local: local.trim(),
+        titulo: titulo.trim(),
+        descricao: descricao.trim(),
+        imageUrl: imageUrl.trim(),
+        tipo: (tipo.trim() as any) || 'Treino' // <-- Correção do erro TS2322 aplicada aqui
       };
     });
+  }
+
+  private parseCSV(texto: string): string[][] {
+    let p = '', row = [''], ret = [row], i = 0, r = 0, s = !0, l;
+    for (l of texto) {
+        if ('"' === l) {
+            if (s && l === p) row[i] += l;
+            s = !s;
+        } else if (',' === l && s) l = row[++i] = '';
+        else if ('\n' === l && s) {
+            if ('\r' === p) row[i] = row[i].slice(0, -1);
+            row = ret[++r] = [l = '']; i = 0;
+        } else row[i] += l;
+        p = l;
+    }
+    return ret;
   }
 }

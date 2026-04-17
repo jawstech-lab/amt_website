@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { CalendarioService } from '../../services/calendario.service';
 import { Evento } from '../../models/evento.model';
 import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-calendario',
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './calendario.component.html',
   styleUrls: ['./calendario.component.css']
@@ -12,6 +14,8 @@ export class CalendarioComponent implements OnInit {
   eventosFuturos: Evento[] = [];
   eventosPassados: Evento[] = [];
   mostrarPassados = false;
+  
+  eventoExpandido: Evento | null = null;
 
   constructor(private service: CalendarioService) {}
 
@@ -25,5 +29,13 @@ export class CalendarioComponent implements OnInit {
       this.eventosFuturos = ordenados.filter(e => e.data >= hoje);
       this.eventosPassados = ordenados.filter(e => e.data < hoje).reverse(); 
     });
+  }
+
+  toggleExpandir(evento: Evento) {
+    if (this.eventoExpandido === evento) {
+      this.eventoExpandido = null; 
+    } else {
+      this.eventoExpandido = evento; 
+    }
   }
 }
