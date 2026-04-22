@@ -129,6 +129,7 @@ export class EquipeComponent implements OnInit, OnDestroy {
       imagemUrl: 'imagens/Treinadores/Marlus M.png', 
       localTreino: 'KM SCHOOL'
     }
+    
   ];
 
   lutadores: Membro[] = [
@@ -166,6 +167,19 @@ export class EquipeComponent implements OnInit, OnDestroy {
       imagemUrl: 'imagens/Lutadores/Grilo.png', 
       statusDestaque: [
         { icone: 'bi-person-standing', valor: '55,5 Kg', cor: 'text-info', titulo: 'Peso' },
+        { icone: 'bi-fire', valor: '1 Lt', cor: 'text-warning', titulo: 'Total de Lutas' },
+        { icone: 'bi-trophy-fill', valor: '1 Vit', cor: 'text-success', titulo: 'Vitórias' },
+        { icone: 'bi-shield-slash-fill', valor: '0 Der', cor: 'text-danger', titulo: 'Derrotas' }
+      ]
+    },
+    {
+      nome: 'Felipe Wesley Gomes Ribeiro',
+      apelido: 'Felipe',
+      grau: 'Amador',
+      descricao: `Atleta da categoria 80kg, focado em evolução técnica e força nos ringues da AMT.`,
+      imagemUrl: 'imagens/Lutadores/Felipe Wesley.png',
+      statusDestaque: [
+        { icone: 'bi-person-standing', valor: '80 Kg', cor: 'text-info', titulo: 'Peso' },
         { icone: 'bi-fire', valor: '1 Lt', cor: 'text-warning', titulo: 'Total de Lutas' },
         { icone: 'bi-trophy-fill', valor: '1 Vit', cor: 'text-success', titulo: 'Vitórias' },
         { icone: 'bi-shield-slash-fill', valor: '0 Der', cor: 'text-danger', titulo: 'Derrotas' }
