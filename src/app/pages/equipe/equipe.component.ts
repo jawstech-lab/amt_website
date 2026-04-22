@@ -132,6 +132,15 @@ export class EquipeComponent implements OnInit, OnDestroy {
     }
   ];
 
-  lutadores: Membro[] = [];
+  lutadores: Membro[] = [
+    {
+      nome: 'Jhonatan Openheimer',
+      apelido: 'jhow',
+      grau: 'Amador',
+      descricao: `Instrutor de Muay Thai ajudando alunos a evoluírem na técnica, condicionamento e disciplina. Acredita no trabalho constante, na correção dos detalhes e na construção de resultados reais.`,
+      imagemUrl: 'imagens/Lutadores/Jhonatan Openheimer.png',
+      localTreino: 'Amador | 65Kg | Cartel: 3L/1V/2D'
+    }
+  ];
 
 }
