@@ -11,6 +11,7 @@ interface LocalTreino {
   lat: number; 
   lng: number; 
   treinador?: string;
+  videoUrl?: string; // Propriedade nova para aceitar vídeos opcionais
 }
 
 @Component({
@@ -83,6 +84,20 @@ export class LocalTreinoComponent {
     lat: -23.201787965430107,
     lng: -45.777435681746304,
     treinador: 'Jéssica Telles'
+  },
+ 
+  {
+    nome: 'Academia Sky Fit Leste',
+    endereco: 'Rua das Peônias, 222 - São José dos Campos - SP',
+    horarios: `
+      <strong>Seg e Qua:</strong> 20h00 às 21h00<br>
+      <strong>Ter e Qui:</strong> 09h30 às 10h30
+    `,
+    imagemUrl: 'imagens local de treinamento/skyfit.png', 
+    videoUrl: 'imagens local de treinamento/video skyfit.mp4', 
+    linkDireto: 'https://www.google.com/maps/search/?api=1&query=Rua+das+peonias,+222+sao+jose+dos+campos',
+    lat: -23.17521321749508, 
+    lng:  -45.827830786937724
   }
 ];
 
@@ -147,7 +162,7 @@ export class LocalTreinoComponent {
         this.marcadoresMapa[local.nome] = marker;
       });
       
-      // 2. Força o mapa a recalcular seu tamanho (Evita bugs visuais em modais)
+     
       setTimeout(() => {
         this.mapa.invalidateSize();
       }, 200);

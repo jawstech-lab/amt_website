@@ -10,9 +10,11 @@
   <div class="row g-4">
     <div class="col-12" *ngFor="let local of locais">
       <div class="local-card shadow-lg d-flex flex-column flex-lg-row">
+        
         <div class="local-img-container">
           <img [src]="local.imagemUrl" [alt]="local.nome" class="local-img">
         </div>
+
         <div class="local-info p-3 d-flex flex-column justify-content-center">
           <h3 class="text-primary fw-bold text-uppercase mb-3">{{ local.nome }}</h3>
           <p class="text-light fs-6 mb-2 d-flex align-items-start">
@@ -37,6 +39,11 @@
             <i class="bi bi-map-fill me-1"></i> Abrir no Maps
           </a>
         </div>
+
+        <div class="local-video-container" *ngIf="local.videoUrl">
+          <video [src]="local.videoUrl" class="local-video" controls preload="metadata"></video>
+        </div>
+
       </div>
     </div>
   </div>

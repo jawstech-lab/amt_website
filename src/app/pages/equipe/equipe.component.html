@@ -68,7 +68,7 @@
               <div class="bio" [innerHTML]="treinador.descricao"></div>
             </div>
 
-            <div class="local-treino-container mt-2 pt-2 border-top border-secondary">
+            <div class="local-treino-container mt-2 pt-2 border-top border-secondary" *ngIf="treinador.localTreino">
               <small class="text-secondary">Locais de Treino:</small>
               <div class="mt-1">
                 <p class="local-treino mb-1 text-warning" *ngFor="let local of getLocaisArray(treinador.localTreino)">
@@ -76,6 +76,7 @@
                 </p>
               </div>
             </div>
+
           </div>          
         </div>
       </div>
@@ -108,7 +109,7 @@
               </div>
               <div class="header-info">
                 <h4 class="mb-0 text-primary">{{ lutador.nome }}</h4>
-                <p class="apelido text-warning mb-1">{{ lutador.apelido }}</p>
+                <p class="apelido text-warning mb-1" *ngIf="lutador.apelido">"{{ lutador.apelido }}"</p>
                 <span class="badge badge-grau">{{ lutador.grau }}</span>
               </div>
             </div>
@@ -117,14 +118,13 @@
               <div class="bio" [innerHTML]="lutador.descricao"></div>
             </div>
 
-            <div class="local-treino-container mt-2 pt-2 border-top border-secondary">
-              <small class="text-secondary">Locais de Treino:</small>
-              <div class="mt-1">
-                <p class="local-treino mb-1 text-warning" *ngFor="let local of getLocaisArray(lutador.localTreino)">
-                  <i class="bi bi-geo-alt-fill"></i> {{ local }}
-                </p>
+            <div class="stats-grid mt-2 pt-2 border-top border-secondary" *ngIf="lutador.statusDestaque">
+              <div class="stat-item" *ngFor="let status of lutador.statusDestaque" [title]="status.titulo">
+                <i class="bi {{ status.icone }} {{ status.cor }}"></i>
+                <span>{{ status.valor }}</span>
               </div>
             </div>
+
           </div>
         </div>
       </div>

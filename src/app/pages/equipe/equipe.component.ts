@@ -7,7 +7,8 @@ interface Membro {
   grau: string;
   descricao: string;
   imagemUrl: string;
-  localTreino: string;
+  localTreino?: string; // Ficou opcional (?) para não dar erro nos lutadores
+  statusDestaque?: { icone: string; valor: string; cor: string; titulo: string }[]; // Array de "status" reais
 }
 
 @Component({
@@ -41,7 +42,6 @@ export class EquipeComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-
     this.intervaloFotos = setInterval(() => {
       this.indiceImg1 = (this.indiceImg1 + 2) % this.imagensHistoria.length;
       this.indiceImg2 = (this.indiceImg2 + 2) % this.imagensHistoria.length;
@@ -49,7 +49,6 @@ export class EquipeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-
     if (this.intervaloFotos) {
       clearInterval(this.intervaloFotos);
     }
@@ -96,7 +95,7 @@ export class EquipeComponent implements OnInit, OnDestroy {
     });
   }
 
-  getLocaisArray(locais: string): string[] {
+  getLocaisArray(locais?: string): string[] {
     if (!locais) return [];
     return locais.split(';').map(local => local.trim());
   }
@@ -112,7 +111,7 @@ export class EquipeComponent implements OnInit, OnDestroy {
     {
       nome: 'Francisco Openheimer',
       grau: 'Instrutor',
-      descricao: `Instrutor responsável pela unidade Maromba no DCTA.`,
+      descricao: `Instrutor de Muay Thai ajudando alunos a evoluírem na técnica, condicionamento e disciplina. Acredita no trabalho constante, na correção dos detalhes e na construção de resultados reais.`,
       imagemUrl: 'imagens/Treinadores/Francisco Openheimer.png',
       localTreino: 'Academia Maromba (DCTA)'
     },
@@ -126,7 +125,7 @@ export class EquipeComponent implements OnInit, OnDestroy {
     {
       nome: 'Marlus Maciel',
       grau: 'Instrutor',
-      descricao: `Instrutor responsável pela KM School.`,
+      descricao: `Com mais de 12 anos de experiência no ensino e praticante desde 2008, o Professor Marlus integra a equipe AMT (Alliance Muay Thai). Sua trajetória inclui mais de 40 cursos e workshops com grandes nomes do cenário mundial, focando no desenvolvimento técnico, condicionamento físico e no fortalecimento da autoestima e autocontrole de seus alunos na SkyFit Academia Leste.`,
       imagemUrl: 'imagens/Treinadores/Marlus M.png', 
       localTreino: 'KM SCHOOL'
     }
@@ -137,9 +136,40 @@ export class EquipeComponent implements OnInit, OnDestroy {
       nome: 'Jhonatan Openheimer',
       apelido: 'jhow',
       grau: 'Amador',
-      descricao: `Instrutor de Muay Thai ajudando alunos a evoluírem na técnica, condicionamento e disciplina. Acredita no trabalho constante, na correção dos detalhes e na construção de resultados reais.`,
+      descricao: `Jovem promessa buscando seu espaço nos ringues e evoluindo a cada treino na AMT.`,
       imagemUrl: 'imagens/Lutadores/Jhonatan Openheimer.png',
-      localTreino: 'Amador | 65Kg | Cartel: 3L/1V/2D'
+      statusDestaque: [
+        { icone: 'bi-person-standing', valor: '65 Kg', cor: 'text-info', titulo: 'Peso' },
+        { icone: 'bi-fire', valor: '3 Lts', cor: 'text-warning', titulo: 'Total de Lutas' },
+        { icone: 'bi-trophy-fill', valor: '1 Vit', cor: 'text-success', titulo: 'Vitórias' },
+        { icone: 'bi-shield-slash-fill', valor: '2 Der', cor: 'text-danger', titulo: 'Derrotas' }
+      ]
+    },
+    {
+      nome: 'Alberto Junior',
+      apelido: 'Albertinho',
+      grau: 'Amador',
+      descricao: ``,
+      imagemUrl: 'imagens/Lutadores/Albertinho.png', 
+      statusDestaque: [
+        { icone: 'bi-person-standing', valor: '70 Kg', cor: 'text-info', titulo: 'Peso' },
+        { icone: 'bi-fire', valor: '1 Lt', cor: 'text-warning', titulo: 'Total de Lutas' },
+        { icone: 'bi-trophy-fill', valor: '1 Vit', cor: 'text-success', titulo: 'Vitórias' },
+        { icone: 'bi-shield-slash-fill', valor: '0 Der', cor: 'text-danger', titulo: 'Derrotas' }
+      ]
+    },
+    {
+      nome: 'Gabriel Rodrigues',
+      apelido: 'Grilo',
+      grau: 'Amador',
+      descricao: ``,
+      imagemUrl: 'imagens/Lutadores/Grilo.png', 
+      statusDestaque: [
+        { icone: 'bi-person-standing', valor: '55,5 Kg', cor: 'text-info', titulo: 'Peso' },
+        { icone: 'bi-fire', valor: '1 Lt', cor: 'text-warning', titulo: 'Total de Lutas' },
+        { icone: 'bi-trophy-fill', valor: '1 Vit', cor: 'text-success', titulo: 'Vitórias' },
+        { icone: 'bi-shield-slash-fill', valor: '0 Der', cor: 'text-danger', titulo: 'Derrotas' }
+      ]
     }
   ];
 
