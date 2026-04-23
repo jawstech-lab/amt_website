@@ -1,34 +1,34 @@
 <div class="container mt-5 mb-5">
 
   <section class="sobre-equipe mb-5">
-  <div class="row align-items-center">
-    <div class="col-lg-6 mb-4 mb-lg-0 text-sobre">
-      <h2 class="titulo-secao">NOSSA <span class="text-primary">HISTÓRIA</span></h2>
-      <p class="lead mt-3 text-light">
-        A Equipe AMT foi criada em 4 de setembro de 2017. A grande força que impulsionou o nascimento da equipe era a de trazer o Muay Thai de forma real e verdadeira para a região.
-      </p>
-      <p class="text-light">
-        Tinha também a missão de quebrar o estereótipo da época, de que treinos e lutas eram degradantes, e levar o Muay Thai a todo o público, o que mantemos até hoje.<br>
-        O nome "Alliance" vem de uma aliança dos treinadores que migraram de outra equipe para a AMT com o intuito de evolução.
-      </p>
-      <p class="text-light">
-        Hoje, temos como líder o Kru Jefferson Erbas, que está desde a formação da equipe.<br>
-        Contamos também com mais 8 krus/instrutores em atividade entre São José dos Campos e Caraguatatuba.<br>
-        Seguimos em constante evolução para ministrar as melhores aulas e repassar as informações mais atualizadas possíveis aos alunos.
-      </p>
-    </div>
-    <div class="col-lg-6">
-      <div class="row g-2">
-        <div class="col-6">
-          <img [src]="imagensHistoria[indiceImg1]" class="img-fluid rounded shadow" style="transition: all 0.5s ease;" alt="Treino">
-        </div>
-        <div class="col-6">
-          <img [src]="imagensHistoria[indiceImg2]" class="img-fluid rounded shadow mt-4" style="transition: all 0.5s ease;" alt="Luvas">
+    <div class="row align-items-center">
+      <div class="col-lg-6 mb-4 mb-lg-0 text-sobre">
+        <h2 class="titulo-secao">NOSSA <span class="text-primary">HISTÓRIA</span></h2>
+        <p class="lead mt-3 text-light">
+          A Equipe AMT foi criada em 4 de setembro de 2017. A grande força que impulsionou o nascimento da equipe era a de trazer o Muay Thai de forma real e verdadeira para a região.
+        </p>
+        <p class="text-light">
+          Tinha também a missão de quebrar o estereótipo da época, de que treinos e lutas eram degradantes, e levar o Muay Thai a todo o público, o que mantemos até hoje.<br>
+          O nome "Alliance" vem de uma aliança dos treinadores que migraram de outra equipe para a AMT com o intuito de evolução.
+        </p>
+        <p class="text-light">
+          Hoje, temos como líder o Kru Jefferson Erbas, que está desde a formação da equipe.<br>
+          Contamos também com mais 8 krus/instrutores em atividade entre São José dos Campos e Caraguatatuba.<br>
+          Seguimos em constante evolução para ministrar as melhores aulas e repassar as informações mais atualizadas possíveis aos alunos.
+        </p>
+      </div>
+      <div class="col-lg-6">
+        <div class="row g-2">
+          <div class="col-6">
+            <img [src]="imagensHistoria[indiceImg1]" class="img-fluid rounded shadow" style="transition: all 0.5s ease;" alt="Treino">
+          </div>
+          <div class="col-6">
+            <img [src]="imagensHistoria[indiceImg2]" class="img-fluid rounded shadow mt-4" style="transition: all 0.5s ease;" alt="Luvas">
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
   <hr class="divisor">
 
@@ -59,7 +59,7 @@
               </div>
               <div class="header-info">
                 <h4 class="mb-0 text-primary">{{ treinador.nome }}</h4>
-                <p class="apelido text-warning mb-1" *ngIf="treinador.apelido">{{ treinador.apelido }}</p>
+                <p class="apelido text-warning mb-1" *ngIf="treinador.apelido">"{{ treinador.apelido }}"</p>
                 <span class="badge badge-grau">{{ treinador.grau }}</span>
               </div>
             </div>
@@ -110,7 +110,7 @@
               <div class="header-info">
                 <h4 class="mb-0 text-primary">{{ lutador.nome }}</h4>
                 <p class="apelido text-warning mb-1" *ngIf="lutador.apelido">"{{ lutador.apelido }}"</p>
-                <span class="badge badge-grau">{{ lutador.grau }}</span>
+                <span class="badge badge-grau" *ngIf="!lutador.peso">{{ lutador.grau }}</span>
               </div>
             </div>
 
@@ -118,10 +118,26 @@
               <div class="bio" [innerHTML]="lutador.descricao"></div>
             </div>
 
-            <div class="stats-grid mt-2 pt-2 border-top border-secondary" *ngIf="lutador.statusDestaque">
-              <div class="stat-item" *ngFor="let status of lutador.statusDestaque" [title]="status.titulo">
-                <i class="bi {{ status.icone }} {{ status.cor }}"></i>
-                <span>{{ status.valor }}</span>
+            <div class="lutador-status-box mt-2 border-top border-secondary pt-2" *ngIf="lutador.peso">
+              <div class="status-linha"><strong>Categoria:</strong> {{ lutador.grau }}</div>
+              <div class="status-linha"><strong>Peso:</strong> {{ lutador.peso }}</div>
+              <div class="status-linha"><strong>Cartel:</strong> {{ lutador.totalLutas }} luta<span *ngIf="lutador.totalLutas !== 1">s</span></div>
+
+              <div class="cartel-detalhes mt-2 pt-2 pb-2">
+                <div class="row text-center m-0">
+                  <div class="col-4 p-0">
+                    <div class="cartel-label text-success"><i class="bi bi-hand-thumbs-up-fill mb-1 d-block fs-6"></i>Vitórias</div>
+                    <div class="cartel-valor">{{ lutador.vitorias }}</div>
+                  </div>
+                  <div class="col-4 p-0 border-start border-end border-secondary">
+                    <div class="cartel-label text-danger"><i class="bi bi-shield-slash-fill mb-1 d-block fs-6"></i>Derrotas</div>
+                    <div class="cartel-valor">{{ lutador.derrotas }}</div>
+                  </div>
+                  <div class="col-4 p-0">
+                    <div class="cartel-label text-secondary"><i class="bi bi-dash-circle-fill mb-1 d-block fs-6"></i>Empates</div>
+                    <div class="cartel-valor">{{ lutador.empates }}</div>
+                  </div>
+                </div>
               </div>
             </div>
 

@@ -7,8 +7,13 @@ interface Membro {
   grau: string;
   descricao: string;
   imagemUrl: string;
-  localTreino?: string; // Ficou opcional (?) para não dar erro nos lutadores
-  statusDestaque?: { icone: string; valor: string; cor: string; titulo: string }[]; // Array de "status" reais
+  localTreino?: string;
+  statusDestaque?: { icone: string; valor: string; cor: string; titulo: string }[];
+  peso?: string;
+  totalLutas?: number;
+  vitorias?: number;
+  derrotas?: number;
+  empates?: number;
 }
 
 @Component({
@@ -124,12 +129,11 @@ export class EquipeComponent implements OnInit, OnDestroy {
     },
     {
       nome: 'Marlus Maciel',
-      grau: 'Instrutor',
-      descricao: `Com mais de 12 anos de experiência no ensino e praticante desde 2008, o Professor Marlus integra a equipe AMT (Alliance Muay Thai). Sua trajetória inclui mais de 40 cursos e workshops com grandes nomes do cenário mundial, focando no desenvolvimento técnico, condicionamento físico e no fortalecimento da autoestima e autocontrole de seus alunos na SkyFit Academia Leste.`,
+      grau: 'Kru',
+      descricao: `Com mais de 12 anos de experiência no ensino e praticante desde 2008, o Professor Marlus integra a equipe AMT (Alliance Muay Thai). Sua trajetória inclui mais de 40 cursos e workshops com grandes nomes do cenário mundial, focando no desenvolvimento técnico, condicionamento físico e no fortalecimento da autoestima e autocontrole`,
       imagemUrl: 'imagens/Treinadores/Marlus M.png', 
       localTreino: 'KM SCHOOL'
     }
-    
   ];
 
   lutadores: Membro[] = [
@@ -139,38 +143,35 @@ export class EquipeComponent implements OnInit, OnDestroy {
       grau: 'Amador',
       descricao: `Jovem promessa buscando seu espaço nos ringues e evoluindo a cada treino na AMT.`,
       imagemUrl: 'imagens/Lutadores/Jhonatan Openheimer.png',
-      statusDestaque: [
-        { icone: 'bi-person-standing', valor: '65 Kg', cor: 'text-info', titulo: 'Peso' },
-        { icone: 'bi-fire', valor: '3 Lts', cor: 'text-warning', titulo: 'Total de Lutas' },
-        { icone: 'bi-trophy-fill', valor: '1 Vit', cor: 'text-success', titulo: 'Vitórias' },
-        { icone: 'bi-shield-slash-fill', valor: '2 Der', cor: 'text-danger', titulo: 'Derrotas' }
-      ]
+      peso: '65 kg',
+      totalLutas: 6,
+      vitorias: 1,
+      derrotas: 3,
+      empates: 2
     },
     {
-      nome: 'Alberto Junior',
+      nome: 'Alberto dias da Silva Junior',
       apelido: 'Albertinho',
       grau: 'Amador',
-      descricao: ``,
-      imagemUrl: 'imagens/Lutadores/Albertinho.png', 
-      statusDestaque: [
-        { icone: 'bi-person-standing', valor: '70 Kg', cor: 'text-info', titulo: 'Peso' },
-        { icone: 'bi-fire', valor: '1 Lt', cor: 'text-warning', titulo: 'Total de Lutas' },
-        { icone: 'bi-trophy-fill', valor: '1 Vit', cor: 'text-success', titulo: 'Vitórias' },
-        { icone: 'bi-shield-slash-fill', valor: '0 Der', cor: 'text-danger', titulo: 'Derrotas' }
-      ]
+      descricao: `Atleta dedicado da equipe, demonstrando grande técnica e foco em sua trajetória amadora.`,
+      imagemUrl: 'imagens/Lutadores/Albertinho.png',
+      peso: '70 kg',
+      totalLutas: 1,
+      vitorias: 1,
+      derrotas: 0,
+      empates: 0
     },
     {
       nome: 'Gabriel Rodrigues',
       apelido: 'Grilo',
       grau: 'Amador',
-      descricao: ``,
-      imagemUrl: 'imagens/Lutadores/Grilo.png', 
-      statusDestaque: [
-        { icone: 'bi-person-standing', valor: '55,5 Kg', cor: 'text-info', titulo: 'Peso' },
-        { icone: 'bi-fire', valor: '1 Lt', cor: 'text-warning', titulo: 'Total de Lutas' },
-        { icone: 'bi-trophy-fill', valor: '1 Vit', cor: 'text-success', titulo: 'Vitórias' },
-        { icone: 'bi-shield-slash-fill', valor: '0 Der', cor: 'text-danger', titulo: 'Derrotas' }
-      ]
+      descricao: `Iniciando sua caminhada com vitória, mostrando agilidade e precisão técnica.`,
+      imagemUrl: 'imagens/Lutadores/Grilo.png',
+      peso: '55,5 kg',
+      totalLutas: 1,
+      vitorias: 1,
+      derrotas: 0,
+      empates: 0
     },
     {
       nome: 'Felipe Wesley Gomes Ribeiro',
@@ -178,12 +179,23 @@ export class EquipeComponent implements OnInit, OnDestroy {
       grau: 'Amador',
       descricao: `Atleta da categoria 80kg, focado em evolução técnica e força nos ringues da AMT.`,
       imagemUrl: 'imagens/Lutadores/Felipe Wesley.png',
-      statusDestaque: [
-        { icone: 'bi-person-standing', valor: '80 Kg', cor: 'text-info', titulo: 'Peso' },
-        { icone: 'bi-fire', valor: '1 Lt', cor: 'text-warning', titulo: 'Total de Lutas' },
-        { icone: 'bi-trophy-fill', valor: '1 Vit', cor: 'text-success', titulo: 'Vitórias' },
-        { icone: 'bi-shield-slash-fill', valor: '0 Der', cor: 'text-danger', titulo: 'Derrotas' }
-      ]
+      peso: '80 kg',
+      totalLutas: 1,
+      vitorias: 1,
+      derrotas: 0,
+      empates: 0
+    },
+    {
+      nome: 'Raul Soares Panizzon',
+      apelido: 'Raul Soares',
+      grau: 'Amador',
+      descricao: `Atleta de nível amador/semi, trazendo experiência para dentro do ringue.`,
+      imagemUrl: 'imagens/Lutadores/Raul Soares.png',
+      peso: '60 kg',
+      totalLutas: 4,
+      vitorias: 3,
+      derrotas: 1,
+      empates: 0
     }
   ];
 
