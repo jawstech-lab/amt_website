@@ -118,7 +118,7 @@ export class EquipeComponent implements OnInit, OnDestroy {
       grau: 'Instrutor',
       descricao: `Instrutor de Muay Thai ajudando alunos a evoluírem na técnica, condicionamento e disciplina. Acredita no trabalho constante, na correção dos detalhes e na construção de resultados reais.`,
       imagemUrl: 'imagens/Treinadores/Francisco Openheimer.png',
-      localTreino: 'Academia Maromba (DCTA)'
+      localTreino: ''
     },
     {
       nome: 'Jéssica Telles',
@@ -139,10 +139,7 @@ export class EquipeComponent implements OnInit, OnDestroy {
       grau: 'Kru',
       descricao: `Praticante de muay thai há 14 anos, integrante da equipe AMT há 11 e treinador há 5. Reside em São José dos Campos/SP.<br><br>"Sinto-me muito bem em estar no ambiente de treino. Acredito sempre que todos os alunos são capazes de aprender aquilo que lhes é ensinado. Sou muito paciente e persistente."`,
       imagemUrl: 'imagens/Treinadores/Odirelei.png',
-      totalLutas: 6,
-      vitorias: 3,
-      derrotas: 3,
-      empates: 0
+       localTreino: 'ITA'
     }
   ];
 
