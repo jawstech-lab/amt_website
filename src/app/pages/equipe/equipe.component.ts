@@ -133,6 +133,16 @@ export class EquipeComponent implements OnInit, OnDestroy {
       descricao: `Com mais de 12 anos de experiência no ensino e praticante desde 2008, o Professor Marlus integra a equipe AMT (Alliance Muay Thai). Sua trajetória inclui mais de 40 cursos e workshops com grandes nomes do cenário mundial, focando no desenvolvimento técnico, condicionamento físico e no fortalecimento da autoestima e autocontrole`,
       imagemUrl: 'imagens/Treinadores/Marlus M.png', 
       localTreino: 'KM SCHOOL'
+    },
+    {
+      nome: 'Odirelei',
+      grau: 'Kru',
+      descricao: `Praticante de muay thai há 14 anos, integrante da equipe AMT há 11 e treinador há 5. Reside em São José dos Campos/SP.<br><br>"Sinto-me muito bem em estar no ambiente de treino. Acredito sempre que todos os alunos são capazes de aprender aquilo que lhes é ensinado. Sou muito paciente e persistente."`,
+      imagemUrl: 'imagens/Treinadores/Odirelei.png',
+      totalLutas: 6,
+      vitorias: 3,
+      derrotas: 3,
+      empates: 0
     }
   ];
 
@@ -144,13 +154,13 @@ export class EquipeComponent implements OnInit, OnDestroy {
       descricao: `Jovem promessa buscando seu espaço nos ringues e evoluindo a cada treino na AMT.`,
       imagemUrl: 'imagens/Lutadores/Jhonatan Openheimer.png',
       peso: '65 kg',
-      totalLutas: 6,
+      totalLutas: 3,
       vitorias: 1,
-      derrotas: 3,
-      empates: 2
+      derrotas: 2,
+      empates: 0
     },
     {
-      nome: 'Alberto dias da Silva Junior',
+      nome: 'Alberto Junior',
       apelido: 'Albertinho',
       grau: 'Amador',
       descricao: `Atleta dedicado da equipe, demonstrando grande técnica e foco em sua trajetória amadora.`,
@@ -174,7 +184,7 @@ export class EquipeComponent implements OnInit, OnDestroy {
       empates: 0
     },
     {
-      nome: 'Felipe Wesley Gomes Ribeiro',
+      nome: 'Felipe Ribeiro',
       apelido: 'Felipe',
       grau: 'Amador',
       descricao: `Atleta da categoria 80kg, focado em evolução técnica e força nos ringues da AMT.`,
@@ -186,17 +196,16 @@ export class EquipeComponent implements OnInit, OnDestroy {
       empates: 0
     },
     {
-      nome: 'Raul Soares Panizzon',
+      nome: 'Raul Panizzon',
       apelido: 'Raul Soares',
       grau: 'Amador',
       descricao: `Atleta de nível amador/semi, trazendo experiência para dentro do ringue.`,
       imagemUrl: 'imagens/Lutadores/Raul Soares.png',
       peso: '60 kg',
       totalLutas: 4,
-      vitorias: 3,
-      derrotas: 1,
+      vitorias: 1,
+      derrotas: 3,
       empates: 0
     }
   ];
-
 }

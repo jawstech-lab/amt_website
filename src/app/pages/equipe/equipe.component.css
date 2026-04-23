@@ -55,7 +55,6 @@
 .scroll-btn.left { left: -5px; }
 .scroll-btn.right { right: -5px; }
 
-
 .scroll-horizontal {
   display: flex;
   flex-wrap: nowrap;
@@ -75,7 +74,6 @@
   display: none; 
 }
 
-
 .fight-card {
   position: relative;
   width: 130px;        
@@ -83,11 +81,14 @@
   flex: 0 0 auto;
   text-align: center;
   display: inline;
+  /* Animação mais fluida e orgânica */
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
-.fight-card > span{
+.fight-card > span {
   width: 100%;  
 }
-.fight-card img{
+
+.fight-card img.avatar-img {
   border-radius: 50%;  
   overflow: hidden; 
   background-color: #1a1a1a;
@@ -95,10 +96,8 @@
   cursor: pointer;
   transition: all 0.3s ease-in-out; 
   z-index: 1;
-
   width: 130px;
   height: 130px;
-
 }
 
 .fight-card:not(.expandido):hover {
@@ -107,11 +106,10 @@
   box-shadow: 0 0 15px rgba(210, 4, 45, 0.4);
 }
 
-
 @media (hover: hover) and (pointer: fine) {
   .fight-card:not(.expandido):hover {
-    width: 320px;           
-    height: 500px; 
+    width: 330px;           
+    height: 520px; 
     border-radius: 12px;    
     border-color: var(--cor-primaria);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
@@ -126,13 +124,14 @@
 
   .fight-card:not(.expandido):hover .expanded-content { 
     opacity: 1; 
+    transform: translateY(0);
     pointer-events: auto; 
   }
 }
 
 .fight-card.expandido {
-  width: 320px;           
-  height: 500px;
+  width: 330px;           
+  height: 520px; 
   border-radius: 12px;    
   border-color: var(--cor-primaria);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
@@ -140,9 +139,7 @@
   cursor: default;        
 }
 .fight-card.expandido .collapsed-view { opacity: 0; pointer-events: none; }
-
-.fight-card.expandido .expanded-content { opacity: 1; pointer-events: auto; }
-
+.fight-card.expandido .expanded-content { opacity: 1; transform: translateY(0); pointer-events: auto; }
 
 @media (max-width: 768px) {
   .fight-card.expandido {
@@ -168,16 +165,21 @@
   left: 0;
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   opacity: 1;
-  transition: opacity 0.1s ease;
+  transition: opacity 0.2s ease;
 }
 
 .avatar-img {
-  width: 100%;
-  height: 100%;
+  width: 130px !important;
+  height: 130px !important;
+  border-radius: 50%;
   object-fit: cover;
   filter: grayscale(20%) brightness(0.9);
   transition: transform 0.3s ease, filter 0.3s ease;
+  margin-bottom: 5px;
 }
 
 .fight-card:not(.expandido):hover .avatar-img {
@@ -195,8 +197,10 @@
   padding: 20px;
   background-color: rgba(0, 0, 0, 0.95); 
   opacity: 0; 
+  /* Efeito de subir (slide up) quando abre */
+  transform: translateY(15px);
   pointer-events: none;
-  transition: opacity 0.2s ease 0.1s; 
+  transition: opacity 0.3s ease 0.1s, transform 0.3s ease 0.1s; 
 }
 
 .btn-fechar {
@@ -315,81 +319,54 @@
   margin-right: 3px;
 }
 
-.fight-card {
-  position: relative;
-  width: 130px;        
-  height: 230px;       
-  flex: 0 0 auto;
-  text-align: center;
-  display: inline;
-  transition: all 0.3s ease-in-out;
-}
-
-/* --- ATRIBUTOS (INFORMAÇÕES ESTILIZADAS DA CARTA) --- */
-.stats-grid {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.4);
-  padding: 10px;
+/* --- ESTILOS DO CARTEL (FUNDO PRETO, CONTORNO CINZA) --- */
+.lutador-status-box {
+  background-color: #000000;
+  border: 1px solid #444444; 
+  padding: 15px;
   border-radius: 8px;
-  box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.5);
   flex-shrink: 0;
+  margin-top: 10px;
 }
 
-.stat-item {
+.cartel-stats-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stat-item-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.stat-text-col {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  font-size: 0.9rem;
-  font-weight: bold;
-  color: #fff;
-  cursor: help; /* Mostra a interrogação para ler o tooltip com o título real do status */
+  line-height: 1.1;
+  color: #ffffff;
 }
 
-.stat-item i {
-  font-size: 1.5rem;
-  margin-bottom: 4px;
-  filter: drop-shadow(0 0 4px rgba(255,255,255,0.1));
-}
-
-
-
-/* --- ESTATÍSTICAS LUTADOR (NOVO LAYOUT DE CARTEL) --- */
-.lutador-status-box {
-  background-color: rgba(0, 0, 0, 0.4);
-  padding: 12px 15px;
-  border-radius: 8px;
-  box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);
-  flex-shrink: 0;
-}
-
-.status-linha {
-  color: #e0e0e0;
-  font-size: 0.85rem;
-  margin-bottom: 5px;
-}
-
-.status-linha strong {
-  color: #bf953f; /* Dourado mágico RPG para os rótulos */
-  margin-right: 5px;
-}
-
-.cartel-detalhes {
-  background-color: rgba(0, 0, 0, 0.6);
-  border-radius: 6px;
-  border: 1px solid rgba(191, 149, 63, 0.3);
-}
-
-.cartel-label {
-  font-size: 0.70rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.cartel-valor {
-  font-size: 1.2rem;
+.stat-title {
   font-weight: 900;
-  color: #fff;
+  font-size: 0.70rem;
+}
+
+.stat-sub {
+  font-weight: bold;
+  font-size: 0.70rem;
+}
+
+.icone-cartel {
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 0 !important;
+  border: none !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  object-fit: contain !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
