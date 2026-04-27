@@ -1,0 +1,98 @@
+[
+    {
+        "nome": "João Pedro",
+        "apelido": "JP",
+        "grau": "Semi-Pro",
+        "descricao": "Jovem promessa buscando seu espaço nos ringues e evoluindo a cada treino na AMT.",
+        "imagemUrl": "imagens/Lutadores/JP.jpeg",
+        "peso": "63kg 65kg",
+        "totalLutas": 13,
+        "vitorias": 10,
+        "derrotas": 2,
+        "empates": 1
+    },    
+    {
+        "nome": "Jhonatan Openheimer",
+        "apelido": "jhow",
+        "grau": "Amador",
+        "descricao": "Jovem promessa buscando seu espaço nos ringues e evoluindo a cada treino na AMT.",
+        "imagemUrl": "imagens/Lutadores/Jhonatan Openheimer.png",
+        "peso": "65 kg",
+        "totalLutas": 3,
+        "vitorias": 1,
+        "derrotas": 2,
+        "empates": 0
+    },
+    {
+        "nome": "Alberto Junior",
+        "apelido": "Albertinho",
+        "grau": "Amador",
+        "descricao": "Atleta dedicado da equipe, demonstrando grande técnica e foco em sua trajetória amadora.",
+        "imagemUrl": "imagens/Lutadores/Albertinho.png",
+        "peso": "70 kg",
+        "totalLutas": 1,
+        "vitorias": 1,
+        "derrotas": 0,
+        "empates": 0
+    },
+    {
+        "nome": "Rafaela Amorim Fernandes Melchheier ",
+        "apelido": " Rafa Amorim",
+        "grau": "Amador",
+        "descricao": "",
+        "imagemUrl": "imagens/Lutadores/Rafaela.jpg",
+        "peso": "63,5kg - 65 kg",
+        "totalLutas": 3,
+        "vitorias": 1,
+        "derrotas": 2,
+        "empates": 0
+    },
+    {
+        "nome": " Raphael Bracarense",
+        "apelido": "Mango Loco",
+        "grau": "Semi-Pro",
+        "descricao": "",
+        "imagemUrl": "imagens/Lutadores/Raphael.jpg",
+        "peso": "67kg-70kg",
+        "totalLutas": 4,
+        "vitorias": 1,
+        "derrotas": 3,
+        "empates": 0
+    },
+    {
+        "nome": "Ricardo Oliveira Batista",
+        "apelido": "",
+        "grau": "Amador",
+        "descricao": "",
+        "imagemUrl": "imagens/Lutadores/Ricardo.jpg",
+        "peso": "57kg",
+        "totalLutas": 1,
+        "vitorias": 0,
+        "derrotas": 1,
+        "empates": 0
+    },  
+    {
+        "nome": "Felipe Ribeiro",
+        "apelido": "Felipe",
+        "grau": "Amador",
+        "descricao": "Atleta da categoria 80kg, focado em evolução técnica e força nos ringues da AMT.",
+        "imagemUrl": "imagens/Lutadores/Felipe Wesley.png",
+        "peso": "80 kg",
+        "totalLutas": 1,
+        "vitorias": 1,
+        "derrotas": 0,
+        "empates": 0
+    },
+    {
+        "nome": "Raul Panizzon",
+        "apelido": "Raul Soares",
+        "grau": "Amador",
+        "descricao": "Atleta de nível amador/semi, trazendo experiência para dentro do ringue.",
+        "imagemUrl": "imagens/Lutadores/Raul Soares.png",
+        "peso": "60 kg",
+        "totalLutas": 4,
+        "vitorias": 1,
+        "derrotas": 3,
+        "empates": 0
+    }
+]

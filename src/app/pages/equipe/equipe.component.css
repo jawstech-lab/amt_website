@@ -271,7 +271,8 @@
 }
 
 .bio-container {
-  flex-grow: 1;     
+  flex: 0 1 auto;
+  max-height: 250px;
   min-height: 0;    
   overflow-y: auto; 
   padding-right: 5px;

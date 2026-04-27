@@ -36,25 +36,25 @@ export class LocalTreinoComponent {
   locais: LocalTreino[] = [
   {
     nome: 'Academia Maromba (DCTA)',
-    endereco: 'DCTA H8-B - São José dos Campos, SP (CEP: 12224-300)',
+    endereco: 'DCTA H8-B - São José dos Campos, SP',
     horarios: '<strong>Seg, Qua e Sex:</strong> 20h30 às 21h30',
     contato: '(12) 98845-2411',
-    imagemUrl: 'imagens local de treinamento/ITA maroma.png',
+    imagemUrl: 'imagens/Locais/ITA maroma.png',
     linkDireto: 'https://maps.app.goo.gl/ebvSbDSQzJCxSrBZ8',
     lat: -23.20267039402918, 
     lng: -45.87465798202034,
-    treinador: 'Francisco Openheimer'
+    treinador: 'Odirlei'
   },
   {
     nome: 'CT QUINTHAI',
-    endereco: 'R. Cristóvão de Alençar, 20 - Vila Tesouro, São José dos Campos - SP (12221-190)',
+    endereco: 'R. Cristóvão de Alençar, 20 - Vila Tesouro, São José dos Campos - SP',
     horarios: `
       <strong>Ter / Qui:</strong> 08h, 09h, 19h e 20h<br>
       <strong>Seg / Qua:</strong> 20h<br>
       <strong>Juvenil (12 a 16 anos):</strong> Ter / Qui às 17h<br>
       <strong>Intermediário / Avançado:</strong> Seg, Qua e Sex às 19h
     `,
-    imagemUrl: 'imagens local de treinamento/QUINTHAI.png',
+    imagemUrl: 'imagens/Locais/QUINTHAI.png',
     linkDireto: 'https://maps.google.com/?q=Rua+Cristovao+de+Alencar+20+Vila+Tesouro+Sao+Jose+dos+Campos',
     lat: -23.172931024550035,
     lng: -45.84504900675579,
@@ -68,7 +68,7 @@ export class LocalTreinoComponent {
       Terça e Quinta as 19h
     `,
     contato: '(12) 98835-2826',
-    imagemUrl: 'imagens local de treinamento/km school.png',
+    imagemUrl: 'imagens/Locais/km school.png',
     linkDireto: 'https://maps.google.com/?q=Rua+Icatu+718+Parque+Industrial+Sao+Jose+dos+Campos',
     lat: -23.244681976515377, 
     lng: -45.91052097556601,
@@ -76,10 +76,10 @@ export class LocalTreinoComponent {
   },
   {
     nome: 'Academia Giant Fitness',
-    endereco: 'Estr. Mun. Nelson Tavares da Silva, 1310 - Bom Retiro, São José dos Campos - SP (CEP: 12226-206)',
+    endereco: 'Estr. Mun. Nelson Tavares da Silva, 1310 - Bom Retiro, São José dos Campos - SP',
     horarios: '<strong>Sábados:</strong> 09h às 10h30',
     contato: '(12) 99253-1885',
-    imagemUrl: 'imagens local de treinamento/giant fitness.png', 
+    imagemUrl: 'imagens/Locais/giant fitness.png', 
     linkDireto: 'https://maps.app.goo.gl/4mYK2sWxo7W6mw168',
     lat: -23.201787965430107,
     lng: -45.777435681746304,
@@ -93,11 +93,12 @@ export class LocalTreinoComponent {
       <strong>Seg e Qua:</strong> 20h00 às 21h00<br>
       <strong>Ter e Qui:</strong> 09h30 às 10h30
     `,
-    imagemUrl: 'imagens local de treinamento/skyfit.png', 
-    videoUrl: 'imagens local de treinamento/video skyfit.mp4', 
+    imagemUrl: 'imagens/Locais/skyfit.png', 
+    videoUrl: 'imagens/Locais/video skyfit.mp4', 
     linkDireto: 'https://www.google.com/maps/search/?api=1&query=Rua+das+peonias,+222+sao+jose+dos+campos',
     lat: -23.17521321749508, 
-    lng:  -45.827830786937724
+    lng:  -45.827830786937724,
+    treinador: 'Marlus Maciel'
   }
 ];
 

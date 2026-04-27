@@ -1,0 +1,45 @@
+[
+  {
+    "nome": "Jefferson Erbas",
+    "grau": "Líder da Equipe AMT / Kru",
+    "descricao": "Meu nome é Jefferson Erbas, tenho 39 anos e resido em São José dos Campos, interior de São Paulo. Pratico Muay Thai há mais de 20 anos, somando 29 lutas em meu cartel ao longo desse período.<br><br>Nos últimos anos, tenho focado minha atuação como treinador, um trabalho do qual sinto muito orgulho e que tem gerado excelentes resultados, proporcionando grande visibilidade entre alunos e academias parceiras.<br><br>Atualmente, lidero a equipe AMT - Alliance MuayThai, com unidades em São José dos Campos e Caraguatatuba. Sou o fundador do CT Quinthai, em São José dos Campos, um sonho realizado há três anos.<br><br>Minha experiência internacional inclui duas temporadas na Tailândia (2015 e 2019) dedicadas a treinos e lutas. Vivenciar o Muay Thai em seu país de origem me permitiu elevar o padrão técnico do meu ensino, trazendo um conteúdo de extrema qualidade para a nossa região.",
+    "imagemUrl": "imagens/Treinadores/CT QUINTHAI.png",
+    "localTreino": "CT QUINTHAI"
+  },
+    {
+    "nome": "Marlus Maciel",
+    "grau": "Kru",
+    "descricao": "Com mais de 12 anos de experiência no ensino e praticante desde 2008, o Professor Marlus integra a equipe AMT (Alliance Muay Thai). Sua trajetória inclui mais de 40 cursos e workshops com grandes nomes do cenário mundial, focando no desenvolvimento técnico, condicionamento físico e no fortalecimento da autoestima e autocontrole",
+    "imagemUrl": "imagens/Treinadores/Marlus M.png",
+    "localTreino": "KM SCHOOL"
+  },
+  {
+    "nome": "Odirelei",
+    "grau": "Kru",
+    "descricao": "Praticante de muay thai há 14 anos, integrante da equipe AMT há 11 e treinador há 5. Reside em São José dos Campos/SP.<br><br>\"Sinto-me muito bem em estar no ambiente de treino. Acredito sempre que todos os alunos são capazes de aprender aquilo que lhes é ensinado. Sou muito paciente e persistente.\"",
+    "imagemUrl": "imagens/Treinadores/Odirelei.png",
+    "localTreino": "Academia Maromba (DCTA)"
+  },
+  {
+    "nome": "Francisco Openheimer",
+    "grau": "Instrutor",
+    "descricao": "Instrutor de Muay Thai ajudando alunos a evoluírem na técnica, condicionamento e disciplina. Acredita no trabalho constante, na correção dos detalhes e na construção de resultados reais.",
+    "imagemUrl": "imagens/Treinadores/Francisco Openheimer.png",
+    "localTreino": ""
+  },
+  {
+    "nome": "Jéssica Telles",
+    "grau": "Instrutora",
+    "descricao": "Praticante de Muay Thai há 11 anos, iniciou em julho de 2024 um projeto social voltado para crianças de seu bairro. Atualmente cursa Educação Física, aliando experiência prática ao desenvolvimento acadêmico na área esportiva.",
+    "imagemUrl": "imagens/Treinadores/Jéssica Telles.png",
+    "localTreino": "Academia Giant Fitness"
+  },
+    {
+        "nome": "Diogo",
+        "grau": "Instrutor",
+        "descricao": "Praticante de Muay Thai desde 2013, atualmente é 11º Khan (Instrutor), com atuação voltada ao ensino técnico, disciplina e evolução contínua dos alunos. Ministrou treinos no Centro de Treinamentos da Liga Vale (antiga Academia Dragões) entre julho e novembro de 2023.\nConstante aprimoramento por meio de cursos e especializações, com participação em workshops e seminários com nomes relevantes da modalidade, como Kru Manop, Leandro Longo, Edvor Dias, Renan Oliveira, Sonny Santos, além de formação em arbitragem com Sandro Dias (2025).",
+        "imagemUrl": "imagens/Treinadores/Diogo.jpg",
+        "localTreino": ""
+    }
+  
+]
