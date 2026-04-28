@@ -84,8 +84,7 @@ export class LocalTreinoComponent {
     lat: -23.201787965430107,
     lng: -45.777435681746304,
     treinador: 'Jéssica Telles'
-  },
- 
+  }, 
   {
     nome: 'Academia Sky Fit Leste',
     endereco: 'Rua das Peônias, 222 - São José dos Campos - SP',
@@ -99,6 +98,21 @@ export class LocalTreinoComponent {
     lat: -23.17521321749508, 
     lng:  -45.827830786937724,
     treinador: 'Marlus Maciel'
+  },
+  , 
+  {
+    nome: 'CT Thai House',
+    endereco: 'R. Henrique Dias, 89a - Jardim Arua, Caraguatatuba - SP',
+    horarios: `
+      <strong> Segundas, quartas e sextas</strong: 9:00, 14:30, 17:30, 18:30 e 19:30 </br>
+      <strong> ⁠Terças e quintas </strong>: 17:30, 18:30 e 19:30 </br>
+     <strong>Turma Kids</strong> Terça e quintas às 9:00
+    `,
+    imagemUrl: 'imagens/Locais/thai_house.jpg',     
+    linkDireto: 'http://google.com/maps/place/CT+Thai+House/data=!4m2!3m1!1s0x0:0x2d4e09072b05791c?sa=X&ved=1t:2428&ictx=111',
+    lat: -23.6378366, 
+    lng:  -45.4293612,
+    treinador: 'Rodrigo Bischoff'
   }
 ];
 
