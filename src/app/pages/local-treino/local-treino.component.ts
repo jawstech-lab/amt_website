@@ -99,7 +99,6 @@ export class LocalTreinoComponent {
     lng:  -45.827830786937724,
     treinador: 'Marlus Maciel'
   },
-  , 
   {
     nome: 'CT Thai House',
     endereco: 'R. Henrique Dias, 89a - Jardim Arua, Caraguatatuba - SP',

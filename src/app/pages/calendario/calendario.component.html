@@ -34,7 +34,11 @@
             </div>
             
             <div class="col-md-4 mt-3 mt-md-0 text-center" *ngIf="evento.imageUrl && evento.imageUrl.length > 5">
-              <img [src]="evento.imageUrl" class="img-fluid rounded shadow-sm border border-secondary" alt="Evento" style="max-height: 180px; object-fit: contain;">
+              <img [src]="evento.imageUrl" 
+                   class="img-fluid rounded shadow-sm border border-secondary img-clicavel" 
+                   alt="Evento" 
+                   style="max-height: 180px; object-fit: contain;"
+                   (click)="abrirImagem(evento.imageUrl, $event)">
             </div>
           </div>
         </div>
@@ -79,7 +83,11 @@
               </div>
               
               <div class="col-md-4 mt-3 mt-md-0 text-center" *ngIf="evento.imageUrl && evento.imageUrl.length > 5">
-                <img [src]="evento.imageUrl" class="img-fluid rounded shadow-sm border border-secondary" alt="Evento" style="max-height: 180px; object-fit: contain;">
+                <img [src]="evento.imageUrl" 
+                     class="img-fluid rounded shadow-sm border border-secondary img-clicavel" 
+                     alt="Evento" 
+                     style="max-height: 180px; object-fit: contain;"
+                     (click)="abrirImagem(evento.imageUrl, $event)">
               </div>
             </div>
           </div>
@@ -87,4 +95,9 @@
       </div>
     </div>
   </div>
+</div>
+
+<div class="modal-imagem-overlay" *ngIf="imagemExpandidaUrl" (click)="fecharImagem()">
+  <span class="fechar-modal"><i class="bi bi-x-lg"></i></span>
+  <img [src]="imagemExpandidaUrl" class="imagem-modal" alt="Imagem Expandida" (click)="$event.stopPropagation()">
 </div>
