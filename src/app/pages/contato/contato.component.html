@@ -24,9 +24,14 @@
           <textarea class="form-control" id="mensagem" rows="4" formControlName="mensagem" required></textarea>
         </div>
 
-        <button type="submit" class="btn btn-outline-warning w-100" [disabled]="!contatoForm.valid">
-          <i class="bi bi-send me-2"></i> Enviar Mensagem
+        <button type="submit" class="btn btn-outline-warning w-100" [disabled]="!contatoForm.valid || enviando">
+          <i class="bi bi-send me-2"></i>
+          {{ enviando ? 'Enviando...' : 'Enviar Mensagem' }}
         </button>
+
+        <div *ngIf="statusMensagem" class="status-message mt-3" [class.error]="statusErro" [class.success]="!statusErro">
+          {{ statusMensagem }}
+        </div>
       </form>
     </div>
 

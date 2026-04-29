@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import emailjs from '@emailjs/browser';
 
 @Component({
   selector: 'app-contato',
@@ -10,6 +11,9 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
 })
 export class ContatoComponent {
   contatoForm: FormGroup;
+  enviando = false;
+  statusMensagem = '';
+  statusErro = false;
 
   constructor(private fb: FormBuilder) {
     this.contatoForm = this.fb.group({
@@ -21,18 +25,34 @@ export class ContatoComponent {
   }
 
   onSubmit() {
-    if (this.contatoForm.valid) {
-      const formValue = this.contatoForm.value;
-      const subject = `Contato AMT - ${formValue.nome}`;
-      const body = `
-Nome: ${formValue.nome}
-Email: ${formValue.email}
-Telefone: ${formValue.telefone}
-Mensagem: ${formValue.mensagem}
-      `;
-      const mailtoLink = `mailto:jawstech@outlook.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      window.location.href = mailtoLink;
+    if (!this.contatoForm.valid) {
+      return;
     }
+
+    this.enviando = true;
+    this.statusMensagem = '';
+    this.statusErro = false;
+
+    const formValue = this.contatoForm.value;
+    const templateParams = {
+      from_name: formValue.nome,
+      from_email: formValue.email,
+      telefone: formValue.telefone,
+      mensagem: formValue.mensagem
+    };
+
+    emailjs.send('service_7jabldk', 'template_cozxacs', templateParams, 'YOUR_PUBLIC_KEY')
+      .then(() => {
+        this.statusMensagem = 'Mensagem enviada com sucesso! Obrigado pelo contato.';
+        this.contatoForm.reset();
+      })
+      .catch(() => {
+        this.statusErro = true;
+        this.statusMensagem = 'Ocorreu um erro ao enviar a mensagem. Tente novamente mais tarde.';
+      })
+      .finally(() => {
+        this.enviando = false;
+      });
   }
 
   abrirInstagram() {
