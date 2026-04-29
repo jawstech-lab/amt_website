@@ -41,7 +41,7 @@ export class ContatoComponent {
       mensagem: formValue.mensagem
     };
 
-    emailjs.send('service_7jabldk', 'template_cozxacs', templateParams, 'YOUR_PUBLIC_KEY')
+    emailjs.send('service_7jabldk', 'template_cozxacs', templateParams, 'q-Ga2-wuL2NZZm2zX')
       .then(() => {
         this.statusMensagem = 'Mensagem enviada com sucesso! Obrigado pelo contato.';
         this.contatoForm.reset();

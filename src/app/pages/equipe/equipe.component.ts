@@ -54,11 +54,19 @@ export class EquipeComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.carregarDadosEquipe();
+    this.preloadImages();
 
     this.intervaloFotos = setInterval(() => {
       this.indiceImg1 = (this.indiceImg1 + 2) % this.imagensHistoria.length;
       this.indiceImg2 = (this.indiceImg2 + 2) % this.imagensHistoria.length;
     }, 3500);
+  }
+
+  private preloadImages(): void {
+    this.imagensHistoria.forEach(url => {
+      const img = new Image();
+      img.src = url;
+    });
   }
 
   private carregarDadosEquipe(): void {
