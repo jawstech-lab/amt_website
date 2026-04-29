@@ -7,9 +7,9 @@
     </button>
   </div>
 
-  <div class="row g-4">
-    <div class="col-12" *ngFor="let local of locais">
-      <div class="local-card shadow-lg d-flex flex-column flex-lg-row">
+  <div class="row g-4 d-none d-lg-flex">
+    <div class="col-lg-4" *ngFor="let local of locais">
+      <div class="local-card shadow-lg d-flex flex-column">
         
         <div class="local-img-container">
           <img [src]="local.imagemUrl" [alt]="local.nome" class="local-img">
@@ -40,11 +40,50 @@
           </a>
         </div>
 
-        <div class="local-video-container" *ngIf="local.videoUrl">
-          <video [src]="local.videoUrl" class="local-video" controls preload="metadata"></video>
-        </div>
-
       </div>
+    </div>
+  </div>
+
+  <div class="d-lg-none">
+    <div class="carousel-wrapper">
+      <button class="scroll-btn left" (click)="rolarLista(scrollLocais, -1)">&#10094;</button>
+
+      <div class="scroll-horizontal" #scrollLocais>
+        <div class="local-card shadow-lg d-flex flex-column" *ngFor="let local of locais">
+          
+          <div class="local-img-container">
+            <img [src]="local.imagemUrl" [alt]="local.nome" class="local-img">
+          </div>
+
+          <div class="local-info p-3 d-flex flex-column justify-content-center">
+            <h3 class="text-primary fw-bold text-uppercase mb-3">{{ local.nome }}</h3>
+            <p class="text-light fs-6 mb-2 d-flex align-items-start">
+              <i class="bi bi-geo-alt-fill text-warning me-2 mt-1"></i> 
+              <span>{{ local.endereco }}</span>
+            </p>
+           <p class="text-light fs-6 mb-2 d-flex align-items-start" *ngIf="local.contato">
+              <i class="bi bi-whatsapp text-warning me-2 mt-1"></i> 
+              <span>{{ local.contato }}</span>
+            </p>
+            
+            <p class="text-light fs-6 mb-2 d-flex align-items-start" *ngIf="local.treinador">
+              <i class="bi bi-person-fill text-warning me-2 mt-1"></i> 
+              <span class="text-warning fw-bold">Treinador: {{ local.treinador }}</span>
+            </p>
+
+            <div class="text-light mb-4 d-flex align-items-start">
+              <i class="bi bi-clock-fill text-warning me-2 mt-1"></i> 
+              <div [innerHTML]="local.horarios"></div>
+            </div>
+            <a [href]="local.linkDireto" target="_blank" class="btn btn-outline-warning align-self-start mt-auto">
+              <i class="bi bi-map-fill me-1"></i> Abrir no Maps
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+      <button class="scroll-btn right" (click)="rolarLista(scrollLocais, 1)">&#10095;</button>
     </div>
   </div>
   

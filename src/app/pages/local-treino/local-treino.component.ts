@@ -142,7 +142,16 @@ export class LocalTreinoComponent {
     }
   }
 
- async iniciarMapa() {
+  rolarLista(container: HTMLElement, direcao: number) {
+    const tamanhoDoPulo = container.clientWidth > 600 ? 350 : container.clientWidth * 0.8;
+    
+    container.scrollBy({ 
+      left: direcao * tamanhoDoPulo, 
+      behavior: 'smooth' 
+    });
+  }
+
+  async iniciarMapa() {
     if (isPlatformBrowser(this.platformId)) {
       // 1. Corrige a resolução do import dinâmico
       const leafletModule = await import('leaflet');

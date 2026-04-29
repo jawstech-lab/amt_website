@@ -20,7 +20,8 @@
   border-left: 5px solid var(--cor-primaria);
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  max-width: 850px;
+  width: 300px;
+  min-width: 300px;
   margin: 0 auto;
 }
 
@@ -30,15 +31,13 @@
 }
 
 .local-img-container {
-  flex: 0 0 220px;
-
+  height: 150px;
 }
 
 .local-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-
   filter: grayscale(20%) brightness(0.8);
   transition: filter 0.3s;
 }
@@ -51,11 +50,66 @@
   flex: 1;
 }
 
+.carousel-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center; 
+  width: 100%;
+}
+
+.scroll-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: var(--cor-primaria);
+  color: white;
+  border: 2px solid var(--cor-fundo);
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 100; 
+  box-shadow: 0 4px 10px rgba(0,0,0,0.8);
+  transition: background-color 0.2s;
+}
+
+.scroll-btn:hover {
+  background-color: var(--cor-secundaria);
+  color: #000;
+}
+
+.scroll-btn.left { left: -5px; }
+.scroll-btn.right { right: -5px; }
+
+.scroll-horizontal {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 20px;
+  padding: 30px 50px; 
+  align-items: center; 
+  min-height: 400px;   
+  width: 100%;
+  scrollbar-width: none; 
+  -webkit-overflow-scrolling: touch; 
+  scroll-behavior: smooth; 
+  scroll-snap-type: x mandatory; 
+  overflow-y: visible;
+}
+
+.scroll-horizontal::-webkit-scrollbar {
+  display: none; 
+}
+
 @media (max-width: 991px) {
   
   .local-img-container {
-      flex: auto;
-      height: 180px; 
+      height: 120px; 
   }
   
 }
@@ -209,37 +263,5 @@
 
   .mapa-container-flex {
     flex: 0 0 250px; 
-  }
-}
-
-
-.local-video-container {
-  flex: 0 0 260px;
-  background-color: #0a0a0a; 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-left: 2px solid rgba(255, 255, 255, 0.05); 
-}
-
-.local-video {
-  width: 100%;
-  height: 100%;
-  max-height: 280px;
-  object-fit: contain;
-  outline: none;
-}
-
-@media (max-width: 991px) {
-
-  .local-video-container {
-    flex: auto;
-    height: auto;
-    border-left: none;
-    border-top: 2px solid rgba(255, 255, 255, 0.05);
-  }
-  
-  .local-video {
-    max-height: 350px;
   }
 }

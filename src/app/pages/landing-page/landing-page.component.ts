@@ -4,6 +4,7 @@ import { HomeComponent } from '../home/home.component';
 import { EquipeComponent } from '../equipe/equipe.component';
 import { LocalTreinoComponent } from '../local-treino/local-treino.component';
 import { CalendarioComponent } from '../calendario/calendario.component';
+import { ContatoComponent } from '../contato/contato.component';
 
 @Component({
   selector: 'app-landing-page',
@@ -13,7 +14,8 @@ import { CalendarioComponent } from '../calendario/calendario.component';
     HomeComponent,
     EquipeComponent,
     LocalTreinoComponent,
-    CalendarioComponent
+    CalendarioComponent,
+    ContatoComponent
   ],
   templateUrl: './landing-page.component.html',
   styleUrls: ['./landing-page.component.css']

@@ -41,7 +41,7 @@
 
       <div class="scroll-horizontal" #scrollTreinadores>
         <div class="fight-card shadow" *ngFor="let treinador of treinadores" [class.expandido]="cardAtivo === treinador"
-          (click)="toggleCard(treinador)">
+          (click)="toggleCard($event, treinador)">
 
           <div class="collapsed-view">
             <img [src]="treinador.imagemUrl" [alt]="treinador.nome" class="avatar-img">
@@ -93,7 +93,7 @@
 
       <div class="scroll-horizontal" #scrollLutadores>
         <div class="fight-card shadow" *ngFor="let lutador of lutadores" [class.expandido]="cardAtivo === lutador"
-          (click)="toggleCard(lutador)">
+          (click)="toggleCard($event, lutador)">
 
           <div class="collapsed-view">
             <img [src]="lutador.imagemUrl" [alt]="lutador.nome" class="avatar-img">

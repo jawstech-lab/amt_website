@@ -85,12 +85,21 @@ export class EquipeComponent implements OnInit, OnDestroy {
     }
   }
 
-  toggleCard(membro: Membro) {
+  toggleCard(event: Event, membro: Membro) {
     if (this.cardAtivo === membro) {
       this.fecharCardAberto();
     } else {
       this.cardAtivo = membro;
-      this.renderer.addClass(this.document.body, 'no-scroll-body');
+      // Scroll to the card on mobile
+      if (window.innerWidth <= 768) {
+        const card = (event.target as HTMLElement).closest('.fight-card') as HTMLElement;
+        const container = card.closest('.scroll-horizontal') as HTMLElement;
+        const cardLeft = card.offsetLeft;
+        const cardWidth = card.clientWidth;
+        const containerWidth = container.clientWidth;
+        const scrollTo = cardLeft - (containerWidth / 2) + (cardWidth / 2);
+        container.scrollTo({ left: scrollTo, behavior: 'smooth' });
+      }
     }
   }
 
@@ -102,7 +111,6 @@ export class EquipeComponent implements OnInit, OnDestroy {
 
   fecharCardAberto() {
     this.cardAtivo = null;
-    this.renderer.removeClass(this.document.body, 'no-scroll-body');
   }
 
   manterAbertoAoClicar(event: Event, membro: Membro) {

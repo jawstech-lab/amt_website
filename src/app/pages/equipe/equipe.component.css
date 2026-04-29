@@ -68,6 +68,7 @@
   -webkit-overflow-scrolling: touch; 
   scroll-behavior: smooth; 
   scroll-snap-type: x mandatory; 
+  overflow-y: visible;
 }
 
 .scroll-horizontal::-webkit-scrollbar {
@@ -143,19 +144,17 @@
 
 @media (max-width: 768px) {
   .fight-card.expandido {
-    position: fixed; 
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); 
-    width: 90vw; 
-    height: 80vh; 
-    z-index: 9999; 
-    box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.85); 
-  }
-
-  ::ng-deep .no-scroll-body {
-    overflow: hidden !important;
-    touch-action: none;
+    position: relative;
+    width: 330px;           
+    height: auto;
+    min-height: 520px;
+    max-height: 80vh;
+    overflow-y: auto;
+    border-radius: 12px;    
+    border-color: var(--cor-primaria);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+    z-index: 10;            
+    cursor: default;        
   }
 }
 
