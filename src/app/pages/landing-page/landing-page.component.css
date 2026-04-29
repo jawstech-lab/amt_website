@@ -9,12 +9,12 @@ html {
 
 .landing-section {
   width: 100%;
-  min-height: 100vh;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 2rem 0;
+  padding: 0;
   position: relative;
   animation: fadeInSection 0.8s ease-in-out;
   opacity: 0;
@@ -45,22 +45,19 @@ html {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 2rem;
+  padding: 0;
 }
 
-/* Home Section - Full height with hero */
 #home {
-  min-height: 100vh;
+  min-height: 90vh;
   justify-content: center;
   align-items: center;
 }
 
-/* Other sections - Full height with padding for navbar */
-#equipe,
-#local,
-#calendario {
-  background-color: var(--cor-fundo, #0a0a0a);
-  padding: 4rem 1rem;
+#equipe, #local, #calendario, #contato {
+  padding-top: 20px;    /* Espaço para não colar no topo */
+  padding-bottom: 0px; /* Diminua o espaço de baixo */
+  min-height: auto;     /* Garante que a seção só tenha o tamanho do que está dentro dela */
 }
 
 /* Responsive adjustments */
@@ -74,11 +71,7 @@ html {
     padding: 2rem 1rem;
   }
 
-  #equipe,
-  #local,
-  #calendario {
-    padding: 3rem 1rem;
-  }
+  
 }
 
 @media (max-width: 768px) {
@@ -95,11 +88,6 @@ html {
     scroll-padding-top: 60px;
   }
 
-  #equipe,
-  #local,
-  #calendario {
-    padding: 2rem 0.5rem;
-  }
 }
 
 /* Ensure components fill the container */
@@ -113,3 +101,5 @@ app-calendario {
   justify-content: center;
   align-items: center;
 }
+
+

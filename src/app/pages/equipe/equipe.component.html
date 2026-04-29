@@ -1,5 +1,29 @@
 <div class="container mt-5 mb-5">
 
+  <section class="destaques-section mb-5">
+    <h2 class="text-center titulo-secao mb-4"><span class="text-primary">DESTAQUES</span> DA EQUIPE</h2>
+    
+    <div class="slider-destaques">
+      <div class="slide-track">
+        
+        <ng-container *ngFor="let i of [1,2,3,4]">
+          <div class="slide" *ngFor="let img of imagensDestaques">
+            <img [src]="img" alt="Destaque AMT">
+          </div>
+        </ng-container>
+        
+        <ng-container *ngFor="let i of [1,2,3,4]">
+          <div class="slide" *ngFor="let img of imagensDestaques">
+            <img [src]="img" alt="Destaque AMT">
+          </div>
+        </ng-container>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="divisor">
+
   <section class="sobre-equipe mb-5">
     <div class="row align-items-center">
       <h2 class="text-center titulo-secao mb-4">A EQUIPE <span class="text-primary">AMT</span></h2>
@@ -37,51 +61,60 @@
     <h2 class="text-center titulo-secao mb-4">NOSSOS <span class="text-primary">TREINADORES</span></h2>
 
     <div class="carousel-wrapper">
-      <button class="scroll-btn left" (click)="rolarLista(scrollTreinadores, -1)">&#10094;</button>
+      <button class="scroll-btn left" (click)="rolarLista(scrollTreinadores, -1)">❮</button>
 
       <div class="scroll-horizontal" #scrollTreinadores>
-        <div class="fight-card shadow" *ngFor="let treinador of treinadores" [class.expandido]="cardAtivo === treinador"
-          (click)="toggleCard($event, treinador)">
+        
+        <div class="fight-card" *ngFor="let treinador of treinadores" 
+             [class.expandido]="cardAtivo === treinador"
+             [class.expand-left]="(cardAtivo === treinador || cardHovered === treinador) && direcaoExpansao === 'left'"
+             [class.expand-right]="(cardAtivo === treinador || cardHovered === treinador) && direcaoExpansao === 'right'"
+             (mouseenter)="onCardEnter(treinador, $event)"
+             (mouseleave)="onCardLeave()"
+             (click)="onCardClick(treinador, $event)">
 
-          <div class="collapsed-view">
-            <img [src]="treinador.imagemUrl" [alt]="treinador.nome" class="avatar-img">
-            <div class="mt-2 text-center w-100 px-1">
-              <span class="text-primary fw-bold" style="font-size: 0.80rem; line-height: 1.1; display: block;">{{ treinador.nome }}</span>
+          <div class="card-inner shadow">
+            
+            <div class="collapsed-view">
+              <img [src]="treinador.imagemUrl" [alt]="treinador.nome" class="avatar-img">
+              <div class="mt-2 text-center w-100 px-1">
+                <span class="text-primary fw-bold" style="font-size: 0.80rem; line-height: 1.1; display: block;">{{ treinador.nome }}</span>
+              </div>
             </div>
+
+            <div class="expanded-content">
+              <button class="btn-fechar" (click)="fecharCardAberto($event)">×</button>
+
+              <div class="expanded-header">
+                <div class="header-icon">
+                  <img [src]="treinador.imagemUrl" [alt]="treinador.nome" class="header-img-circle">
+                </div>
+                <div class="header-info">
+                  <h4 class="mb-0 text-primary">{{ treinador.nome }}</h4>
+                  <p class="apelido text-warning mb-1" *ngIf="treinador.apelido">"{{ treinador.apelido }}"</p>
+                  <span class="badge badge-grau">{{ treinador.grau }}</span>
+                </div>
+              </div>
+
+              <div class="bio-container">
+                <div class="bio" [innerHTML]="treinador.descricao"></div>
+              </div>
+
+              <div class="local-treino-container mt-2 pt-2 border-top border-secondary" *ngIf="treinador.localTreino">
+                <small class="text-secondary">Locais de Treino:</small>
+                <div class="mt-1">
+                  <p class="local-treino mb-1 text-warning" *ngFor="let local of getLocaisArray(treinador.localTreino)">
+                    <i class="bi bi-geo-alt-fill"></i> {{ local }}
+                  </p>
+                </div>
+              </div>
+            </div>
+            
           </div>
-
-          <div class="expanded-content" (click)="manterAbertoAoClicar($event, treinador)">
-            <button class="btn-fechar" (click)="fecharCard($event, treinador)">&times;</button>
-
-            <div class="expanded-header">
-              <div class="header-icon">
-                <img [src]="treinador.imagemUrl" [alt]="treinador.nome" class="header-img-circle">
-              </div>
-              <div class="header-info">
-                <h4 class="mb-0 text-primary">{{ treinador.nome }}</h4>
-                <p class="apelido text-warning mb-1" *ngIf="treinador.apelido">"{{ treinador.apelido }}"</p>
-                <span class="badge badge-grau">{{ treinador.grau }}</span>
-              </div>
-            </div>
-
-            <div class="bio-container">
-              <div class="bio" [innerHTML]="treinador.descricao"></div>
-            </div>
-
-            <div class="local-treino-container mt-2 pt-2 border-top border-secondary" *ngIf="treinador.localTreino">
-              <small class="text-secondary">Locais de Treino:</small>
-              <div class="mt-1">
-                <p class="local-treino mb-1 text-warning" *ngFor="let local of getLocaisArray(treinador.localTreino)">
-                  <i class="bi bi-geo-alt-fill"></i> {{ local }}
-                </p>
-              </div>
-            </div>
-
-          </div>          
         </div>
       </div>
 
-      <button class="scroll-btn right" (click)="rolarLista(scrollTreinadores, 1)">&#10095;</button>
+      <button class="scroll-btn right" (click)="rolarLista(scrollTreinadores, 1)">❯</button>
     </div>
   </section>
 
@@ -89,86 +122,96 @@
     <h2 class="text-center titulo-secao mb-4">NOSSOS <span class="text-primary">LUTADORES</span></h2>
 
     <div class="carousel-wrapper">
-      <button class="scroll-btn left" (click)="rolarLista(scrollLutadores, -1)">&#10094;</button>
+      <button class="scroll-btn left" (click)="rolarLista(scrollLutadores, -1)">❮</button>
 
       <div class="scroll-horizontal" #scrollLutadores>
-        <div class="fight-card shadow" *ngFor="let lutador of lutadores" [class.expandido]="cardAtivo === lutador"
-          (click)="toggleCard($event, lutador)">
+        
+        <div class="fight-card" *ngFor="let lutador of lutadores" 
+             [class.expandido]="cardAtivo === lutador"
+             [class.expand-left]="(cardAtivo === lutador || cardHovered === lutador) && direcaoExpansao === 'left'"
+             [class.expand-right]="(cardAtivo === lutador || cardHovered === lutador) && direcaoExpansao === 'right'"
+             (mouseenter)="onCardEnter(lutador, $event)"
+             (mouseleave)="onCardLeave()"
+             (click)="onCardClick(lutador, $event)">
 
-          <div class="collapsed-view">
-            <img [src]="lutador.imagemUrl" [alt]="lutador.nome" class="avatar-img">
-            <div class="mt-2 text-center w-100 px-1">
-              <span class="text-primary fw-bold" style="font-size: 0.80rem; line-height: 1.1; display: block;">{{ lutador.nome }}</span>
+          <div class="card-inner shadow">
+            
+            <div class="collapsed-view">
+              <img [src]="lutador.imagemUrl" [alt]="lutador.nome" class="avatar-img">
+              <div class="mt-2 text-center w-100 px-1">
+                <span class="text-primary fw-bold" style="font-size: 0.80rem; line-height: 1.1; display: block;">{{ lutador.nome }}</span>
+              </div>
+            </div>
+
+            <div class="expanded-content">
+              <button class="btn-fechar" (click)="fecharCardAberto($event)">×</button>
+
+              <div class="expanded-header">
+                <div class="header-icon">
+                  <img [src]="lutador.imagemUrl" [alt]="lutador.nome" class="header-img-circle">
+                </div>
+                <div class="header-info">
+                  <h4 class="mb-0 text-primary">{{ lutador.nome }}</h4>
+                  <p class="apelido text-warning mb-1" *ngIf="lutador.apelido">"{{ lutador.apelido }}"</p>
+                  <span class="badge badge-grau" *ngIf="!lutador.peso">{{ lutador.grau }}</span>
+                </div>
+              </div>
+
+              <div class="bio-container">
+                <div class="bio" [innerHTML]="lutador.descricao"></div>
+              </div>
+
+              <div class="lutador-status-box" *ngIf="lutador.peso">
+                
+                <div class="d-flex align-items-center mb-1">
+                  <span class="fw-bold text-warning me-2" style="font-size: 0.9rem;">Categoria:</span> 
+                  <span class="text-light" style="font-size: 0.9rem;">{{ lutador.grau }}</span>
+                </div>
+                
+                <div class="d-flex align-items-center mb-2">
+                  <span class="fw-bold text-warning me-2" style="font-size: 0.9rem;">Peso:</span> 
+                  <span class="text-light" style="font-size: 0.9rem;">{{ lutador.peso }}</span>
+                </div>
+
+                <div class="fw-bold text-warning mb-1" style="font-size: 0.9rem;">
+                  Cartel: <span class="text-light fw-normal">{{ lutador.totalLutas }} luta<span *ngIf="lutador.totalLutas !== 1">s</span></span>
+                </div>
+                
+                <div class="cartel-stats-row mt-3">
+                  <div class="stat-item-row">
+                    <img src="imagens/icone-vitoria.png" alt="Vit" class="icone-cartel">
+                    <div class="stat-text-col">
+                      <span class="stat-title">Vitórias</span>
+                      <span class="stat-sub">{{lutador.vitorias}}</span>
+                    </div>
+                  </div>
+
+                  <div class="stat-item-row">
+                    <img src="imagens/icone-derrota.png" alt="Der" class="icone-cartel">
+                    <div class="stat-text-col">
+                      <span class="stat-title">Derrotas</span>
+                      <span class="stat-sub">{{lutador.derrotas}}</span>
+                    </div>
+                  </div>
+
+                  <div class="stat-item-row">
+                    <img src="imagens/icone-empate.png" alt="Emp" class="icone-cartel">
+                    <div class="stat-text-col">
+                      <span class="stat-title">Empates</span>
+                      <span class="stat-sub">{{lutador.empates}}</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
             </div>
           </div>
-
-          <div class="expanded-content" (click)="manterAbertoAoClicar($event, lutador)">
-            <button class="btn-fechar" (click)="fecharCard($event, lutador)">&times;</button>
-
-            <div class="expanded-header">
-              <div class="header-icon">
-                <img [src]="lutador.imagemUrl" [alt]="lutador.nome" class="header-img-circle">
-              </div>
-              <div class="header-info">
-                <h4 class="mb-0 text-primary">{{ lutador.nome }}</h4>
-                <p class="apelido text-warning mb-1" *ngIf="lutador.apelido">"{{ lutador.apelido }}"</p>
-                <span class="badge badge-grau" *ngIf="!lutador.peso">{{ lutador.grau }}</span>
-              </div>
-            </div>
-
-            <div class="bio-container">
-              <div class="bio" [innerHTML]="lutador.descricao"></div>
-            </div>
-
-            <div class="lutador-status-box" *ngIf="lutador.peso">
-              
-              <div class="d-flex align-items-center mb-1">
-                <span class="fw-bold text-warning me-2" style="font-size: 0.9rem;">Categoria:</span> 
-                <span class="text-light" style="font-size: 0.9rem;">{{ lutador.grau }}</span>
-              </div>
-              
-              <div class="d-flex align-items-center mb-2">
-                <span class="fw-bold text-warning me-2" style="font-size: 0.9rem;">Peso:</span> 
-                <span class="text-light" style="font-size: 0.9rem;">{{ lutador.peso }}</span>
-              </div>
-
-              <div class="fw-bold text-warning mb-1" style="font-size: 0.9rem;">
-                Cartel: <span class="text-light fw-normal">{{ lutador.totalLutas }} luta<span *ngIf="lutador.totalLutas !== 1">s</span></span>
-              </div>
-              
-              <div class="cartel-stats-row mt-3">
-                <div class="stat-item-row">
-                  <img src="imagens/icone-vitoria.png" alt="Vit" class="icone-cartel">
-                  <div class="stat-text-col">
-                    <span class="stat-title">Vitórias</span>
-                    <span class="stat-sub">{{lutador.vitorias}}</span>
-                  </div>
-                </div>
-
-                <div class="stat-item-row">
-                  <img src="imagens/icone-derrota.png" alt="Der" class="icone-cartel">
-                  <div class="stat-text-col">
-                    <span class="stat-title">Derrotas</span>
-                    <span class="stat-sub">{{lutador.derrotas}}</span>
-                  </div>
-                </div>
-
-                <div class="stat-item-row">
-                  <img src="imagens/icone-empate.png" alt="Emp" class="icone-cartel">
-                  <div class="stat-text-col">
-                    <span class="stat-title">Empates</span>
-                    <span class="stat-sub">{{lutador.empates}}</span>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-
-          </div>
+          
         </div>
       </div>
 
-      <button class="scroll-btn right" (click)="rolarLista(scrollLutadores, 1)">&#10095;</button>
+      <button class="scroll-btn right" (click)="rolarLista(scrollLutadores, 1)">❯</button>
     </div>
   </section>
 

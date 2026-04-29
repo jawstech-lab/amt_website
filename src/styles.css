@@ -68,3 +68,19 @@
       scroll-padding-top: 60px;
     }
   }
+
+
+  html, body {
+  margin: 0;
+  padding: 0;
+  height: auto; /* Garante que o fundo preto acompanhe apenas o conteúdo */
+}
+
+/* Ajuste o espaçamento dos títulos para ficarem mais próximos do conteúdo */
+.titulo-secao {
+  margin-bottom: 1.5rem !important; /* Força uma distância menor */
+}
+
+.divisor {
+  margin: 1.5rem 0; /* Diminua o espaço da linha horizontal se ela estiver lá */
+}

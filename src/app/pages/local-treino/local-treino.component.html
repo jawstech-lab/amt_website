@@ -11,131 +11,93 @@
     <div class="col-lg-4" *ngFor="let local of locais">
       <div class="local-card shadow-lg d-flex flex-column">
         
-        <div class="local-img-container">
+        <div class="local-img-container" (click)="local.videoUrl ? abrirVideo(local) : null">
           <img [src]="local.imagemUrl" [alt]="local.nome" class="local-img">
+          <div class="video-thumb-overlay" *ngIf="local.videoUrl">
+            <i class="bi bi-play-circle-fill"></i>
+          </div>
         </div>
 
-        <div class="local-info p-3 d-flex flex-column justify-content-center">
-          <h3 class="text-primary fw-bold text-uppercase mb-3">{{ local.nome }}</h3>
-          <p class="text-light fs-6 mb-2 d-flex align-items-start">
+        <div class="local-info p-3 d-flex flex-column">
+          <h3 class="text-primary fw-bold text-uppercase mb-3" style="font-size: 1.2rem;">{{ local.nome }}</h3>
+          <p class="text-light small mb-2 d-flex align-items-start">
             <i class="bi bi-geo-alt-fill text-warning me-2 mt-1"></i> 
             <span>{{ local.endereco }}</span>
           </p>
-         <p class="text-light fs-6 mb-2 d-flex align-items-start" *ngIf="local.contato">
-            <i class="bi bi-whatsapp text-warning me-2 mt-1"></i> 
-            <span>{{ local.contato }}</span>
-          </p>
-          
-          <p class="text-light fs-6 mb-2 d-flex align-items-start" *ngIf="local.treinador">
+          <p class="text-light small mb-2 d-flex align-items-start" *ngIf="local.treinador">
             <i class="bi bi-person-fill text-warning me-2 mt-1"></i> 
             <span class="text-warning fw-bold">Treinador: {{ local.treinador }}</span>
           </p>
-
-          <div class="text-light mb-4 d-flex align-items-start">
+          <div class="text-light small mb-4 d-flex align-items-start">
             <i class="bi bi-clock-fill text-warning me-2 mt-1"></i> 
             <div [innerHTML]="local.horarios"></div>
           </div>
-          <a [href]="local.linkDireto" target="_blank" class="btn btn-outline-warning align-self-start mt-auto">
+          <a [href]="local.linkDireto" target="_blank" class="btn btn-outline-warning btn-sm mt-auto">
             <i class="bi bi-map-fill me-1"></i> Abrir no Maps
           </a>
         </div>
-
       </div>
     </div>
   </div>
 
   <div class="d-lg-none">
     <div class="carousel-wrapper">
-      <button class="scroll-btn left" (click)="rolarLista(scrollLocais, -1)">&#10094;</button>
-
+      <button class="scroll-btn left" (click)="rolarLista(scrollLocais, -1)">❮</button>
       <div class="scroll-horizontal" #scrollLocais>
         <div class="local-card shadow-lg d-flex flex-column" *ngFor="let local of locais">
-          
-          <div class="local-img-container">
+          <div class="local-img-container" (click)="local.videoUrl ? abrirVideo(local) : null">
             <img [src]="local.imagemUrl" [alt]="local.nome" class="local-img">
+            <div class="video-thumb-overlay" *ngIf="local.videoUrl">
+              <i class="bi bi-play-circle-fill"></i>
+            </div>
           </div>
-
-          <div class="local-info p-3 d-flex flex-column justify-content-center">
-            <h3 class="text-primary fw-bold text-uppercase mb-3">{{ local.nome }}</h3>
-            <p class="text-light fs-6 mb-2 d-flex align-items-start">
+          <div class="local-info p-3 d-flex flex-column">
+            <h3 class="text-primary fw-bold text-uppercase mb-3" style="font-size: 1.1rem;">{{ local.nome }}</h3>
+            <p class="text-light small mb-2 d-flex align-items-start">
               <i class="bi bi-geo-alt-fill text-warning me-2 mt-1"></i> 
               <span>{{ local.endereco }}</span>
             </p>
-           <p class="text-light fs-6 mb-2 d-flex align-items-start" *ngIf="local.contato">
-              <i class="bi bi-whatsapp text-warning me-2 mt-1"></i> 
-              <span>{{ local.contato }}</span>
-            </p>
-            
-            <p class="text-light fs-6 mb-2 d-flex align-items-start" *ngIf="local.treinador">
-              <i class="bi bi-person-fill text-warning me-2 mt-1"></i> 
-              <span class="text-warning fw-bold">Treinador: {{ local.treinador }}</span>
-            </p>
-
-            <div class="text-light mb-4 d-flex align-items-start">
+            <div class="text-light small mb-4 d-flex align-items-start">
               <i class="bi bi-clock-fill text-warning me-2 mt-1"></i> 
               <div [innerHTML]="local.horarios"></div>
             </div>
-            <a [href]="local.linkDireto" target="_blank" class="btn btn-outline-warning align-self-start mt-auto">
+            <a [href]="local.linkDireto" target="_blank" class="btn btn-outline-warning btn-sm mt-auto">
               <i class="bi bi-map-fill me-1"></i> Abrir no Maps
             </a>
           </div>
-
         </div>
       </div>
-
-      <button class="scroll-btn right" (click)="rolarLista(scrollLocais, 1)">&#10095;</button>
+      <button class="scroll-btn right" (click)="rolarLista(scrollLocais, 1)">❯</button>
     </div>
   </div>
   
-  <div class="mapa-overlay" *ngIf="mostrarMapa" (click)="fecharMapa()">
-    <div class="mapa-modal shadow-lg" (click)="$event.stopPropagation()">
+  <dialog #videoDialog class="modal-nativo" (click)="fecharAoClicarFora($event, 'video')">
+    <div class="video-modal shadow-lg" *ngIf="videoAtivo" (click)="$event.stopPropagation()">
+      <button class="btn-fechar-video" (click)="fecharVideo()">×</button>
+      <video [src]="videoAtivo.videoUrl" [poster]="videoAtivo.imagemUrl" controls autoplay class="video-player"></video>
+    </div>
+  </dialog>
+
+  <dialog #mapaDialog class="modal-nativo" (click)="fecharAoClicarFora($event, 'mapa')">
+    <div class="mapa-modal shadow-lg" *ngIf="mostrarMapa" (click)="$event.stopPropagation()">
       <button class="btn-fechar-mapa" (click)="fecharMapa()">×</button>
       <h4 class="text-center text-primary mb-4 text-uppercase fw-bold">Unidades Próximas</h4>
-      
       <div class="mapa-layout-duplo">
-        
         <div class="mapa-sidebar pe-2">
-          
-          <div class="sidebar-item" 
-               *ngFor="let local of locais" 
-               [class.ativo]="localSelecionado === local"
-               (click)="selecionarLocalDaLista(local)">
-            
+          <div class="sidebar-item" *ngFor="let local of locais" [class.ativo]="localSelecionado === local" (click)="selecionarLocalDaLista(local)">
             <div class="sidebar-header">
               <img [src]="local.imagemUrl" class="sidebar-img">
-              <span class="sidebar-nome">{{ local.nome }}</span>
+              <span class="sidebar-nome text-truncate">{{ local.nome }}</span>
             </div>
-
             <div class="sidebar-detalhes mt-3" *ngIf="localSelecionado === local">
-              
-              <p class="text-light small mb-2 d-flex align-items-start">
-                <i class="bi bi-geo-alt-fill text-warning me-2 mt-1"></i> 
-                <span>{{ local.endereco }}</span>
-              </p>
-              
-              <p class="text-light small mb-2 d-flex align-items-start" *ngIf="local.contato">
-                <i class="bi bi-whatsapp text-warning me-2 mt-1"></i> 
-                <span>{{ local.contato }}</span>
-              </p>
-              
-              <div class="text-light small mb-3 d-flex align-items-start">
-                <i class="bi bi-clock-fill text-warning me-2 mt-1"></i> 
-                <div [innerHTML]="local.horarios"></div>
-              </div>
-
-              <a [href]="local.linkDireto" target="_blank" class="btn btn-sm btn-outline-warning w-100">
-                Traçar Rota no Maps
-              </a>
+              <p class="text-light small mb-2"><i class="bi bi-geo-alt-fill text-warning me-1"></i> {{ local.endereco }}</p>
+              <a [href]="local.linkDireto" target="_blank" class="btn btn-sm btn-outline-warning w-100">Traçar Rota</a>
             </div>
-
           </div>
-
         </div>
-
         <div id="mapa-cts" class="mapa-container-flex"></div>
-
       </div>
     </div>
-  </div>
+  </dialog>
 
 </div>
