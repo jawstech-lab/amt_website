@@ -1,13 +1,11 @@
 import { Component, ElementRef, ViewChild, AfterViewInit, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser, CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
-    CommonModule,
-    RouterModule
+    CommonModule
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']

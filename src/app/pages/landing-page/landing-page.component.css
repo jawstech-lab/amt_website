@@ -1,0 +1,115 @@
+:host {
+  display: block;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+.landing-section {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 0;
+  position: relative;
+  animation: fadeInSection 0.8s ease-in-out;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.landing-section.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes fadeInSection {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.section-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+/* Home Section - Full height with hero */
+#home {
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Other sections - Full height with padding for navbar */
+#equipe,
+#local,
+#calendario {
+  background-color: var(--cor-fundo, #0a0a0a);
+  padding: 4rem 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .landing-section {
+    min-height: auto;
+    padding: 3rem 1rem;
+  }
+
+  .section-container {
+    padding: 2rem 1rem;
+  }
+
+  #equipe,
+  #local,
+  #calendario {
+    padding: 3rem 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .landing-section {
+    padding: 2rem 0.5rem;
+    min-height: auto;
+  }
+
+  .section-container {
+    padding: 1.5rem 0.5rem;
+  }
+
+  html {
+    scroll-padding-top: 60px;
+  }
+
+  #equipe,
+  #local,
+  #calendario {
+    padding: 2rem 0.5rem;
+  }
+}
+
+/* Ensure components fill the container */
+app-home,
+app-equipe,
+app-local-treino,
+app-calendario {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
