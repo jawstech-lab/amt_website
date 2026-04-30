@@ -1,0 +1,190 @@
+/* ===== Destaques ===== */
+.destaques {
+  padding: 100px 0 60px;
+  position: relative;
+}
+.destaques-head {
+  margin-bottom: 50px;
+}
+.destaques-title {
+  font-family: var(--f-display);
+  font-size: clamp(56px, 9vw, 140px);
+  line-height: 0.85;
+  text-transform: uppercase;
+}
+.destaques-title em { color: var(--red); font-style: italic; }
+
+.destaques-rail {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 6%, black 94%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, black 6%, black 94%, transparent 100%);
+}
+.destaques-track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  animation: railScroll 60s linear infinite;
+  padding: 20px 0;
+}
+.destaques-rail:hover .destaques-track { animation-play-state: paused; }
+
+@keyframes railScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.destaque-card {
+  flex: 0 0 auto;
+  width: 380px;
+  height: 480px;
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  transition: transform 0.5s cubic-bezier(.2,.8,.2,1);
+}
+.destaque-card:hover { transform: translateY(-8px) scale(1.02); }
+.destaque-card img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: grayscale(20%) contrast(1.05);
+  transition: filter 0.5s, transform 0.7s;
+}
+.destaque-card:hover img {
+  filter: grayscale(0%) contrast(1.1);
+  transform: scale(1.06);
+}
+.destaque-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex; align-items: flex-end; justify-content: space-between;
+  padding: 16px;
+  background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.7));
+  pointer-events: none;
+}
+.destaque-num {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+}
+
+@media (max-width: 768px) {
+  .destaque-card { width: 280px; height: 360px; }
+}
+
+/* ===== História ===== */
+.historia {
+  padding: 120px 0;
+  position: relative;
+}
+.historia-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.historia-title {
+  font-family: var(--f-display);
+  font-size: clamp(56px, 8vw, 120px);
+  line-height: 0.85;
+  text-transform: uppercase;
+  margin-top: 20px;
+}
+.historia-title em { color: var(--red); font-style: italic; }
+
+.historia-body {
+  margin-top: 36px;
+  display: flex; flex-direction: column; gap: 18px;
+  max-width: 520px;
+}
+.historia-body p {
+  font-size: 15px;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.78);
+}
+.historia-body strong { color: var(--ink); font-weight: 600; }
+.historia-body em { color: var(--gold); font-style: italic; font-weight: 500; }
+
+.historia-meta {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.historia-meta .num {
+  display: block;
+  font-family: var(--f-display);
+  font-size: 44px;
+  line-height: 1;
+  color: var(--ink);
+}
+.historia-meta .lbl {
+  display: block;
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  margin-top: 8px;
+}
+
+.historia-images {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  height: 600px;
+}
+.historia-img-frame {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--bg-2);
+}
+.historia-img-frame.primary {
+  grid-row: 1;
+  align-self: start;
+  height: 460px;
+  margin-top: 20px;
+}
+.historia-img-frame.secondary {
+  grid-row: 1;
+  align-self: end;
+  height: 460px;
+  margin-top: 100px;
+}
+.historia-img-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(.2,.8,.2,1), opacity 0.8s;
+}
+.historia-img-frame:hover img {
+  transform: scale(1.05);
+}
+.frame-tag {
+  position: absolute;
+  bottom: 12px; left: 12px;
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: rgba(0,0,0,0.7);
+  padding: 6px 10px;
+  backdrop-filter: blur(6px);
+}
+.frame-tag.gold { color: var(--gold); }
+
+@media (max-width: 980px) {
+  .historia-grid { grid-template-columns: 1fr; gap: 50px; }
+  .historia-images { height: auto; gap: 12px; }
+  .historia-img-frame.primary, .historia-img-frame.secondary {
+    height: 320px; margin-top: 0;
+  }
+}

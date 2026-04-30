@@ -1,39 +1,40 @@
-<nav class="navbar navbar-expand-lg navbar-custom">
-  <div class="container-fluid">
-    <a class="navbar-brand" (click)="navegarParaSecao('home')" style="cursor: pointer;">
+<nav class="amt-nav" [class.scrolled]="scrolled">
+  <div class="nav-inner">
+
+    <a class="nav-brand" (click)="navegarParaSecao('home')" style="cursor: pointer;">
       <img src="logo_header.png" alt="AMT Logo" />
+      <span class="nav-brand-text">AMT</span>
     </a>
 
-    <button class="navbar-toggler bg-light" type="button" (click)="alternarMenu()">
-      <span class="navbar-toggler-icon"></span>
+    <button class="nav-toggle" [class.open]="menuAberto" (click)="alternarMenu()" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
     </button>
 
-    <div class="collapse navbar-collapse justify-content-end" [class.show]="menuAberto" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" (click)="navegarParaSecao('home')" style="cursor: pointer;">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" (click)="navegarParaSecao('secao-sobre-equipe')" style="cursor: pointer;">Equipe</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" (click)="navegarParaSecao('local')" style="cursor: pointer;">Locais de Treino</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" (click)="navegarParaSecao('calendario')" style="cursor: pointer;">Calendário</a>
-        </li>
+    <div class="nav-links" [class.open]="menuAberto">
+      <a class="nav-link" (click)="navegarParaSecao('secao-sobre-equipe')">
+        <span class="nav-link-num">01</span>Equipe
+      </a>
+      <a class="nav-link" (click)="navegarParaSecao('local')">
+        <span class="nav-link-num">02</span>Treinos
+      </a>
+      <a class="nav-link" (click)="navegarParaSecao('calendario')">
+        <span class="nav-link-num">03</span>Calendário
+      </a>
+      <a class="nav-link" (click)="navegarParaSecao('contato')">
+        <span class="nav-link-num">04</span>Contato
+      </a>
 
-        <li class="nav-item">
-          <a class="nav-link" (click)="navegarParaSecao('contato')" style="cursor: pointer;">Contato</a>
-        </li>
+      <div class="nav-separator"></div>
 
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active-link" routerLink="/mural" (click)="fecharMenu()">Mural</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active-link" routerLink="/apostila" (click)="fecharMenu()">Apostila</a>
-        </li>
-      </ul>
+      <a class="nav-link-secondary" routerLinkActive="active-link" routerLink="/mural" (click)="fecharMenu()">Mural</a>
+      <a class="nav-link-secondary" routerLinkActive="active-link" routerLink="/apostila" (click)="fecharMenu()">Apostila</a>
+
+      <a class="nav-cta" (click)="navegarParaSecao('contato')">
+        Fale Conosco <span class="nav-cta-arrow">→</span>
+      </a>
     </div>
+
   </div>
 </nav>

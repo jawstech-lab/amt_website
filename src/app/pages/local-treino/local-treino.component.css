@@ -1,186 +1,313 @@
-.titulo-secao {
-  color: var(--cor-texto);
-  font-weight: 900;
+:host { display: block; }
+
+/* ══════════════════════════════════════════════════
+   SHARED
+══════════════════════════════════════════════════ */
+.wrap {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.section-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  letter-spacing: 2px;
-}
-
-.text-primary { color: var(--cor-primaria) !important; }
-.text-warning { color: var(--cor-secundaria) !important; }
-
-/* Cards */
-.local-card {
-  background-color: #1a1a1a;
-  border-radius: 12px;
-  border-left: 5px solid var(--cor-primaria);
-  overflow: hidden;
-  width: 100%;
-  max-width: 300px;
-  min-width: 280px;
-  margin: 0 auto;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.local-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(210, 4, 45, 0.25) !important;
-}
-
-/* =========================================
-   NOVO PLAY CRIADO DO ZERO (CSS PURO)
-   ========================================= */
-.local-img-container {
-  height: 160px;
-  position: relative; /* Base para o play ficar absoluto aqui dentro */
-  cursor: pointer;
-  background-color: #000;
-  overflow: hidden;
-}
-
-.local-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: filter 0.3s ease;
-}
-
-/* Círculo do Play */
-.video-thumb-overlay {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); /* Crava exatamente no meio da imagem */
-  width: 60px;
-  height: 60px;
-  background-color: rgba(0, 0, 0, 0.6);
-  border: 2px solid var(--cor-primaria);
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
+  color: #d2042d;
+  display: inline-flex;
   align-items: center;
-  pointer-events: none; /* Garante que não bloqueie o clique na imagem */
-  z-index: 50;
-  transition: all 0.3s ease;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.section-eyebrow::before {
+  content: "";
+  width: 32px;
+  height: 1px;
+  background: #d2042d;
 }
 
-/* Triângulo do Play (Feito com bordas, infalível) */
-.video-thumb-overlay::after {
-  content: '';
-  display: block;
-  margin-left: 5px; /* Ajuste visual para o triângulo parecer centralizado */
-  border-top: 12px solid transparent;
-  border-bottom: 12px solid transparent;
-  border-left: 18px solid #fff;
-  transition: border-color 0.3s ease;
+.word-white { color: #f5f5f5; display: block; }
+.word-red   { color: #d2042d; font-style: italic; display: block; }
+
+/* ══════════════════════════════════════════════════
+   SECTION
+══════════════════════════════════════════════════ */
+.locais-section {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  max-width: 100vw;
+  background: linear-gradient(180deg, #080808 0%, #0a0a0a 100%);
+  padding: 60px 0 60px;
 }
 
-/* Esconde o ícone antigo do HTML para não dar conflito com o nosso novo play */
-.video-thumb-overlay i {
-  display: none !important;
+.locais-section > .wrap {
+  width: 100%;
+  max-width: none;
+  padding: 0;
 }
 
-/* Efeito ao passar o mouse */
-.local-card:hover .local-img {
-  filter: brightness(0.6); /* Escurece a imagem de fundo para dar destaque */
+/* ── Head ─────────────────────────────────────── */
+.locais-head {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  align-items: end;
+  margin-bottom: 60px;
 }
 
-.local-card:hover .video-thumb-overlay {
-  background-color: var(--cor-primaria);
-  transform: translate(-50%, -50%) scale(1.15); /* Dá um zoom no botão */
+.locais-title {
+  font-family: 'Anton', 'Bebas Neue', Impact, sans-serif;
+  font-size: clamp(56px, 9vw, 140px);
+  line-height: 0.85;
+  text-transform: uppercase;
+  font-weight: 400;
+  margin: 16px 0 0;
 }
-/* ========================================= */
 
-.local-info { padding: 1rem; }
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: transparent;
+  color: #f5f5f5;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s;
+  white-space: nowrap;
+  align-self: end;
+}
+.btn-ghost:hover { border-color: #ffd700; color: #ffd700; }
+.btn-arrow { transition: transform 0.3s; }
+.btn-ghost:hover .btn-arrow { transform: translateX(4px); }
 
-/* Modal Nativo (Mantido igual, já está funcionando) */
+/* ══════════════════════════════════════════════════
+   GRID
+══════════════════════════════════════════════════ */
+.locais-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  background: transparent;
+  border: none;
+}
+
+/* ── Card ─────────────────────────────────────── */
+.local-card {
+  padding: 20px;
+  background: #0a0a0a;
+  display: grid;
+  grid-template-rows: auto auto auto 1fr auto;
+  gap: 24px;
+  min-height: 320px;
+  transition: background 0.4s;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+.local-card:nth-child(2n) {
+  border-right: none;
+}
+.local-card:hover { background: #0f0f0f; }
+
+.local-card-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: #d2042d;
+  text-transform: uppercase;
+}
+
+.local-card-name {
+  font-family: 'Anton', 'Bebas Neue', Impact, sans-serif;
+  font-size: clamp(24px, 3vw, 44px);
+  line-height: 0.9;
+  text-transform: uppercase;
+  color: #f5f5f5;
+}
+
+.local-card-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.local-card-meta strong { color: #ffd700; font-weight: 500; }
+
+/* ── Horários ─────────────────────────────────── */
+.local-card-horarios {
+  display: flex;
+  flex-direction: column;
+}
+
+.horario-row {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+.horario-row:first-child { border-top: 1px solid rgba(255, 255, 255, 0.07); }
+
+.dia {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #f5f5f5;
+}
+.horas {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* ── CTA ──────────────────────────────────────── */
+.local-card-cta {
+  display: flex;
+  gap: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.local-card-cta a {
+  padding: 12px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.65);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.local-card-cta a:hover {
+  background: #ffd700;
+  color: #0a0a0a;
+  border-color: #ffd700;
+}
+
+/* ══════════════════════════════════════════════════
+   MAP MODAL
+══════════════════════════════════════════════════ */
 .modal-nativo {
   padding: 0;
   border: none;
   background: transparent;
-  margin: auto; 
+  margin: auto;
   overflow: visible;
   outline: none;
 }
-
 .modal-nativo::backdrop {
-  background-color: rgba(0, 0, 0, 0.90);
+  background-color: rgba(0, 0, 0, 0.9);
   backdrop-filter: blur(5px);
 }
 
-.video-modal {
-  width: 90vw;
-  max-width: 900px;
-  position: relative;
-  background: #000;
-  border: 2px solid var(--cor-primaria);
-  border-radius: 12px;
-}
-
-.video-player {
-  width: 100%;
-  max-height: 85vh; 
-  border-radius: 10px;
-  display: block;
-}
-
-.btn-fechar-video {
-  position: absolute;
-  top: -25px;
-  right: 0;
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 3rem;
-  cursor: pointer;
-}
-
-/* Estilos do Mapa */
 .mapa-modal {
-  background-color: #1a1a1a;
+  background: #111;
   width: 95vw;
-  max-width: 1000px; 
-  border-radius: 12px;
-  padding: 20px;
+  max-width: 1000px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 32px;
   position: relative;
-  border: 1px solid var(--cor-primaria);
+}
+
+.mapa-titulo {
+  font-family: 'Anton', 'Bebas Neue', Impact, sans-serif;
+  font-size: 32px;
+  text-transform: uppercase;
+  color: #f5f5f5;
+  margin: 0 0 24px;
 }
 
 .btn-fechar-mapa {
-  position: absolute; top: 10px; right: 15px;
-  background: none; border: none; color: #fff; font-size: 2rem;
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.2s;
 }
+.btn-fechar-mapa:hover { color: #d2042d; }
 
 .mapa-layout-duplo { display: flex; gap: 20px; height: 500px; }
-.mapa-sidebar { flex: 0 0 300px; overflow-y: auto; }
-.mapa-container-flex { flex: 1; background: #222; border-radius: 8px; }
+
+.mapa-sidebar {
+  flex: 0 0 260px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  scrollbar-width: thin;
+  scrollbar-color: #d2042d transparent;
+}
+
+.mapa-container-flex { flex: 1; background: #1a1a1a; }
 
 .sidebar-item {
-  background: #222; border: 1px solid transparent;
-  padding: 10px; margin-bottom: 10px; cursor: pointer; border-radius: 8px;
+  background: #1a1a1a;
+  border: 1px solid transparent;
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: all 0.2s;
 }
-.sidebar-item.ativo { border-color: var(--cor-primaria); background: #333; }
-.sidebar-img { width: 50px; height: 50px; border-radius: 50%; margin-right: 10px; }
-.sidebar-nome { color: #fff; font-weight: bold; }
+.sidebar-item:hover { border-color: rgba(255, 255, 255, 0.15); }
+.sidebar-item.ativo { border-color: #d2042d; }
 
-/* Carrossel e Outros */
-.carousel-wrapper { position: relative; width: 100%; }
-.scroll-horizontal {
+.sidebar-nome {
+  font-family: 'Oswald', sans-serif;
+  font-size: 13px;
+  text-transform: uppercase;
+  color: #f5f5f5;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+}
+
+.sidebar-detalhes {
+  margin-top: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.5);
   display: flex;
-  overflow-x: auto;
-  gap: 20px;
-  padding: 20px;
-  scrollbar-width: none;
+  flex-direction: column;
+  gap: 8px;
+  letter-spacing: 0.1em;
 }
-.scroll-horizontal::-webkit-scrollbar { display: none; }
 
-.scroll-btn {
-  position: absolute;
-  top: 50%; transform: translateY(-50%);
-  z-index: 10;
-  background: var(--cor-primaria);
-  border: none; color: #fff;
-  width: 40px; height: 40px; border-radius: 50%;
+.btn-rota {
+  color: #ffd700;
+  text-decoration: none;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: opacity 0.2s;
 }
-.scroll-btn.left { left: 0; }
-.scroll-btn.right { right: 0; }
+.btn-rota:hover { opacity: 0.75; }
+
+/* ══════════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════════ */
+@media (max-width: 991px) {
+  .locais-section { padding: 20px 0 80px; }
+  .locais-grid { grid-template-columns: 1fr; }
+  .locais-head { grid-template-columns: 1fr; gap: 24px; }
+  .btn-ghost { align-self: start; }
+  .local-card { padding: 28px 20px; min-height: auto; }
+  .wrap { padding: 0 20px; }
+  .mapa-layout-duplo { flex-direction: column; height: auto; }
+  .mapa-sidebar { flex: none; max-height: 200px; }
+  .mapa-container-flex { height: 300px; }
+}

@@ -1,0 +1,103 @@
+<div class="container mt-5">
+  <h2 class="text-center mb-4" style="color: var(--cor-primaria)">CALENDÁRIO DE ATIVIDADES</h2>
+
+  <div *ngFor="let evento of eventosFuturos" 
+       class="card-evento mb-3 shadow-sm" 
+       [class.expandido]="eventoExpandido === evento"
+       (click)="toggleExpandir(evento)">
+    
+    <div class="row g-0 align-items-stretch">
+      <div class="col-3 col-md-2 date-box text-center">
+        <span class="day">{{ evento.data | date:'dd' }}</span>
+        <span class="month">{{ evento.data | date:'MMM' | uppercase }}</span>
+      </div>
+      
+      <div class="col-9 col-md-10 p-3 position-relative">
+        <i class="bi bi-chevron-down seta-expandir text-warning position-absolute end-0 top-0 mt-3 me-3"
+           [style.transform]="eventoExpandido === evento ? 'rotate(180deg)' : 'rotate(0deg)'"></i>
+
+        <div class="pe-4">
+          <div class="d-flex align-items-center mb-1 flex-wrap gap-2">
+            <span [class]="'badge badge-' + evento.tipo.toLowerCase()">{{ evento.tipo }}</span>
+            <small class="text-warning"><i class="bi bi-clock"></i> {{ evento.hora }}</small>
+          </div>
+          <h4 class="titulo mb-0 fs-5">{{ evento.titulo }}</h4>
+        </div>
+        
+        <div class="area-expansivel mt-3 border-top border-secondary pt-3" *ngIf="eventoExpandido === evento">
+          <div class="row">
+            <div class="col-md-8">
+              <p class="descricao mb-2 text-light" style="white-space: pre-wrap;">{{ evento.descricao }}</p>
+              <small class="local text-warning d-block mt-3">
+                <i class="bi bi-geo-alt-fill"></i> {{ evento.local }}
+              </small>
+            </div>
+            
+            <div class="col-md-4 mt-3 mt-md-0 text-center" *ngIf="evento.imageUrl && evento.imageUrl.length > 5">
+              <img [src]="evento.imageUrl" 
+                   class="img-fluid rounded shadow-sm border border-secondary img-clicavel" 
+                   alt="Evento" 
+                   style="max-height: 180px; object-fit: contain;"
+                   (click)="abrirImagem(evento.imageUrl, $event)">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center mt-5 mb-5">
+    <button class="btn btn-outline-warning" (click)="mostrarPassados = !mostrarPassados">
+      {{ mostrarPassados ? 'Ocultar' : 'Exibir' }} Eventos Passados
+    </button>
+  </div>
+
+  <div *ngIf="mostrarPassados" class="opacity-75">
+    <div *ngFor="let evento of eventosPassados" 
+         class="card-evento passado mb-3"
+         [class.expandido]="eventoExpandido === evento"
+         (click)="toggleExpandir(evento)">
+      
+      <div class="row g-0 align-items-stretch">
+        <div class="col-3 col-md-2 date-box text-center">
+          <span class="day">{{ evento.data | date:'dd' }}</span>
+          <span class="month">{{ evento.data | date:'MMM' | uppercase }}</span>
+        </div>
+        <div class="col-9 col-md-10 p-3 position-relative">
+          <i class="bi bi-chevron-down seta-expandir text-warning position-absolute end-0 top-0 mt-3 me-3"
+             [style.transform]="eventoExpandido === evento ? 'rotate(180deg)' : 'rotate(0deg)'"></i>
+          <div class="pe-4">
+            <div class="d-flex align-items-center mb-1 flex-wrap gap-2">
+              <span [class]="'badge badge-' + evento.tipo.toLowerCase()">{{ evento.tipo }}</span>
+              <small class="text-warning"><i class="bi bi-clock"></i> {{ evento.hora }}</small>
+            </div>
+            <h4 class="titulo mb-0 fs-5">{{ evento.titulo }}</h4>
+          </div>
+          <div class="area-expansivel mt-3 border-top border-secondary pt-3" *ngIf="eventoExpandido === evento">
+            <div class="row">
+              <div class="col-md-8">
+                <p class="descricao mb-2 text-light" style="white-space: pre-wrap;">{{ evento.descricao }}</p>
+                <small class="local text-warning d-block mt-3">
+                  <i class="bi bi-geo-alt-fill"></i> {{ evento.local }}
+                </small>
+              </div>
+              
+              <div class="col-md-4 mt-3 mt-md-0 text-center" *ngIf="evento.imageUrl && evento.imageUrl.length > 5">
+                <img [src]="evento.imageUrl" 
+                     class="img-fluid rounded shadow-sm border border-secondary img-clicavel" 
+                     alt="Evento" 
+                     style="max-height: 180px; object-fit: contain;"
+                     (click)="abrirImagem(evento.imageUrl, $event)">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-imagem-overlay" *ngIf="imagemExpandidaUrl" (click)="fecharImagem()">
+  <span class="fechar-modal"><i class="bi bi-x-lg"></i></span>
+  <img [src]="imagemExpandidaUrl" class="imagem-modal" alt="Imagem Expandida" (click)="$event.stopPropagation()">
+</div>

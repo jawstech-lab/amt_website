@@ -1,333 +1,489 @@
-/* ========================================= */
-/* 1. VARIÁVEIS LOCAIS E GLOBAIS             */
-/* ========================================= */
-:host {
-  display: block;
-  padding-bottom: 0 !important;
+:host { 
+  display: block; 
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
-.titulo-secao {
-  color: var(--cor-texto);
-  font-weight: 900;
+/* ══════════════════════════════════════════════════
+   SHARED
+══════════════════════════════════════════════════ */
+.wrap {
+  max-width: 1480px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 40px;
+  box-sizing: border-box;
+}
+
+.section-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  color: #d2042d;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  max-width: 100%;
+}
+.section-eyebrow::before {
+  content: "";
+  width: 32px;
+  height: 1px;
+  background: #d2042d;
+  flex-shrink: 0;
 }
 
-.text-primary { color: var(--cor-primaria) !important; }
-.text-warning { color: var(--cor-secundaria) !important; }
+.word-white { color: #f5f5f5; display: block; }
+.word-red { color: #d2042d; font-style: italic; display: block; }
 
-.divisor {
-  border-top: 2px solid var(--cor-secundaria);
-  opacity: 0.2;
-  margin: 3rem 0;
-}
-
-.container.mb-5, 
-section.mb-5 { margin-bottom: 0 !important; }
-
-/* ========================================= */
-/* 2. ESTRUTURA GERAL DE CARROSSÉIS          */
-/* ========================================= */
-.destaques-section,
-.carousel-wrapper {
+/* ══════════════════════════════════════════════════
+   NOSSA HISTÓRIA
+══════════════════════════════════════════════════ */
+.historia-section {
+  background: #0a0a0a;
+  padding: 40px 0 40px;
   position: relative;
   width: 100%;
-  overflow: visible; 
 }
 
-.destaques-section { margin-top: 2rem; overflow: hidden; }
-.carousel-wrapper { display: flex; align-items: center; }
-
-.scroll-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: var(--cor-primaria);
-  color: white;
-  border: 2px solid var(--cor-fundo);
-  border-radius: 50%;
-  width: 45px;
-  height: 45px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.2rem;
-  font-weight: bold;
-  cursor: pointer;
-  z-index: 200; 
-  box-shadow: 0 4px 10px rgba(0,0,0,0.8);
-  transition: background-color 0.2s;
+.historia-section > .wrap {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-.scroll-btn:hover { background-color: var(--cor-secundaria); color: #000; }
-.scroll-btn.left { left: 0px; }
-.scroll-btn.right { right: 0px; }
+.historia-title {
+  font-family: 'Anton', 'Bebas Neue', Impact, sans-serif;
+  font-size: clamp(48px, 9vw, 140px);
+  line-height: 0.85;
+  text-transform: uppercase;
+  font-weight: 400;
+  margin: 16px 0 48px;
+  word-break: break-word;
+}
 
-/* Scroll container genérico */
-.scroll-horizontal {
-  display: flex;
+.historia-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.historia-text p {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.72);
+  margin: 0 0 20px;
+}
+.historia-text p:last-child { margin-bottom: 0; }
+
+.historia-text strong {
+  color: #f5f5f5;
+  font-weight: 600;
+}
+
+.gold-em {
+  color: #ffd700;
+  font-style: italic;
+}
+
+/* ── Fotos ────────────────────────────────────────── */
+.historia-fotos {
   position: relative;
-  width: 100%;
-  align-items: center;
-  flex-wrap: nowrap;
-  overflow-x: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 20px;
-  padding: 20px 0; 
-  min-height: 500px;  
-  scrollbar-width: none; 
-  -webkit-overflow-scrolling: touch; 
-  scroll-behavior: smooth; 
-  scroll-snap-type: x mandatory; 
-  overflow-y: visible;
+  align-items: start;
 }
 
-.scroll-horizontal::-webkit-scrollbar { display: none; }
-
-/* FIX NOVO: Espaço invisível de apenas 50px (apenas para não ficar debaixo do botão de seta). REMOVE O VÃO GIGANTE. */
-.scroll-horizontal::before,
-.scroll-horizontal::after {
-  content: '';
-  flex: 0 0 50px;
-}
-
-/* Destaques */
-.slider-destaques {
-  display: flex;
-  height: 250px;
-  overflow: hidden;
+.foto-wrap {
   position: relative;
-  align-items: center;
+  overflow: hidden;
+  background: #141414;
 }
 
-.slider-destaques::before,
-.slider-destaques::after {
-  content: '';
+.foto-1 { margin-top: 0; }
+.foto-2 { margin-top: 48px; }
+
+.historia-img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(20%) contrast(1.05);
+  transition: opacity 0.6s ease;
+}
+
+.foto-tag {
   position: absolute;
-  top: 0;
-  width: 150px;
-  height: 100%;
-  z-index: 2;
+  bottom: 12px;
+  right: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: #ffd700;
+  background: rgba(0, 0, 0, 0.65);
+  padding: 4px 8px;
+}
+
+/* ══════════════════════════════════════════════════
+   NOSSOS GUERREIROS
+══════════════════════════════════════════════════ */
+.guerreiros-section {
+  background: #0a0a0a;
+  padding: 120px 0 120px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  width: 100%;
+}
+
+.equipe-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  margin-bottom: 60px;
+  width: 100%;
+}
+
+.equipe-title {
+  font-family: 'Anton', 'Bebas Neue', Impact, sans-serif;
+  font-size: clamp(40px, 9vw, 140px);
+  line-height: 0.85;
+  text-transform: uppercase;
+  font-weight: 400;
+  margin: 16px 0 0;
+  color: #f5f5f5;
+  word-break: break-word;
+  max-width: 100%;
+}
+.equipe-title em {
+  color: #d2042d;
+  font-style: italic;
+  display: block;
+}
+
+/* ── Tabs ────────────────────────────────────────── */
+.equipe-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.equipe-tab {
+  padding: 12px 20px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  cursor: pointer;
+  transition: all 0.3s;
+  white-space: nowrap;
+}
+.equipe-tab.active {
+  background: #f5f5f5;
+  color: #0a0a0a;
+  border-color: #f5f5f5;
+}
+.equipe-tab:hover:not(.active) {
+  color: #f5f5f5;
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* ── Rail ────────────────────────────────────────── */
+.equipe-rail {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 20px 0 40px;
+  scrollbar-width: none;
+  width: 100%; 
+  max-width: 100%;
+}
+.equipe-rail::-webkit-scrollbar { display: none; }
+
+/* ── Fighter Card ────────────────────────────────── */
+.fighter-card {
+  flex: 0 0 320px;
+  height: 480px;
+  position: relative;
+  scroll-snap-align: start;
+  background: #141414;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+.fighter-card:hover:not(.expanded) { 
+  transform: translateY(-8px); 
+}
+
+.fighter-img {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center top;
+  filter: grayscale(40%) contrast(1.05);
+  transition: filter 0.5s ease, transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.fighter-card:hover .fighter-img {
+  filter: grayscale(0%) contrast(1.1);
+  transform: scale(1.06);
+}
+.fighter-card.expanded .fighter-img {
+  filter: grayscale(60%) contrast(1.2) brightness(0.4); /* Escurece a imagem quando os detalhes sobem */
+}
+
+.fighter-num, .fighter-tag {
+  transition: opacity 0.3s;
+}
+.fighter-card.expanded .fighter-num,
+.fighter-card.expanded .fighter-tag {
+  opacity: 0; /* Esconde as tags quando o card abre */
+}
+
+.fighter-num {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.6);
+  z-index: 3;
+}
+
+.fighter-tag {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 3;
+  padding: 4px 10px;
+  background: #d2042d;
+  color: white;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.fighter-info {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+  padding: 20px;
+  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.92) 55%);
+  color: white;
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.5s;
+}
+/* Animação: joga a info frontal para baixo e apaga quando expande */
+.fighter-card.expanded .fighter-info {
+  transform: translateY(20px);
+  opacity: 0;
   pointer-events: none;
 }
-.slider-destaques::before { left: 0; background: linear-gradient(to right, var(--cor-fundo) 0%, transparent 100%); }
-.slider-destaques::after { right: 0; background: linear-gradient(to left, var(--cor-fundo) 0%, transparent 100%); }
 
-.slide-track {
+.fighter-name {
+  font-family: 'Anton', 'Bebas Neue', Impact, sans-serif;
+  font-size: 28px;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.fighter-alias {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: #ffd700;
+  margin-top: 6px;
+  text-transform: uppercase;
+}
+
+.fighter-meta {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
   display: flex;
-  width: max-content;
-  gap: 20px;
-  animation: scroll-destaques 35s linear infinite;
-}
-.slide-track:hover { animation-play-state: paused; }
-
-.slide {
-  width: 350px; height: 200px;
-  flex-shrink: 0; border-radius: 12px; overflow: hidden;
-  border: 2px solid #222; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-  transition: all 0.4s ease; cursor: pointer;
-}
-.slide img {
-  width: 100%; height: 100%; object-fit: cover;
-  filter: grayscale(40%) brightness(0.8); transition: all 0.4s ease;
-}
-.slide:hover {
-  transform: scale(1.05) translateY(-5px);
-  border-color: var(--cor-primaria);
-  box-shadow: 0 10px 25px rgba(210, 4, 45, 0.5); z-index: 10;
-}
-.slide:hover img { filter: grayscale(0%) brightness(1.1); }
-
-/* ========================================= */
-/* 3. CARTÕES DA EQUIPE (NOVA LÓGICA EXATA)  */
-/* ========================================= */
-
-.fight-card {
-  position: relative;
-  width: 130px;        
-  height: 230px;       
-  flex: 0 0 auto;
-  scroll-snap-align: center;
+  justify-content: space-between;
+  align-items: flex-end;
 }
 
-/* O miolo padrão (cresce pelo centro) */
-.card-inner {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 130px;
-  height: 230px;
-  background-color: transparent;
-  border-radius: 12px;
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+.fighter-grau {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  line-height: 1.6;
+}
+.fighter-grau span { opacity: 0.6; }
+
+.fighter-record {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  gap: 12px;
+  font-family: 'Anton', 'Bebas Neue', Impact, sans-serif;
 }
-
-/* Efeito Hover na visão normal (pequenos ajustes matemáticos para manter alinhado) */
-.fight-card:not(.expandido):hover .card-inner {
-  transform: translate(-50%, -50%) scale(1.05);
-  z-index: 10;
-}
-.fight-card.expand-left:not(.expandido):hover .card-inner {
-  transform: translate(calc(-50% - 3px), -50%) scale(1.05);
-  z-index: 10;
-}
-.fight-card.expand-right:not(.expandido):hover .card-inner {
-  transform: translate(calc(-50% + 3px), -50%) scale(1.05);
-  z-index: 10;
-}
-
-/* Estado Expandido - Posição Base (Centro) */
-.fight-card.expandido .card-inner {
-  width: 330px;           
-  height: 480px; 
-  background-color: rgba(0, 0, 0, 0.95);
-  border: 2px solid var(--cor-primaria);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
-  z-index: 100;           
-  cursor: default;
-  transform: translate(-50%, -50%);
-}
-
-/* FIX NOVO (MATEMÁTICA EXATA): Desloca exatamente metade da diferença (100px) entre o card base e o expandido. 
-Isso garante que a borda alinhe MILIMETRICAMENTE com o layout, nunca vazando pra trás da parede! */
-.fight-card.expandido.expand-left .card-inner {
-  transform: translate(calc(-50% - 100px), -50%);
-}
-
-.fight-card.expandido.expand-right .card-inner {
-  transform: translate(calc(-50% + 100px), -50%);
-}
-
-/* Opacidade dos conteúdos */
-.fight-card.expandido .collapsed-view { opacity: 0; pointer-events: none; }
-.fight-card.expandido .expanded-content { opacity: 1; transform: translateY(0); pointer-events: auto; }
-
-/* Ajustes Mobile */
-@media (max-width: 768px) {
-  .scroll-horizontal {
-    min-height: 480px;
-  }
-  .scroll-horizontal::before,
-  .scroll-horizontal::after {
-    flex: 0 0 35px; /* Ainda menor no mobile */
-  }
-  .fight-card.expandido .card-inner {
-    width: 290px; 
-    height: 480px;
-  }
-  .fight-card.expandido.expand-left .card-inner {
-    transform: translate(calc(-50% - 80px), -50%);
-  }
-  .fight-card.expandido.expand-right .card-inner {
-    transform: translate(calc(-50% + 80px), -50%);
-  }
-}
-
-/* ========================================= */
-/* 4. CONTEÚDO DOS CARTÕES                   */
-/* ========================================= */
-
-.collapsed-view {
-  width: 100%;
+.fighter-record .v, .fighter-record .d, .fighter-record .e {
   display: flex;
   flex-direction: column;
   align-items: center;
+  line-height: 1;
+}
+.fighter-record .num { font-size: 24px; }
+.fighter-record .lbl {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 0.16em;
+  margin-top: 3px;
+  color: rgba(255, 255, 255, 0.5);
+}
+.fighter-record .v .num { color: #ffd700; }
+.fighter-record .d .num { color: #d2042d; }
+
+.kru-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: #ffd700;
+}
+
+/* ── Fighter Details (Painel Oculto) ────────────────────────────────── */
+.fighter-details {
+  position: absolute;
+  inset: 0; /* Cobre todo o card */
+  background: rgba(10, 10, 10, 0.85); /* Fundo escuro semi-transparente */
+  backdrop-filter: blur(4px); /* Borra a imagem de fundo */
+  z-index: 10;
+  padding: 40px 24px 24px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  
+  /* Estado Inicial: escondido em baixo */
+  transform: translateY(100%);
+  opacity: 0;
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.5s;
+}
+
+/* Estado Expandido: desliza para cima */
+.fighter-card.expanded .fighter-details {
+  transform: translateY(0);
   opacity: 1;
-  transition: opacity 0.2s ease;
 }
 
-.avatar-img {
-  width: 130px !important;
-  height: 130px !important;
-  border-radius: 50%;
-  object-fit: cover;
-  background-color: #1a1a1a;
-  border: 3px solid rgba(255, 255, 255, 0.1); 
-  filter: grayscale(20%) brightness(0.9);
-  transition: transform 0.3s ease, filter 0.3s ease;
-  margin-bottom: 5px;
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 28px;
+  line-height: 1;
   cursor: pointer;
+  transition: color 0.3s;
+}
+.close-btn:hover {
+  color: #d2042d;
 }
 
-.fight-card:not(.expandido):hover .avatar-img { filter: grayscale(0%) brightness(1.1); box-shadow: 0 0 15px rgba(210, 4, 45, 0.4); border-color: var(--cor-primaria); }
+.details-content {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #d2042d rgba(255, 255, 255, 0.1);
+  padding-right: 8px;
+  flex: 1;
+}
+.details-content::-webkit-scrollbar { width: 4px; }
+.details-content::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); }
+.details-content::-webkit-scrollbar-thumb { background: #d2042d; }
 
-.expanded-content {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  display: flex; flex-direction: column;
-  padding: 15px 20px;
-  opacity: 0; 
-  transform: translateY(15px);
-  pointer-events: none;
-  transition: opacity 0.3s ease 0.1s, transform 0.3s ease 0.1s; 
+.details-name {
+  font-family: 'Anton', 'Bebas Neue', Impact, sans-serif;
+  font-size: 32px;
+  line-height: 1;
+  text-transform: uppercase;
+  margin: 0 0 4px 0;
 }
 
-.btn-fechar {
-  position: absolute;
-  top: 5px; right: 15px;
-  background: none; border: none; color: #fff;
-  font-size: 1.8rem; line-height: 1;
-  cursor: pointer; z-index: 50; transition: color 0.2s; padding: 0;
-}
-.btn-fechar:hover { color: var(--cor-primaria); }
-
-.expanded-header {
-  display: flex; align-items: center; gap: 15px;           
-  margin-top: 5px; margin-bottom: 10px; padding-bottom: 10px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+.details-alias {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: #ffd700;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-.header-icon { flex: 0 0 auto; }
-.header-info { flex-grow: 1; }
-.header-img-circle { width: 55px; height: 55px; border-radius: 50%; object-fit: cover; border: 2px solid var(--cor-secundaria); }
-.header-info h4 { font-weight: 900; text-transform: uppercase; font-size: 1.1rem; letter-spacing: 1px; }
-.apelido { font-size: 0.85rem; font-style: italic; margin: 0; }
-.badge-grau { background-color: var(--cor-primaria); color: white; border: 1px solid var(--cor-secundaria); font-size: 0.7rem; padding: 3px 6px; white-space: normal; }
-
-.bio-container {
-  flex: 0 1 auto;
-  max-height: 190px; 
-  min-height: 0;    
-  overflow-y: auto; padding-right: 5px; margin-bottom: 10px;
-  scrollbar-width: thin; scrollbar-color: var(--cor-primaria) transparent;
-}
-.bio { color: #ccc; font-size: 0.8rem; line-height: 1.4; text-align: left; margin: 0; white-space: normal; word-wrap: break-word; }
-
-.bio-container::-webkit-scrollbar { width: 5px; }
-.bio-container::-webkit-scrollbar-track { background-color: transparent; }
-.bio-container::-webkit-scrollbar-thumb { background-color: var(--cor-primaria); border-radius: 10px; }
-.bio-container::-webkit-scrollbar-thumb:hover { background-color: var(--cor-secundaria); }
-
-.local-treino-container { flex-shrink: 0; }
-.local-treino { font-size: 0.8rem; font-weight: bold; }
-.local-treino i { color: var(--cor-primaria); margin-right: 3px; }
-
-/* ========================================= */
-/* 5. CARTEL DO LUTADOR                      */
-/* ========================================= */
-.lutador-status-box {
-  background-color: #000000;
-  border: 1px solid #444444; 
-  padding: 12px;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.5);
-  flex-shrink: 0;
-  margin-top: auto; 
+.details-desc p {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 16px;
 }
 
-.cartel-stats-row { display: flex; justify-content: space-between; align-items: center; }
-.stat-item-row { display: flex; align-items: center; gap: 6px; }
-.stat-text-col { display: flex; flex-direction: column; line-height: 1.1; color: #ffffff; }
-.stat-title { font-weight: 900; font-size: 0.70rem; }
-.stat-sub { font-weight: bold; font-size: 0.70rem; }
+/* ── Rail controls ───────────────────────────────── */
+.rail-controls {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
 
-.icone-cartel {
-  width: 28px !important; height: 28px !important;
-  border-radius: 0 !important; border: none !important;
-  background-color: transparent !important; box-shadow: none !important;
-  object-fit: contain !important; margin: 0 !important; padding: 0 !important;
+.rail-btn {
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: transparent;
+  color: #f5f5f5;
+  display: grid;
+  place-items: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.rail-btn:hover {
+  background: #d2042d;
+  border-color: #d2042d;
+  color: white;
+}
+
+/* ══════════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════════ */
+@media (max-width: 991px) {
+  .historia-section { padding: 80px 0 60px; }
+  .historia-grid { grid-template-columns: 1fr; gap: 48px; }
+  .historia-fotos { order: -1; }
+  .guerreiros-section { padding: 60px 0 80px; }
+  .equipe-head { gap: 24px; }
+  .fighter-card { flex: 0 0 260px; height: 380px; }
+  .fighter-name { font-size: 22px; }
+  .details-name { font-size: 26px; }
+  .wrap { padding: 0 20px; }
+  .equipe-rail { padding: 20px 0 32px; }
+}
+
+@media (max-width: 480px) {
+  .wrap { padding: 0 10px; }
+  .fighter-card { flex: 0 0 200px; height: 300px; }
+  .equipe-title { font-size: clamp(32px, 12vw, 56px); margin-top: 8px; }
+  .equipe-tabs { width: 100%; gap: 4px; }
+  .equipe-tab { padding: 8px 16px; flex: 1; text-align: center; }
+  .rail-controls { justify-content: center; gap: 4px; }
+  .rail-btn { width: 40px; height: 40px; }
 }

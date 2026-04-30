@@ -1,218 +1,160 @@
-<div class="container mt-5 mb-5">
+<!-- ═══════════ NOSSA HISTÓRIA ═══════════ -->
+<section class="historia-section" id="secao-sobre-equipe">
+  <div class="wrap">
+    <div class="section-eyebrow"><span>003 · A Equipe AMT</span></div>
+    <div class="historia-grid">
+      <div class="historia-left">
+        <h2 class="historia-title">
+          <span class="word-white">Nossa</span>
+          <em class="word-red">História</em>
+        </h2>
+        <div class="historia-text">
+          <p>
+            A Equipe AMT foi criada em <strong>4 de setembro de 2017</strong>. A grande força que
+            impulsionou o nascimento da equipe era a de trazer o Muay Thai de forma
+            <em class="gold-em">real e verdadeira</em> para a região.
+          </p>
+          <p>
+            Tinha também a missão de quebrar o estereótipo da época, de que treinos e lutas eram
+            degradantes, e levar o Muay Thai a todo o público — o que mantemos até hoje. O nome
+            <strong>"Alliance"</strong> vem de uma aliança dos treinadores que migraram de outra equipe
+            para a AMT com o intuito de evolução.
+          </p>
+          <p>
+            Hoje, temos como líder o <strong>Kru Jefferson Erbas</strong>, que está desde a formação
+            da equipe. Contamos também com mais 8 krus/instrutores em atividade entre
+            <strong>São José dos Campos</strong> e <strong>Caraguatatuba</strong>. Seguimos em constante
+            evolução para ministrar as melhores aulas e repassar as informações mais atualizadas possíveis
+            aos alunos.
+          </p>
+        </div>
+      </div>
+      <div class="historia-fotos">
+        <div class="foto-wrap foto-1">
+          <img [src]="imagensHistoria[indiceImg1]" alt="AMT - Nossa História" class="historia-img" />
+          <span class="foto-tag">/ EST. 2017</span>
+        </div>
+        <div class="foto-wrap foto-2">
+          <img [src]="imagensHistoria[indiceImg2]" alt="AMT - Alliance" class="historia-img" />
+          <span class="foto-tag">/ ALLIANCE</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <section class="destaques-section mb-5">
-    <h2 class="text-center titulo-secao mb-4"><span class="text-primary">DESTAQUES</span> DA EQUIPE</h2>
+<!-- ═══════════ NOSSOS GUERREIROS ═══════════ -->
+<section class="guerreiros-section">
+  <div class="wrap">
     
-    <div class="slider-destaques">
-      <div class="slide-track">
-        
-        <ng-container *ngFor="let i of [1,2,3,4]">
-          <div class="slide" *ngFor="let img of imagensDestaques">
-            <img [src]="img" alt="Destaque AMT">
-          </div>
-        </ng-container>
-        
-        <ng-container *ngFor="let i of [1,2,3,4]">
-          <div class="slide" *ngFor="let img of imagensDestaques">
-            <img [src]="img" alt="Destaque AMT">
-          </div>
-        </ng-container>
-
+    <!-- Cabeçalho -->
+    <div class="equipe-head">
+      <div>
+        <div class="section-eyebrow"><span>004 · Guerreiros</span></div>
+        <h2 class="equipe-title">
+          <span class="word-white">Nossos</span><br/>
+          <em>Guerreiros</em>
+        </h2>
+      </div>
+      <div class="equipe-tabs">
+        <button class="equipe-tab" [class.active]="tabAtiva === 'treinadores'" (click)="trocarTab('treinadores')">
+          Treinadores ({{ treinadores.length }})
+        </button>
+        <button class="equipe-tab" [class.active]="tabAtiva === 'lutadores'" (click)="trocarTab('lutadores')">
+          Lutadores ({{ lutadores.length }})
+        </button>
       </div>
     </div>
-  </section>
 
-  <hr class="divisor">
-
-  <section id="secao-sobre-equipe" class="sobre-equipe mb-5" style="scroll-margin-top: 100px;">
-    <div class="row align-items-center">
-      <h2 class="text-center titulo-secao mb-4">A EQUIPE <span class="text-primary">AMT</span></h2>
-      <div class="col-lg-6 mb-4 mb-lg-0 text-sobre">
-        <h2 class="titulo-secao">NOSSA <span class="text-primary">HISTÓRIA</span></h2>
-        <p class="lead mt-3 text-light">
-          A Equipe AMT foi criada em 4 de setembro de 2017. A grande força que impulsionou o nascimento da equipe era a de trazer o Muay Thai de forma real e verdadeira para a região.
-        </p>
-        <p class="text-light">
-          Tinha também a missão de quebrar o estereótipo da época, de que treinos e lutas eram degradantes, e levar o Muay Thai a todo o público, o que mantemos até hoje.<br>
-          O nome "Alliance" vem de uma aliança dos treinadores que migraram de outra equipe para a AMT com o intuito de evolução.
-        </p>
-        <p class="text-light">
-          Hoje, temos como líder o Kru Jefferson Erbas, que está desde a formação da equipe.<br>
-          Contamos também com mais 8 krus/instrutores em atividade entre São José dos Campos e Caraguatatuba.<br>
-          Seguimos em constante evolução para ministrar as melhores aulas e repassar as informações mais atualizadas possíveis aos alunos.
-        </p>
-      </div>
-      <div class="col-lg-6">
-        <div class="row g-2">
-          <div class="col-6">
-            <img [src]="imagensHistoria[indiceImg1]" class="img-fluid rounded shadow" style="transition: all 0.5s ease;" alt="Treino">
-          </div>
-          <div class="col-6">
-            <img [src]="imagensHistoria[indiceImg2]" class="img-fluid rounded shadow mt-4" style="transition: all 0.5s ease;" alt="Luvas">
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="divisor">
-
-  <section class="mb-5 mt-5">
-    <h2 class="text-center titulo-secao mb-4">NOSSOS <span class="text-primary">TREINADORES</span></h2>
-
-    <div class="carousel-wrapper">
-      <button class="scroll-btn left" (click)="rolarLista(scrollTreinadores, -1)">❮</button>
-
-      <div class="scroll-horizontal" #scrollTreinadores>
-        
-        <div class="fight-card" *ngFor="let treinador of treinadores" 
-             [class.expandido]="cardAtivo === treinador"
-             [class.expand-left]="(cardAtivo === treinador || cardHovered === treinador) && direcaoExpansao === 'left'"
-             [class.expand-right]="(cardAtivo === treinador || cardHovered === treinador) && direcaoExpansao === 'right'"
-             (mouseenter)="onCardEnter(treinador, $event)"
-             (mouseleave)="onCardLeave()"
-             (click)="onCardClick(treinador, $event)">
-
-          <div class="card-inner shadow">
-            
-            <div class="collapsed-view">
-              <img [src]="treinador.imagemUrl" [alt]="treinador.nome" class="avatar-img">
-              <div class="mt-2 text-center w-100 px-1">
-                <span class="text-primary fw-bold" style="font-size: 0.80rem; line-height: 1.1; display: block;">{{ treinador.nome }}</span>
-              </div>
-            </div>
-
-            <div class="expanded-content">
-              <button class="btn-fechar" (click)="fecharCardAberto($event)">×</button>
-
-              <div class="expanded-header">
-                <div class="header-icon">
-                  <img [src]="treinador.imagemUrl" [alt]="treinador.nome" class="header-img-circle">
-                </div>
-                <div class="header-info">
-                  <h4 class="mb-0 text-primary">{{ treinador.nome }}</h4>
-                  <p class="apelido text-warning mb-1" *ngIf="treinador.apelido">"{{ treinador.apelido }}"</p>
-                  <span class="badge badge-grau">{{ treinador.grau }}</span>
-                </div>
-              </div>
-
-              <div class="bio-container">
-                <div class="bio" [innerHTML]="treinador.descricao"></div>
-              </div>
-
-              <div class="local-treino-container mt-2 pt-2 border-top border-secondary" *ngIf="treinador.localTreino">
-                <small class="text-secondary">Locais de Treino:</small>
-                <div class="mt-1">
-                  <p class="local-treino mb-1 text-warning" *ngFor="let local of getLocaisArray(treinador.localTreino)">
-                    <i class="bi bi-geo-alt-fill"></i> {{ local }}
-                  </p>
-                </div>
-              </div>
-            </div>
-            
-          </div>
-        </div>
-      </div>
-
-      <button class="scroll-btn right" (click)="rolarLista(scrollTreinadores, 1)">❯</button>
-    </div>
-  </section>
-
-  <section class="mb-5">
-    <h2 class="text-center titulo-secao mb-4">NOSSOS <span class="text-primary">LUTADORES</span></h2>
-
-    <div class="carousel-wrapper">
-      <button class="scroll-btn left" (click)="rolarLista(scrollLutadores, -1)">❮</button>
-
-      <div class="scroll-horizontal" #scrollLutadores>
-        
-        <div class="fight-card" *ngFor="let lutador of lutadores" 
-             [class.expandido]="cardAtivo === lutador"
-             [class.expand-left]="(cardAtivo === lutador || cardHovered === lutador) && direcaoExpansao === 'left'"
-             [class.expand-right]="(cardAtivo === lutador || cardHovered === lutador) && direcaoExpansao === 'right'"
-             (mouseenter)="onCardEnter(lutador, $event)"
-             (mouseleave)="onCardLeave()"
-             (click)="onCardClick(lutador, $event)">
-
-          <div class="card-inner shadow">
-            
-            <div class="collapsed-view">
-              <img [src]="lutador.imagemUrl" [alt]="lutador.nome" class="avatar-img">
-              <div class="mt-2 text-center w-100 px-1">
-                <span class="text-primary fw-bold" style="font-size: 0.80rem; line-height: 1.1; display: block;">{{ lutador.nome }}</span>
-              </div>
-            </div>
-
-            <div class="expanded-content">
-              <button class="btn-fechar" (click)="fecharCardAberto($event)">×</button>
-
-              <div class="expanded-header">
-                <div class="header-icon">
-                  <img [src]="lutador.imagemUrl" [alt]="lutador.nome" class="header-img-circle">
-                </div>
-                <div class="header-info">
-                  <h4 class="mb-0 text-primary">{{ lutador.nome }}</h4>
-                  <p class="apelido text-warning mb-1" *ngIf="lutador.apelido">"{{ lutador.apelido }}"</p>
-                  <span class="badge badge-grau" *ngIf="!lutador.peso">{{ lutador.grau }}</span>
-                </div>
-              </div>
-
-              <div class="bio-container">
-                <div class="bio" [innerHTML]="lutador.descricao"></div>
-              </div>
-
-              <div class="lutador-status-box" *ngIf="lutador.peso">
-                
-                <div class="d-flex align-items-center mb-1">
-                  <span class="fw-bold text-warning me-2" style="font-size: 0.9rem;">Categoria:</span> 
-                  <span class="text-light" style="font-size: 0.9rem;">{{ lutador.grau }}</span>
-                </div>
-                
-                <div class="d-flex align-items-center mb-2">
-                  <span class="fw-bold text-warning me-2" style="font-size: 0.9rem;">Peso:</span> 
-                  <span class="text-light" style="font-size: 0.9rem;">{{ lutador.peso }}</span>
-                </div>
-
-                <div class="fw-bold text-warning mb-1" style="font-size: 0.9rem;">
-                  Cartel: <span class="text-light fw-normal">{{ lutador.totalLutas }} luta<span *ngIf="lutador.totalLutas !== 1">s</span></span>
-                </div>
-                
-                <div class="cartel-stats-row mt-3">
-                  <div class="stat-item-row">
-                    <img src="imagens/icone-vitoria.png" alt="Vit" class="icone-cartel">
-                    <div class="stat-text-col">
-                      <span class="stat-title">Vitórias</span>
-                      <span class="stat-sub">{{lutador.vitorias}}</span>
-                    </div>
-                  </div>
-
-                  <div class="stat-item-row">
-                    <img src="imagens/icone-derrota.png" alt="Der" class="icone-cartel">
-                    <div class="stat-text-col">
-                      <span class="stat-title">Derrotas</span>
-                      <span class="stat-sub">{{lutador.derrotas}}</span>
-                    </div>
-                  </div>
-
-                  <div class="stat-item-row">
-                    <img src="imagens/icone-empate.png" alt="Emp" class="icone-cartel">
-                    <div class="stat-text-col">
-                      <span class="stat-title">Empates</span>
-                      <span class="stat-sub">{{lutador.empates}}</span>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-
-            </div>
-          </div>
+    <!-- Carrossel -->
+    <div class="equipe-rail" #equipeRail>
+      <ng-container *ngIf="tabAtiva === 'lutadores'">
+        <article class="fighter-card" 
+                 *ngFor="let lutador of lutadores; let i = index" 
+                 [class.expanded]="expandedCardIndex === i"
+                 (click)="toggleCard(i)">
           
-        </div>
-      </div>
+          <div class="fighter-img" [style.backgroundImage]="'url(' + lutador.imagemUrl + ')'"></div>
+          <span class="fighter-num">/ {{ padNum(i + 1) }}</span>
+          <span class="fighter-tag" *ngIf="lutador.grau">{{ lutador.grau }}</span>
+          
+          <!-- Informação Frontal -->
+          <div class="fighter-info">
+            <div class="fighter-name">{{ lutador.nome }}</div>
+            <div class="fighter-alias" *ngIf="lutador.apelido">"{{ lutador.apelido }}"</div>
+            <div class="fighter-meta">
+              <div class="fighter-grau">
+                {{ lutador.peso }}<br/>
+                <span>{{ lutador.grau }}</span>
+              </div>
+              <div class="fighter-record">
+                <div class="v"><span class="num">{{ lutador.vitorias ?? 0 }}</span><span class="lbl">V</span></div>
+                <div class="d"><span class="num">{{ lutador.derrotas ?? 0 }}</span><span class="lbl">D</span></div>
+                <div class="e"><span class="num">{{ lutador.empates ?? 0 }}</span><span class="lbl">E</span></div>
+              </div>
+            </div>
+          </div>
 
-      <button class="scroll-btn right" (click)="rolarLista(scrollLutadores, 1)">❯</button>
+          <!-- Overlay de Detalhes -->
+          <div class="fighter-details">
+            <button class="close-btn">×</button>
+            <div class="details-content">
+              <h3 class="details-name">{{ lutador.nome }}</h3>
+              <div class="details-alias" *ngIf="lutador.apelido">"{{ lutador.apelido }}"</div>
+              
+              <div class="details-desc" *ngIf="lutador.descricao">
+                <p [innerHTML]="lutador.descricao"></p>
+              </div>
+            </div>
+          </div>
+
+        </article>
+      </ng-container>
+      
+      <ng-container *ngIf="tabAtiva === 'treinadores'">
+        <article class="fighter-card" 
+                 *ngFor="let treinador of treinadores; let i = index"
+                 [class.expanded]="expandedCardIndex === i"
+                 (click)="toggleCard(i)">
+          
+          <div class="fighter-img" [style.backgroundImage]="'url(' + treinador.imagemUrl + ')'"></div>
+          <span class="fighter-num">/ {{ padNum(i + 1) }}</span>
+          
+          <!-- Informação Frontal -->
+          <div class="fighter-info">
+            <div class="fighter-name">{{ treinador.nome }}</div>
+            <div class="fighter-alias" *ngIf="treinador.apelido">"{{ treinador.apelido }}"</div>
+            <div class="fighter-meta">
+              <div class="fighter-grau">
+                {{ treinador.grau }}<br/>
+                <span>{{ (treinador.localTreino || '').split(';')[0] }}</span>
+              </div>
+              <div class="kru-badge">KRU</div>
+            </div>
+          </div>
+
+          <!-- Overlay de Detalhes -->
+          <div class="fighter-details">
+            <button class="close-btn">×</button>
+            <div class="details-content">
+              <h3 class="details-name">{{ treinador.nome }}</h3>
+              <div class="details-alias" *ngIf="treinador.apelido">"{{ treinador.apelido }}"</div>
+              
+              <div class="details-desc" *ngIf="treinador.descricao">
+                <p [innerHTML]="treinador.descricao"></p>
+              </div>
+            </div>
+          </div>
+
+        </article>
+      </ng-container>
     </div>
-  </section>
 
-</div>
+    <!-- Controles -->
+    <div class="rail-controls">
+      <button class="rail-btn" (click)="rolarRail(-1)">←</button>
+      <button class="rail-btn" (click)="rolarRail(1)">→</button>
+    </div>
+    
+  </div>
+</section>

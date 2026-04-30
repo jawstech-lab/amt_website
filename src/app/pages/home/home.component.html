@@ -1,25 +1,93 @@
+<!-- ═══════════ HERO ═══════════ -->
 <section class="hero-section">
-    <video #bgVideo autoplay [muted]="true" playsinline preload="auto" class="video-bg">
-        <source src="video/logo-animado.webm" type="video/webm">
+
+  <div class="hero-bg">
+    <video #bgVideo autoplay [muted]="true" playsinline preload="auto" class="hero-video">
+      <source src="video/logo-animado.webm" type="video/webm">
     </video>
-  
-    <div class="overlay"></div>
-  
-    <div class="content">
-        <div class="logo-container">
-            <img src="logo_header.png" alt="">
-        </div>
-      <h1 class="display-1 fw-bold text-uppercase">
-        Forjando <span class="text-primary">Campeões</span>
+    <div class="hero-overlay"></div>
+    <div class="hero-stripes"></div>
+  </div>
+
+  <!-- Eyebrow: top, below navbar -->
+  <div class="hero-top">
+    <div class="hero-eyebrow">
+      <span class="hero-dot"></span>
+      <span>AMT — Alliance Muay Thai · Vale do Paraíba</span>
+      <span class="hero-est">EST. 2017</span>
+    </div>
+  </div>
+
+  <!-- Title + meta: fills middle, aligned to bottom -->
+  <div class="hero-title-area">
+    <div class="hero-title-grid">
+      <h1 class="hero-title">
+        <span class="word-white">Forjando</span>
+        <span class="word-red">Campeões</span>
       </h1>
-      <h3 class="mb-4">
-        Conheça a equipe que mais cresce e gera campeões no Vale do Paraíba.
-      </h3>
-      <p class="lead mb-5">Tradição, disciplina e a verdadeira essência do Muay Thai.</p>
-      
-      <div class="d-flex flex-column flex-md-row gap-3 justify-content-center">
-        <a href="#equipe" class="btn btn-muaythai btn-lg">NOSSA EQUIPE</a>
-        <a href="#local" class="btn btn-outline-warning btn-lg">LOCAIS DE TREINOS</a>
+      <div class="hero-meta">
+        <div class="meta-block">
+          <span class="meta-label">Sede Principal</span>
+          <strong class="meta-value">SJC · Caraguá</strong>
+        </div>
       </div>
     </div>
+  </div>
+
+  <!-- Bottom row -->
+  <div class="hero-bottom">
+    <p class="hero-tagline">
+      A equipe que mais cresce e gera campeões no Vale do Paraíba.
+      Tradição tailandesa, treinamento de alto nível e a essência real do Muay Thai.
+    </p>
+    <div class="hero-actions">
+      <a class="btn-hero btn-hero-primary" (click)="scrollParaSecao('secao-sobre-equipe')">
+        Conheça a Equipe <span class="btn-arrow">→</span>
+      </a>
+      <a class="btn-hero btn-hero-ghost" (click)="scrollParaSecao('local')">
+        Locais de Treino
+      </a>
+    </div>
+    <div class="hero-scroll-hint">Scroll ↓</div>
+  </div>
+
+</section>
+
+<!-- ═══════════ MARQUEE ═══════════ -->
+<div class="marquee-strip">
+  <div class="marquee-track">
+    <ng-container *ngFor="let _ of marqueeRepeat">
+      <span class="mq-text">Forjando Campeões</span>
+      <span class="mq-dot">●</span>
+      <span class="mq-text gold">Sawadee Krap</span>
+      <span class="mq-dot">●</span>
+      <span class="mq-text">Tradição · Disciplina · Glória</span>
+      <span class="mq-dot">●</span>
+      <span class="mq-text gold">força · Equilibrio · Postura</span>
+      <span class="mq-dot">●</span>
+    </ng-container>
+  </div>
+</div>
+
+<!-- ═══════════ DESTAQUES ═══════════ -->
+<section class="destaques-section">
+  <div class="destaques-head wrap">
+    <div class="section-eyebrow">
+      <span>002 · Da Equipe</span>
+    </div>
+    <h2 class="destaques-title">
+      <em>Destaques</em>
+    </h2>
+  </div>
+
+  <div class="destaques-rail">
+    <div class="destaques-track">
+      <div class="destaque-card" *ngFor="let img of destaques; let i = index">
+        <img [src]="img" [alt]="'Destaque AMT ' + (i + 1)" loading="lazy" />
+        <div class="destaque-overlay">
+          <span class="destaque-num">/ {{ padNum(i % destaquesBase.length + 1) }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>

@@ -49,15 +49,16 @@ html {
 }
 
 #home {
-  min-height: 90vh;
-  justify-content: center;
-  align-items: center;
+  min-height: 100vh;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0;
 }
 
 #equipe, #local, #calendario, #contato {
-  padding-top: 20px;    /* Espaço para não colar no topo */
-  padding-bottom: 0px; /* Diminua o espaço de baixo */
-  min-height: auto;     /* Garante que a seção só tenha o tamanho do que está dentro dela */
+  padding-top: 90px;
+  padding-bottom: 0px;
+  min-height: auto;
 }
 
 /* Responsive adjustments */
@@ -91,7 +92,11 @@ html {
 }
 
 /* Ensure components fill the container */
-app-home,
+app-home {
+  width: 100%;
+  display: block;
+}
+
 app-equipe,
 app-local-treino,
 app-calendario {

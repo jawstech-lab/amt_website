@@ -1,58 +1,70 @@
-<div class="container mt-5 mb-5">
-  <h2 class="titulo-secao text-center mb-5">ENTRE EM <span class="text-primary">CONTATO</span></h2>
+<!-- ═══════════ CONTATO ═══════════ -->
+<section class="contato-section">
+  <div class="wrap">
+    <div class="contato-grid">
 
-  <div class="row justify-content-center">
-    <div class="col-lg-6">
-      <form [formGroup]="contatoForm" (ngSubmit)="onSubmit()" class="contato-form">
-        <div class="mb-3">
-          <label for="nome" class="form-label text-light">Nome *</label>
-          <input type="text" class="form-control" id="nome" formControlName="nome" required>
+      <!-- Left: info + channels -->
+      <div class="contato-left">
+        <div class="section-eyebrow"><span>006 · Vem Treinar</span></div>
+        <h2 class="contato-title">
+          <span class="word-white">Entre em</span>
+          <em class="word-red">Contato</em>
+        </h2>
+        <p class="contato-sub">
+          Tire suas dúvidas, conheça os horários e locais ou nos chame
+          no WhatsApp. Estamos sempre prontos para receber você.
+        </p>
+
+        <div class="contato-channels">
+          <a class="channel" href="https://www.instagram.com/amt_alliancemuaythai" target="_blank">
+            <div class="channel-icon">IG</div>
+            <div class="channel-name">
+              &#64;amt.muaythai
+              <small>Instagram · acompanhe</small>
+            </div>
+            <div class="channel-go">Seguir →</div>
+          </a>
+          <a class="channel" href="https://wa.me/5512991016632" target="_blank">
+            <div class="channel-icon">WA</div>
+            <div class="channel-name">
+              +55 12 99101-6632
+              <small>WhatsApp · resposta rápida</small>
+            </div>
+            <div class="channel-go">Chamar →</div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: form -->
+      <form class="contato-form" [formGroup]="contatoForm" (ngSubmit)="onSubmit()">
+        <div class="contato-form-title">/ Formulário Rápido</div>
+
+        <div class="field">
+          <label>Nome</label>
+          <input type="text" formControlName="nome" placeholder="Como podemos te chamar" />
+        </div>
+        <div class="field">
+          <label>Telefone / WhatsApp</label>
+          <input type="tel" formControlName="telefone" placeholder="(12) 9 8888-7777" />
+        </div>
+        <div class="field">
+          <label>Local de Interesse</label>
+          <input type="text" formControlName="localInteresse" placeholder="SJC Centro / Aquarius / Caraguá..." />
+        </div>
+        <div class="field">
+          <label>Mensagem</label>
+          <textarea formControlName="mensagem" rows="3" placeholder="Conte para nós como podemos ajudar"></textarea>
         </div>
 
-        <div class="mb-3">
-          <label for="email" class="form-label text-light">Email *</label>
-          <input type="email" class="form-control" id="email" formControlName="email" required>
-        </div>
-
-        <div class="mb-3">
-          <label for="telefone" class="form-label text-light">Telefone *</label>
-          <input type="tel" class="form-control" id="telefone" formControlName="telefone" required>
-        </div>
-
-        <div class="mb-3">
-          <label for="mensagem" class="form-label text-light">Mensagem *</label>
-          <textarea class="form-control" id="mensagem" rows="4" formControlName="mensagem" required></textarea>
-        </div>
-
-        <button type="submit" class="btn btn-outline-warning w-100" [disabled]="!contatoForm.valid || enviando">
-          <i class="bi bi-send me-2"></i>
-          {{ enviando ? 'Enviando...' : 'Enviar Mensagem' }}
+        <button type="submit" class="contato-submit" [disabled]="!contatoForm.valid || enviando">
+          {{ enviando ? 'Enviando...' : 'Enviar Mensagem →' }}
         </button>
 
-        <div *ngIf="statusMensagem" class="status-message mt-3" [class.error]="statusErro" [class.success]="!statusErro">
+        <div *ngIf="statusMensagem" class="status-msg" [class.sucesso]="!statusErro" [class.erro]="statusErro">
           {{ statusMensagem }}
         </div>
       </form>
-    </div>
 
-    <div class="col-lg-4 mt-4 mt-lg-0">
-      <div class="contato-info text-center">
-        <h4 class="text-primary mb-4">Conecte-se Conosco</h4>
-        
-        <div class="social-icons mb-4">
-          <button class="btn btn-outline-primary me-3" (click)="abrirInstagram()" title="Instagram">
-            <img src="imagens/instagram.png" alt="Instagram" class="social-icon-img">
-          </button>
-          <button class="btn btn-outline-success" (click)="abrirWhatsApp()" title="WhatsApp">
-            <img src="imagens/whatsapp.png" alt="WhatsApp" class="social-icon-img">
-          </button>
-        </div>
-
-        <p class="text-light">
-          Siga-nos no Instagram para acompanhar nossas atividades e eventos.<br>
-          Ou envie uma mensagem direta pelo WhatsApp para dúvidas rápidas.
-        </p>
-      </div>
     </div>
   </div>
-</div>
+</section>

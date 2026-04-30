@@ -1,17 +1,20 @@
 import { Component, Inject, PLATFORM_ID, NgZone, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 
+interface HorarioLinha {
+  dia: string;
+  horas: string;
+}
+
 interface LocalTreino {
   nome: string;
+  cidade: string;
   endereco: string;
-  horarios: string;
-  imagemUrl: string;
-  linkDireto: string;
-  contato?: string;
-  lat: number; 
-  lng: number; 
+  horarios: HorarioLinha[];
   treinador?: string;
-  videoUrl?: string; 
+  linkDireto: string;
+  lat: number;
+  lng: number;
 }
 
 @Component({
@@ -22,21 +25,17 @@ interface LocalTreino {
   styleUrls: ['./local-treino.component.css']
 })
 export class LocalTreinoComponent implements OnDestroy {
-
-  // Referências para os modais nativos
-  @ViewChild('videoDialog') videoDialog!: ElementRef<HTMLDialogElement>;
   @ViewChild('mapaDialog') mapaDialog!: ElementRef<HTMLDialogElement>;
 
   mostrarMapa = false;
-  videoAtivo: LocalTreino | null = null; 
   mapa: any;
-  marcadoresMapa: any = {}; 
-  localSelecionado: LocalTreino | null = null; 
+  marcadoresMapa: any = {};
+  localSelecionado: LocalTreino | null = null;
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
-    private zone: NgZone 
-  ) { }
+    private zone: NgZone
+  ) {}
 
   ngOnDestroy() {
     this.liberarScroll();
@@ -45,89 +44,94 @@ export class LocalTreinoComponent implements OnDestroy {
   locais: LocalTreino[] = [
     {
       nome: 'Academia Maromba (DCTA)',
-      endereco: 'DCTA H8-B - São José dos Campos, SP',
-      horarios: '<strong>Seg, Qua e Sex:</strong> 20h30 às 21h30',
-      contato: '(12) 98845-2411',
-      imagemUrl: 'imagens/Locais/ITA maroma.png',
+      cidade: 'São José dos Campos',
+      endereco: 'DCTA H8-B — SJC',
+      horarios: [
+        { dia: 'SEG / QUA / SEX', horas: '20:30' }
+      ],
+      treinador: 'Odirlei',
       linkDireto: 'https://maps.app.goo.gl/pZf66',
-      lat: -23.20267039402918, 
+      lat: -23.20267039402918,
       lng: -45.87465798202034,
-      treinador: 'Odirlei'
     },
     {
-      nome: 'CT QUINTHAI',
-      endereco: 'R. Cristóvão de Alençar, 20 - Vila Tesouro, SJC',
-      horarios: `<strong>Ter / Qui:</strong> 08h, 09h, 19h e 20h<br><strong>Seg / Qua:</strong> 20h`,
-      imagemUrl: 'imagens/Locais/QUINTHAI.png',
+      nome: 'CT Quinthai',
+      cidade: 'São José dos Campos',
+      endereco: 'R. Cristóvão de Alençar, 20 — Vila Tesouro, SJC',
+      horarios: [
+        { dia: 'TER / QUI', horas: '08:00 / 09:00 / 19:00 / 20:00' },
+        { dia: 'SEG / QUA', horas: '20:00' },
+      ],
+      treinador: 'Jefferson Erbas',
       linkDireto: 'https://maps.app.goo.gl/pZf66',
       lat: -23.172931024550035,
       lng: -45.84504900675579,
-      treinador: 'Jefferson Erbas'
     },
     {
-      nome: 'KM SCHOOL',
-      endereco: 'Rua Icatu, 718 - Parque Industrial, SJC',
-      horarios: `<strong>Muay Thai</strong><br>Terça e Quinta as 19h`,
-      contato: '(12) 98835-2826',
-      imagemUrl: 'imagens/Locais/km school.png',
+      nome: 'KM School',
+      cidade: 'São José dos Campos',
+      endereco: 'Rua Icatu, 718 — Parque Industrial, SJC',
+      horarios: [
+        { dia: 'TER / QUI', horas: '19:00' }
+      ],
+      treinador: 'Marlus Maciel',
       linkDireto: 'https://maps.app.goo.gl/pZf66',
-      lat: -23.244681976515377, 
+      lat: -23.244681976515377,
       lng: -45.91052097556601,
-      treinador: 'Marlus Maciel'
     },
     {
       nome: 'Academia Giant Fitness',
-      endereco: 'Estr. Mun. Nelson Tavares da Silva, 1310 - Bom Retiro, SJC',
-      horarios: '<strong>Sábados:</strong> 09h às 10h30',
-      contato: '(12) 99253-1885',
-      imagemUrl: 'imagens/Locais/giant fitness.png', 
+      cidade: 'São José dos Campos',
+      endereco: 'Estr. Mun. Nelson Tavares, 1310 — Bom Retiro, SJC',
+      horarios: [
+        { dia: 'SÁB', horas: '09:00 – 10:30' }
+      ],
+      treinador: 'Jéssica Telles',
       linkDireto: 'https://maps.app.goo.gl/pZf66',
       lat: -23.201787965430107,
       lng: -45.777435681746304,
-      treinador: 'Jéssica Telles'
-    }, 
+    },
     {
       nome: 'Academia Sky Fit Leste',
-      endereco: 'Rua das Peônias, 222 - São José dos Campos - SP',
-      horarios: `<strong>Seg e Qua:</strong> 20h00 às 21h00<br><strong>Ter e Qui:</strong> 09h30 às 10h30`,
-      imagemUrl: 'imagens/Locais/skyfit.png', 
-      videoUrl: 'imagens/Locais/video skyfit.mp4', 
+      cidade: 'São José dos Campos',
+      endereco: 'Rua das Peônias, 222 — SJC',
+      horarios: [
+        { dia: 'SEG / QUA', horas: '20:00 – 21:00' },
+        { dia: 'TER / QUI', horas: '09:30 – 10:30' },
+      ],
+      treinador: 'Marlus Maciel',
       linkDireto: 'https://maps.app.goo.gl/pZf66',
-      lat: -23.17521321749508, 
-      lng:  -45.827830786937724,
-      treinador: 'Marlus Maciel'
+      lat: -23.17521321749508,
+      lng: -45.827830786937724,
     },
     {
       nome: 'CT Thai House',
-      endereco: 'R. Henrique Dias, 89a - Jardim Arua, Caraguatatuba - SP',
-      horarios: `<strong>Seg/Qua/Sex</strong>: 9:00, 14:30, 17:30, 18:30 e 19:30`,
-      imagemUrl: 'imagens/Locais/thai_house.jpg',     
+      cidade: 'Caraguatatuba',
+      endereco: 'R. Henrique Dias, 89a — Jardim Arua, Caraguatatuba',
+      horarios: [
+        { dia: 'SEG / QUA / SEX', horas: '09:00 / 14:30 / 17:30 / 18:30 / 19:30' }
+      ],
+      treinador: 'Rodrigo Bischoff',
       linkDireto: 'https://maps.app.goo.gl/pZf66',
-      lat: -23.6378366, 
-      lng:  -45.4293612,
-      treinador: 'Rodrigo Bischoff'
+      lat: -23.6378366,
+      lng: -45.4293612,
     }
   ];
 
-  abrirVideo(local: LocalTreino) {
-    this.videoAtivo = local;
-    if (isPlatformBrowser(this.platformId) && this.videoDialog) {
-      this.videoDialog.nativeElement.showModal();
-      this.travarScroll();
-    }
+  padNum(n: number): string {
+    return String(n).padStart(2, '0');
   }
 
-  fecharVideo() {
-    if (isPlatformBrowser(this.platformId) && this.videoDialog) {
-      this.videoDialog.nativeElement.close();
-      this.liberarScroll();
+  scrollParaContato() {
+    if (isPlatformBrowser(this.platformId)) {
+      const el = document.getElementById('contato');
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
-    this.videoAtivo = null;
   }
 
   abrirMapa() {
     this.mostrarMapa = true;
-    this.localSelecionado = null; 
+    this.localSelecionado = null;
     if (isPlatformBrowser(this.platformId) && this.mapaDialog) {
       this.mapaDialog.nativeElement.showModal();
       this.travarScroll();
@@ -149,12 +153,17 @@ export class LocalTreinoComponent implements OnDestroy {
     }
   }
 
-  // Função genérica para fechar ao clicar no fundo preto
-  fecharAoClicarFora(event: MouseEvent, tipo: 'video' | 'mapa') {
-    if (tipo === 'video' && this.videoDialog && event.target === this.videoDialog.nativeElement) {
-      this.fecharVideo();
-    } else if (tipo === 'mapa' && this.mapaDialog && event.target === this.mapaDialog.nativeElement) {
+  fecharAoClicarFora(event: MouseEvent) {
+    if (this.mapaDialog && event.target === this.mapaDialog.nativeElement) {
       this.fecharMapa();
+    }
+  }
+
+  selecionarLocalDaLista(local: LocalTreino) {
+    this.localSelecionado = local;
+    if (this.mapa && this.marcadoresMapa[local.nome]) {
+      this.mapa.flyTo([local.lat, local.lng], 14, { animate: true, duration: 1 });
+      this.marcadoresMapa[local.nome].openPopup();
     }
   }
 
@@ -170,23 +179,10 @@ export class LocalTreinoComponent implements OnDestroy {
     }
   }
 
-  selecionarLocalDaLista(local: LocalTreino) {
-    this.localSelecionado = local;
-    if (this.mapa && this.marcadoresMapa[local.nome]) {
-      this.mapa.flyTo([local.lat, local.lng], 14, { animate: true, duration: 1 });
-      this.marcadoresMapa[local.nome].openPopup();
-    }
-  }
-
-  rolarLista(container: HTMLElement, direcao: number) {
-    const tamanhoDoPulo = container.clientWidth > 600 ? 350 : container.clientWidth * 0.8;
-    container.scrollBy({ left: direcao * tamanhoDoPulo, behavior: 'smooth' });
-  }
-
   async iniciarMapa() {
     if (isPlatformBrowser(this.platformId)) {
       const leafletModule = await import('leaflet');
-      const L = leafletModule.default || leafletModule; 
+      const L = leafletModule.default || leafletModule;
       const iconePino = L.icon({
         iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
         shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
