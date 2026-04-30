@@ -2,9 +2,9 @@
     <video #bgVideo autoplay [muted]="true" playsinline preload="auto" class="video-bg">
         <source src="video/logo-animado.webm" type="video/webm">
     </video>
-  
+
     <div class="overlay"></div>
-  
+
     <div class="content">
         <div class="logo-container">
             <img src="logo_header.png" alt="">
@@ -16,10 +16,40 @@
         Conheça a equipe que mais cresce e gera campeões no Vale do Paraíba.
       </h3>
       <p class="lead mb-5">Tradição, disciplina e a verdadeira essência do Muay Thai.</p>
-      
+
       <div class="d-flex flex-column flex-md-row gap-3 justify-content-center">
         <a href="#equipe" class="btn btn-muaythai btn-lg">NOSSA EQUIPE</a>
         <a href="#local" class="btn btn-outline-warning btn-lg">LOCAIS DE TREINOS</a>
       </div>
     </div>
+</section>
+
+<section class="destaques-section mb-5">
+  <h2 class="text-center titulo-secao mb-4">
+    <span class="text-primary">DESTAQUES</span> DA EQUIPE
+  </h2>
+
+  <div class="carousel-wrapper" *ngIf="imagensDestaques.length > 0">
+    <div class="carousel-stage">
+      <div
+        *ngFor="let img of imagensDestaques; let i = index"
+        class="carousel-item"
+        [ngClass]="getClasse(i)"
+      >
+        <img [src]="img" alt="Destaque AMT">
+      </div>
+
+      <button class="carousel-btn carousel-btn-prev" (click)="anterior()">&#8249;</button>
+      <button class="carousel-btn carousel-btn-next" (click)="proximo()">&#8250;</button>
+    </div>
+
+    <div class="carousel-dots">
+      <span
+        *ngFor="let img of imagensDestaques; let i = index"
+        class="dot"
+        [class.active]="i === currentIndex"
+        (click)="irPara(i)"
+      ></span>
+    </div>
+  </div>
 </section>

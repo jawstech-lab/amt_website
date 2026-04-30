@@ -2,7 +2,7 @@
 .hero-section {
   position: relative;
   width: 100%;
-  height: 100vh; 
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,16 +12,15 @@
   margin: 0;
   padding: 0;
 }
+
 .video-bg {
   position: absolute;
-  top: 0vh; 
+  top: 0vh;
   left: 0;
   width: 100%;
-  height: 115vh; 
-  
+  height: 115vh;
   object-fit: cover;
-  object-position: center top; 
-  
+  object-position: center top;
   z-index: -2;
   -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0) 100%);
   mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0) 100%);
@@ -33,7 +32,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.6); 
+  background: rgba(0, 0, 0, 0.6);
   z-index: -1;
 }
 
@@ -60,25 +59,187 @@
 
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
+/* ── Carrossel Destaques ── */
+
+.destaques-section {
+  padding: 0;
+  margin: 0;
+  height: 90vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.carousel-wrapper {
+  position: relative;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  flex: 1;
+}
+
+.carousel-stage {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  height: 90vh;
+  overflow: hidden;
+  background: #0d0d0d;
+  flex: 1;
+}
+
+.carousel-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity  0.7s cubic-bezier(0.4, 0, 0.2, 1),
+              filter   0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+}
+
+.carousel-item.active {
+  transform: translateX(0) scale(1);
+  opacity: 1;
+  z-index: 3;
+  filter: none;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.7);
+}
+
+.carousel-item.prev {
+  transform: translateX(-82%);
+  opacity: 0.4;
+  z-index: 2;
+  filter: blur(3px) brightness(0.4);
+}
+
+.carousel-item.next {
+  transform: translateX(82%);
+  opacity: 0.4;
+  z-index: 2;
+  filter: blur(3px) brightness(0.4);
+}
+
+.carousel-item.hidden {
+  transform: translateX(0) scale(0.75);
+  opacity: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Botões de navegação */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.55);
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+  font-size: 2.4rem;
+  line-height: 1;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.25s, border-color 0.25s;
+  padding: 0;
+}
+
+.carousel-btn:hover {
+  background: var(--cor-primaria, #e05c00);
+  border-color: transparent;
+}
+
+.carousel-btn-prev { left: 12px; }
+.carousel-btn-next { right: 12px; }
+
+/* Dots de navegação */
+.carousel-dots {
+  display: flex;
+  gap: 10px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: background 0.35s, transform 0.35s;
+}
+
+.dot.active {
+  background: var(--cor-primaria, #e05c00);
+  transform: scale(1.3);
+}
+
+/* Responsivo */
 @media (max-width: 768px) {
   .logo-container img {
     max-width: 250px;
   }
+
   .content h1.display-1 {
-    font-size: 2.5rem; 
+    font-size: 2.5rem;
   }
+
   .content h3 {
     font-size: 1.2rem;
   }
+
   .content p.lead {
     font-size: 1rem;
     margin-bottom: 2rem !important;
   }
+
   .btn {
-    width: 100%; 
+    width: 100%;
     margin-bottom: 10px;
+  }
+
+  .carousel-stage {
+    height: 85vw;
+  }
+
+  .destaques-section {
+    height: 100vh/ 3;
+    max-height: 85vw;
+  }
+
+  .carousel-item.prev {
+    transform: translateX(-84%);
+  }
+
+  .carousel-item.next {
+    transform: translateX(84%);
+  }
+
+  .carousel-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1.8rem;
   }
 }

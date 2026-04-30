@@ -31,12 +31,6 @@ export class EquipeComponent implements OnInit, OnDestroy {
   
   hoverTimeout: any; 
 
-  imagensDestaques: string[] = [
-    'imagens/destaques/destaque1.jpg',
-    'imagens/destaques/destaque2.jpg',
-    'imagens/destaques/destaque3.jpg'
-  ];
-
   imagensHistoria: string[] = [
     'imagens/Nossa Historia/NossaHist1.png',
     'imagens/Nossa Historia/NossaHist2.png',
