@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "amt-website",
+  "compatibility_date": "2026-04-30",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "dist/amt_website/browser"
+  },
+  "compatibility_flags": [
+    "nodejs_compat"
+  ]
+}
