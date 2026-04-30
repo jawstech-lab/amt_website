@@ -74,7 +74,9 @@
                  [class.expanded]="expandedCardIndex === i"
                  (click)="toggleCard(i)">
           
-          <div class="fighter-img" [style.backgroundImage]="'url(' + lutador.imagemUrl + ')'"></div>
+          <!-- CORREÇÃO AQUI: Adicionado aspas (\') dentro do url() -->
+          <div class="fighter-img" [style.backgroundImage]="'url(\'' + lutador.imagemUrl + '\')'"></div>
+          
           <span class="fighter-num">/ {{ padNum(i + 1) }}</span>
           <span class="fighter-tag" *ngIf="lutador.grau">{{ lutador.grau }}</span>
           
@@ -117,7 +119,9 @@
                  [class.expanded]="expandedCardIndex === i"
                  (click)="toggleCard(i)">
           
-          <div class="fighter-img" [style.backgroundImage]="'url(' + treinador.imagemUrl + ')'"></div>
+          <!-- CORREÇÃO AQUI: Adicionado aspas (\') dentro do url() -->
+          <div class="fighter-img" [style.backgroundImage]="'url(\'' + treinador.imagemUrl + '\')'"></div>
+          
           <span class="fighter-num">/ {{ padNum(i + 1) }}</span>
           
           <!-- Informação Frontal -->

@@ -468,7 +468,7 @@
 @media (max-width: 991px) {
   .historia-section { padding: 80px 0 60px; }
   .historia-grid { grid-template-columns: 1fr; gap: 48px; }
-  .historia-fotos { order: -1; }
+  /* Removido o ".historia-fotos { order: -1; }" para as fotos descerem */
   .guerreiros-section { padding: 60px 0 80px; }
   .equipe-head { gap: 24px; }
   .fighter-card { flex: 0 0 260px; height: 380px; }

@@ -16,18 +16,7 @@ export class HomeComponent implements AfterViewInit {
 
   readonly destaquesBase = [
     'imagens/destaques/destaque1.png',
-    'imagens/destaques/destaque2.jpg',
-    'imagens/destaques/destaque3.jpg',
-    'imagens/seminario_sandro.jpg',
-    'imagens/Lutadores/Jhonatan Openheimer.png',
-    'imagens/Lutadores/Albertinho.png',
-    'imagens/Lutadores/Felipe Wesley.png',
-    'imagens/Lutadores/Grilo.png',
-    'imagens/Lutadores/Rafaela.jpg',
-    'imagens/Lutadores/Raul Soares.png',
-    'imagens/Lutadores/Ricardo.jpg',
-    'imagens/Lutadores/Raphael.jpg',
-    'imagens/Lutadores/JP.jpeg',
+    'imagens/destaques/destaque2.png'
   ];
 
   readonly destaques = [...this.destaquesBase, ...this.destaquesBase, ...this.destaquesBase];
