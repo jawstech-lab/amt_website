@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
+export class HomeComponent {
 
   @ViewChild('bgVideo') videoRef!: ElementRef<HTMLVideoElement>;
 
@@ -30,8 +30,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId)) {
-      this.iniciarVideo();
-      this.iniciarCarrossel();
+      this.iniciarVideo();      
     }
   }
 
