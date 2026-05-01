@@ -2,8 +2,7 @@
   <div class="nav-inner">
 
     <a class="nav-brand" (click)="navegarParaSecao('home')" style="cursor: pointer;">
-      <img src="logo_header.png" alt="AMT Logo" />
-      <span class="nav-brand-text">AMT</span>
+      <img src="logo_header.png" alt="AMT Logo" />      
     </a>
 
     <button class="nav-toggle" [class.open]="menuAberto" (click)="alternarMenu()" aria-label="Menu">
@@ -29,7 +28,7 @@
       <div class="nav-separator"></div>
 
       <a class="nav-link-secondary" routerLinkActive="active-link" routerLink="/mural" (click)="fecharMenu()">Mural</a>
-      <a class="nav-link-secondary" routerLinkActive="active-link" routerLink="/apostila" (click)="fecharMenu()">Apostila</a>
+      <a class="nav-link-secondary" routerLinkActive="active-link" routerLink="/apostila" (click)="fecharMenu()">Conteúdo</a>
 
       <a class="nav-cta" (click)="navegarParaSecao('contato')">
         Fale Conosco <span class="nav-cta-arrow">→</span>
