@@ -1,106 +1,225 @@
-.titulo-secao {
-  color: var(--cor-texto);
-  font-weight: 900;
+:host { display: block; }
+
+/* ══════════════════════════════════════════════════
+   SHARED
+══════════════════════════════════════════════════ */
+.wrap {
+  max-width: 1480px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.section-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  letter-spacing: 2px;
-}
-
-.text-primary {
-  color: var(--cor-primaria) !important;
-}
-
-.text-warning {
-  color: var(--cor-secundaria) !important;
-}
-
-.contato-form {
-  background-color: #1a1a1a;
-  padding: 2rem;
-  border-radius: 12px;
-  border: 2px solid var(--cor-primaria);
-}
-
-.form-control {
-  background-color: #2a2a2a;
-  border: 1px solid #444;
-  color: white;
-}
-
-.form-control:focus {
-  background-color: #2a2a2a;
-  border-color: var(--cor-secundaria);
-  color: white;
-  box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25);
-}
-
-.form-label {
-  font-weight: bold;
-}
-
-.btn-outline-warning {
-  border-color: var(--cor-secundaria);
-  color: var(--cor-secundaria);
-}
-
-.btn-outline-warning:hover {
-  background-color: var(--cor-secundaria);
-  border-color: var(--cor-secundaria);
-}
-
-.btn-outline-warning:disabled {
-  background-color: #444;
-  border-color: #444;
-  color: #888;
-}
-
-.contato-info {
-  background-color: #1a1a1a;
-  padding: 2rem;
-  border-radius: 12px;
-  border: 2px solid var(--cor-primaria);
-}
-
-.social-icons .btn {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
+  color: #d2042d;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  padding: 0;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.section-eyebrow::before {
+  content: "";
+  width: 32px;
+  height: 1px;
+  background: #d2042d;
 }
 
-.social-icon-img {
+.word-white { color: #f5f5f5; display: block; }
+.word-red   { color: #d2042d; font-style: italic; display: block; }
+
+/* ══════════════════════════════════════════════════
+   SECTION
+══════════════════════════════════════════════════ */
+.contato-section {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  max-width: 100vw;
+  background: linear-gradient(180deg, #080808 0%, #0a0a0a 100%);
+  padding: 140px 0 140px;
+}
+
+.contato-section > .wrap {
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(50% - 50vw);
+  padding: 0 40px;
+}
+
+.contato-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+/* ── Left side ────────────────────────────────── */
+.contato-title {
+  font-family: 'Anton', 'Bebas Neue', Impact, sans-serif;
+  font-size: clamp(56px, 9vw, 140px);
+  line-height: 0.85;
+  text-transform: uppercase;
+  font-weight: 400;
+  margin: 16px 0 30px;
+}
+
+.contato-sub {
+  max-width: 480px;
+  color: rgba(255, 255, 255, 0.7);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  margin: 0 0 40px;
+}
+
+/* ── Channels ─────────────────────────────────── */
+.contato-channels {
+  display: flex;
+  flex-direction: column;
+}
+
+.channel {
+  display: grid;
+  grid-template-columns: 60px 1fr auto;
+  gap: 24px;
+  padding: 24px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  align-items: center;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+.channel:last-child { border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+.channel:hover .channel-go { color: #d2042d; }
+.channel:hover .channel-icon { background: #d2042d; border-color: #d2042d; color: white; }
+
+.channel-icon {
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: grid;
+  place-items: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: #ffd700;
+  transition: all 0.3s;
+  flex-shrink: 0;
+}
+
+.channel-name {
+  font-family: 'Anton', 'Bebas Neue', Impact, sans-serif;
+  font-size: 24px;
+  text-transform: uppercase;
+  line-height: 1;
+  color: #f5f5f5;
+}
+.channel-name small {
+  display: block;
+  margin-top: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.channel-go {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+  transition: color 0.3s;
+  white-space: nowrap;
+}
+
+/* ── Form panel ───────────────────────────────── */
+.contato-form {
+  background: #0f0f0f;
+  padding: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.contato-form-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #ffd700;
+  margin-bottom: 32px;
+}
+
+.field { margin-bottom: 24px; }
+
+.field label {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 8px;
+}
+
+.field input,
+.field textarea {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
+  background: transparent;
+  color: #f5f5f5;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 10px 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 15px;
+  resize: none;
+  transition: border-color 0.3s;
+  outline: none;
 }
+.field input::placeholder,
+.field textarea::placeholder { color: rgba(255, 255, 255, 0.25); }
 
-.status-message {
-  border-radius: 8px;
-  padding: 0.75rem 1rem;
-  font-size: 0.95rem;
+.field input:focus,
+.field textarea:focus { border-bottom-color: #d2042d; }
+
+.contato-submit {
+  margin-top: 12px;
+  width: 100%;
+  padding: 18px;
+  background: #d2042d;
+  color: white;
+  border: none;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.3s;
 }
+.contato-submit:hover:not(:disabled) { background: #ffd700; color: #0a0a0a; }
+.contato-submit:disabled { background: #333; color: rgba(255, 255, 255, 0.3); cursor: not-allowed; }
 
-.status-message.success {
-  background-color: rgba(40, 167, 69, 0.15);
-  color: #d4f7dc;
-  border: 1px solid #28a745;
+.status-msg {
+  margin-top: 16px;
+  padding: 12px 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
+.status-msg.sucesso { border: 1px solid #28a745; color: #6dd86d; }
+.status-msg.erro    { border: 1px solid #d2042d; color: #f87f7f; }
 
-.status-message.error {
-  background-color: rgba(220, 53, 69, 0.15);
-  color: #f8d7da;
-  border: 1px solid #dc3545;
-}
-
-.btn-outline-primary {
-  border-color: var(--cor-primaria);
-  color: var(--cor-primaria);
-}
-
-.btn-outline-primary:hover {
-  background-color: var(--cor-primaria);
-  border-color: var(--cor-primaria);
+/* ══════════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════════ */
+@media (max-width: 991px) {
+  .contato-section { padding: 20px 0 80px; }
+  .contato-grid { grid-template-columns: 1fr; gap: 48px; }
+  .contato-form { padding: 28px 20px; }
+  .wrap { padding: 0 20px; }
 }

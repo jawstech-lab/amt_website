@@ -1,0 +1,134 @@
+:root {
+  --bg: #0a0a0a;
+  --bg-2: #141414;
+  --ink: #f5f5f5;
+  --ink-dim: #888;
+  --ink-muted: #555;
+  --red: #d2042d;
+  --red-soft: #b8001f;
+  --gold: #ffd700;
+  --gold-soft: #c9a227;
+  --line: rgba(255,255,255,0.08);
+
+  --f-display: "Anton", "Bebas Neue", Impact, sans-serif;
+  --f-condensed: "Oswald", "Bebas Neue", sans-serif;
+  --f-sans: "Inter", system-ui, sans-serif;
+  --f-mono: "JetBrains Mono", "SF Mono", Menlo, monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--f-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+img { display: block; max-width: 100%; }
+
+button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+
+a { color: inherit; text-decoration: none; }
+
+.app-bg {
+  position: fixed; inset: 0;
+  background:
+    radial-gradient(ellipse at top, rgba(210,4,45,0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom right, rgba(255,215,0,0.04) 0%, transparent 60%),
+    var(--bg);
+  z-index: -2;
+  pointer-events: none;
+}
+
+.grain {
+  position: fixed; inset: 0; pointer-events: none; z-index: -1;
+  opacity: 0.08; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.7'/%3E%3C/svg%3E");
+}
+
+/* ===== Universal section chrome ===== */
+.section-eyebrow {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--red);
+  display: inline-flex; align-items: center; gap: 10px;
+}
+.section-eyebrow::before {
+  content: ""; width: 32px; height: 1px; background: var(--red);
+}
+
+.display-h {
+  font-family: var(--f-display);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 0.88;
+  color: var(--ink);
+}
+
+.in-view { animation: rise 0.9s cubic-bezier(.2,.8,.2,1) both; }
+@keyframes rise {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== Sak Yant decorative SVGs ===== */
+.yantra-line {
+  width: 100%; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-soft) 20%, var(--gold-soft) 80%, transparent);
+  opacity: 0.3;
+}
+
+/* ===== Buttons ===== */
+.btn {
+  display: inline-flex; align-items: center; gap: 12px;
+  padding: 16px 28px;
+  font-family: var(--f-condensed);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border-radius: 0;
+  transition: all 0.3s cubic-bezier(.2,.8,.2,1);
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary {
+  background: var(--red);
+  color: white;
+}
+.btn-primary:hover {
+  background: var(--ink);
+  color: var(--bg);
+  transform: translate(-3px,-3px);
+  box-shadow: 6px 6px 0 var(--red);
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid rgba(255,255,255,0.3);
+}
+.btn-ghost:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+.btn-arrow { display: inline-block; transition: transform 0.3s; }
+.btn:hover .btn-arrow { transform: translateX(6px); }
+
+/* ===== Container ===== */
+.wrap {
+  max-width: 1480px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+@media (max-width: 768px) {
+  .wrap { padding: 0 20px; }
+}

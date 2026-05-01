@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive, Router } from '@angular/router';
 import { Location } from '@angular/common';
@@ -6,13 +6,19 @@ import { Location } from '@angular/common';
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule, RouterLink, RouterLinkActive], 
+  imports: [CommonModule, RouterLink, RouterLinkActive],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
 
   menuAberto: boolean = false;
+  scrolled: boolean = false;
+
+  @HostListener('window:scroll', [])
+  onScroll() {
+    this.scrolled = window.scrollY > 80;
+  }
 
   constructor(private router: Router, private location: Location) {}
 

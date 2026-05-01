@@ -5,6 +5,7 @@ import emailjs from '@emailjs/browser';
 
 @Component({
   selector: 'app-contato',
+  standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './contato.component.html',
   styleUrl: './contato.component.css'
@@ -18,48 +19,35 @@ export class ContatoComponent {
   constructor(private fb: FormBuilder) {
     this.contatoForm = this.fb.group({
       nome: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
       telefone: ['', Validators.required],
+      localInteresse: [''],
       mensagem: ['', Validators.required]
     });
   }
 
   onSubmit() {
-    if (!this.contatoForm.valid) {
-      return;
-    }
+    if (!this.contatoForm.valid) return;
 
     this.enviando = true;
     this.statusMensagem = '';
     this.statusErro = false;
 
-    const formValue = this.contatoForm.value;
-    const templateParams = {
-      from_name: formValue.nome,
-      from_email: formValue.email,
-      telefone: formValue.telefone,
-      mensagem: formValue.mensagem
-    };
+    const { nome, telefone, localInteresse, mensagem } = this.contatoForm.value;
 
-    emailjs.send('service_7jabldk', 'template_cozxacs', templateParams, 'q-Ga2-wuL2NZZm2zX')
+    emailjs.send('service_7jabldk', 'template_cozxacs', {
+      from_name: nome,
+      telefone,
+      local_interesse: localInteresse,
+      mensagem
+    }, 'q-Ga2-wuL2NZZm2zX')
       .then(() => {
         this.statusMensagem = 'Mensagem enviada com sucesso! Obrigado pelo contato.';
         this.contatoForm.reset();
       })
       .catch(() => {
         this.statusErro = true;
-        this.statusMensagem = 'Ocorreu um erro ao enviar a mensagem. Tente novamente mais tarde.';
+        this.statusMensagem = 'Ocorreu um erro ao enviar. Tente novamente mais tarde.';
       })
-      .finally(() => {
-        this.enviando = false;
-      });
-  }
-
-  abrirInstagram() {
-    window.open('https://www.instagram.com/amt_alliancemuaythai', '_blank');
-  }
-
-  abrirWhatsApp() {
-    window.open('https://wa.me/5512991016632', '_blank'); // Replace with actual number
+      .finally(() => { this.enviando = false; });
   }
 }

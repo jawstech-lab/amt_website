@@ -1,140 +1,232 @@
-.card-evento {
-  background-color: #1a1a1a;
-  border-left: 5px solid var(--cor-primaria);
-  border-radius: 8px;
-  overflow: hidden;
-  transition: all 0.2s ease;
-  cursor: pointer; 
+:host { display: block; }
+
+/* ══════════════════════════════════════════════════
+   SHARED
+══════════════════════════════════════════════════ */
+.wrap {
+  max-width: 1480px;
+  margin: 0 auto;
+  padding: 0 40px;
 }
 
-.card-evento:hover {
-  transform: scale(1.01);
-  box-shadow: 0 0 15px rgba(210, 4, 45, 0.2);
-  background-color: #222; 
+.section-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #d2042d;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.section-eyebrow::before {
+  content: "";
+  width: 32px;
+  height: 1px;
+  background: #d2042d;
 }
 
-.card-evento.expandido {
-  border-color: var(--cor-secundaria);
-  box-shadow: 0 0 15px rgba(255, 193, 7, 0.2);
+.word-white { color: #f5f5f5; }
+
+/* ══════════════════════════════════════════════════
+   SECTION
+══════════════════════════════════════════════════ */
+.calendario-section {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  max-width: 100vw;
+  background: linear-gradient(180deg, #080808 0%, #0a0a0a 100%);
+  padding: 140px 0 140px;
 }
 
-.date-box {
-  background-color: var(--cor-primaria);
-  color: white;
-  padding: 15px;
-  min-width: 100px;
-  height: 100%; 
+.calendario-section > .wrap {
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(50% - 50vw);
+  padding: 0 40px;
+}
+
+/* ── Head ─────────────────────────────────────── */
+.cal-head { margin-bottom: 60px; }
+
+.cal-title {
+  font-family: 'Anton', 'Bebas Neue', Impact, sans-serif;
+  font-size: clamp(56px, 9vw, 140px);
+  line-height: 0.85;
+  text-transform: uppercase;
+  font-weight: 400;
+  margin: 16px 0 0;
+  color: #f5f5f5;
+}
+.cal-title em {
+  color: #d2042d;
+  font-style: italic;
+}
+
+/* ══════════════════════════════════════════════════
+   EVENT LIST
+══════════════════════════════════════════════════ */
+.cal-list {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ── Item row ─────────────────────────────────── */
+.cal-item {
+  display: grid;
+  grid-template-columns: 120px 140px 1fr 160px 48px;
+  gap: 24px;
+  padding: 28px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   align-items: center;
-  transition: background-color 0.3s ease;
+  transition: background 0.3s;
+  cursor: pointer;
 }
-
-.card-evento.expandido .date-box {
-  background-color: var(--cor-secundaria);
-  color: #000;
+.cal-item:hover { background: #0f0f0f; }
+.cal-item:hover .cal-arrow {
+  transform: translateX(8px);
+  color: #d2042d;
 }
+.cal-item-expanded { background: #0f0f0f; }
 
-.date-box .day {
-  display: block;
-  font-size: 2.5rem;
-  font-weight: 900;
-  line-height: 1;
-}
+.cal-item-past { opacity: 0.45; }
+.cal-item-past:hover { opacity: 0.7; }
 
-.date-box .month {
-  font-size: 1.1rem;
-  font-weight: bold;
-}
-
-.titulo {
-  color: var(--cor-secundaria);
+/* ── Date column ──────────────────────────────── */
+.cal-date {
+  font-family: 'Anton', 'Bebas Neue', Impact, sans-serif;
   text-transform: uppercase;
-  margin: 0;
+  line-height: 0.9;
+}
+.cal-date .day  { font-size: 56px; color: #f5f5f5; }
+.cal-date .month {
+  font-size: 16px;
+  color: #ffd700;
+  letter-spacing: 0.06em;
+  margin-top: 2px;
 }
 
-.badge-treino { background-color: #6c757d; }
-.badge-graduação { background-color: #000; border: 1px solid var(--cor-secundaria); }
-.badge-seminário { background-color: #007bff; }
-.badge-luta { background-color: var(--cor-primaria); }
-.badge-curso { background-color: #198754; }
+/* ── Tag column ───────────────────────────────── */
+.cal-tag {
+  display: inline-block;
+  padding: 6px 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border: 1px solid currentColor;
+  align-self: start;
+  width: fit-content;
+  white-space: nowrap;
+}
+.cal-tag.luta       { color: #d2042d; }
+.cal-tag.seminário  { color: #ffd700; }
+.cal-tag.graduação  { color: #f5f5f5; }
+.cal-tag.curso      { color: #6dd86d; }
+.cal-tag.treino     { color: rgba(255, 255, 255, 0.35); }
 
-.seta-expandir {
-  font-size: 1.3rem;
-  transition: transform 0.3s ease;
+/* ── Title column ─────────────────────────────── */
+.cal-event-title {
+  font-family: 'Anton', 'Bebas Neue', Impact, sans-serif;
+  font-size: 28px;
+  line-height: 1;
+  text-transform: uppercase;
+  color: #f5f5f5;
+}
+.cal-event-title small {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: rgba(255, 255, 255, 0.4);
+  margin-top: 8px;
+  text-transform: uppercase;
+  font-weight: 400;
 }
 
-.area-expansivel {
-  animation: slideDown 0.3s ease-out;
+/* ── Time column ──────────────────────────────── */
+.cal-time {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
 }
 
-@keyframes slideDown {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+/* ── Arrow column ─────────────────────────────── */
+.cal-arrow {
+  font-family: 'Anton', 'Bebas Neue', Impact, sans-serif;
+  font-size: 24px;
+  color: rgba(255, 255, 255, 0.25);
+  transition: all 0.3s;
+  text-align: center;
 }
 
-@media (max-width: 768px) {
-  .date-box {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    align-items: center;
-    padding: 10px;
-  }
-  .date-box .day { font-size: 1.5rem; }
+/* ── Expanded detail ──────────────────────────── */
+.cal-detail {
+  grid-column: 1 / -1;
+  padding: 20px 0 8px;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 720px;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  margin-top: 4px;
+  white-space: pre-wrap;
 }
 
-.img-clicavel {
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+/* ══════════════════════════════════════════════════
+   PAST EVENTS TOGGLE
+══════════════════════════════════════════════════ */
+.cal-past-toggle {
+  padding: 40px 16px 0;
 }
 
-.img-clicavel:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 10px rgba(255, 193, 7, 0.5) !important;
-}
-
-.modal-imagem-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.85); 
-  display: flex;
-  justify-content: center;
+.btn-ghost {
+  display: inline-flex;
   align-items: center;
-  z-index: 9999; 
-  backdrop-filter: blur(5px); 
-}
-
-.imagem-modal {
-  max-width: 90%;
-  max-height: 90%;
-  object-fit: contain;
-  border-radius: 8px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  animation: zoomIn 0.3s ease-out;
-}
-
-.fechar-modal {
-  position: absolute;
-  top: 25px;
-  right: 35px;
-  color: white;
-  font-size: 2.5rem;
+  gap: 10px;
+  padding: 14px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
   cursor: pointer;
-  z-index: 10000;
-  transition: color 0.2s ease, transform 0.2s ease;
+  transition: all 0.3s;
 }
-
-.fechar-modal:hover {
-  color: var(--cor-secundaria, #ffc107);
-  transform: scale(1.1);
+.btn-ghost:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #f5f5f5;
 }
+.btn-arrow { transition: transform 0.3s; }
 
-@keyframes zoomIn {
-  from { opacity: 0; transform: scale(0.9); }
-  to { opacity: 1; transform: scale(1); }
+.cal-list-past { margin-top: 20px; }
+
+/* ══════════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════════ */
+@media (max-width: 991px) {
+  .calendario-section { padding: 20px 0 80px; }
+  .wrap { padding: 0 20px; }
+
+  .cal-item {
+    grid-template-columns: 80px 1fr;
+    gap: 16px;
+    padding: 20px 8px;
+  }
+  .cal-item > .cal-tag,
+  .cal-item > .cal-time,
+  .cal-item > .cal-arrow { display: none; }
+
+  .cal-date .day   { font-size: 40px; }
+  .cal-date .month { font-size: 14px; }
+  .cal-event-title { font-size: 22px; }
 }

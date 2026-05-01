@@ -13,27 +13,20 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild('bgVideo') videoRef!: ElementRef<HTMLVideoElement>;
 
-  imagensDestaques: string[] = [];
-  currentIndex = 0;
-  private timer: ReturnType<typeof setInterval> | null = null;
+  readonly marqueeRepeat = Array(4).fill(null);
 
-  constructor(
-    @Inject(PLATFORM_ID) private platformId: Object,
-    private http: HttpClient
-  ) {}
+  readonly destaquesBase = [
+    'imagens/destaques/destaque1.png',
+    'imagens/destaques/destaque2.png'
+  ];
 
-  ngOnInit() {
-    this.http.get<string[]>('/data/destaques.json').subscribe({
-      next: (imagens) => { this.imagensDestaques = imagens; },
-      error: () => {
-        this.imagensDestaques = [
-          'imagens/destaques/destaque1.png',
-          'imagens/destaques/destaque2.jpg',
-          'imagens/destaques/destaque3.jpg'
-        ];
-      }
-    });
+  readonly destaques = [...this.destaquesBase, ...this.destaquesBase, ...this.destaquesBase];
+
+  padNum(n: number): string {
+    return String(n).padStart(2, '0');
   }
+
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
   ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId)) {
@@ -42,53 +35,22 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  private iniciarVideo() {
-    if (this.videoRef?.nativeElement) {
-      const video = this.videoRef.nativeElement;
-      if (typeof video.play === 'function') {
-        video.muted = true;
-        video.defaultMuted = true;
-        video.playsInline = true;
-        video.play().catch(err => {
-          console.warn('Autoplay bloqueado pelo browser.', err);
-        });
-      } else {
-        console.error('O elemento #bgVideo não é um elemento de vídeo válido.');
-      }
+  scrollParaSecao(secaoId: string) {
+    if (isPlatformBrowser(this.platformId)) {
+      setTimeout(() => {
+        const el = document.getElementById(secaoId);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 50);
     }
   }
 
-  private iniciarCarrossel() {
-    this.timer = setInterval(() => this.proximo(), 5000);
-  }
-
-  private reiniciarTimer() {
-    if (this.timer) clearInterval(this.timer);
-    this.iniciarCarrossel();
-  }
-
-  proximo() {
-    this.currentIndex = (this.currentIndex + 1) % this.imagensDestaques.length;
-  }
-
-  anterior() {
-    this.currentIndex = (this.currentIndex - 1 + this.imagensDestaques.length) % this.imagensDestaques.length;
-  }
-
-  irPara(index: number) {
-    this.currentIndex = index;
-    this.reiniciarTimer();
-  }
-
-  getClasse(index: number): string {
-    const len = this.imagensDestaques.length;
-    if (index === this.currentIndex) return 'active';
-    if (index === (this.currentIndex - 1 + len) % len) return 'prev';
-    if (index === (this.currentIndex + 1) % len) return 'next';
-    return 'hidden';
-  }
-
-  ngOnDestroy() {
-    if (this.timer) clearInterval(this.timer);
+  private iniciarVideo() {
+    if (this.videoRef?.nativeElement) {
+      const video = this.videoRef.nativeElement;
+      video.muted = true;
+      video.defaultMuted = true;
+      video.playsInline = true;
+      video.play().catch(() => {});
+    }
   }
 }

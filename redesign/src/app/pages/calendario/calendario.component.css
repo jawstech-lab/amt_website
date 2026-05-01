@@ -1,0 +1,140 @@
+.card-evento {
+  background-color: #1a1a1a;
+  border-left: 5px solid var(--cor-primaria);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.2s ease;
+  cursor: pointer; 
+}
+
+.card-evento:hover {
+  transform: scale(1.01);
+  box-shadow: 0 0 15px rgba(210, 4, 45, 0.2);
+  background-color: #222; 
+}
+
+.card-evento.expandido {
+  border-color: var(--cor-secundaria);
+  box-shadow: 0 0 15px rgba(255, 193, 7, 0.2);
+}
+
+.date-box {
+  background-color: var(--cor-primaria);
+  color: white;
+  padding: 15px;
+  min-width: 100px;
+  height: 100%; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+.card-evento.expandido .date-box {
+  background-color: var(--cor-secundaria);
+  color: #000;
+}
+
+.date-box .day {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.date-box .month {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.titulo {
+  color: var(--cor-secundaria);
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.badge-treino { background-color: #6c757d; }
+.badge-graduação { background-color: #000; border: 1px solid var(--cor-secundaria); }
+.badge-seminário { background-color: #007bff; }
+.badge-luta { background-color: var(--cor-primaria); }
+.badge-curso { background-color: #198754; }
+
+.seta-expandir {
+  font-size: 1.3rem;
+  transition: transform 0.3s ease;
+}
+
+.area-expansivel {
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .date-box {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+    padding: 10px;
+  }
+  .date-box .day { font-size: 1.5rem; }
+}
+
+.img-clicavel {
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.img-clicavel:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(255, 193, 7, 0.5) !important;
+}
+
+.modal-imagem-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.85); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; 
+  backdrop-filter: blur(5px); 
+}
+
+.imagem-modal {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  animation: zoomIn 0.3s ease-out;
+}
+
+.fechar-modal {
+  position: absolute;
+  top: 25px;
+  right: 35px;
+  color: white;
+  font-size: 2.5rem;
+  cursor: pointer;
+  z-index: 10000;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.fechar-modal:hover {
+  color: var(--cor-secundaria, #ffc107);
+  transform: scale(1.1);
+}
+
+@keyframes zoomIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
