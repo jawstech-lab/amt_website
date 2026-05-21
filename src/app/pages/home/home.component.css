@@ -421,14 +421,14 @@
 .destaque-card img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   filter: grayscale(20%) contrast(1.05);
   transition: filter 0.5s ease, transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .destaque-card:hover img {
   filter: grayscale(0%) contrast(1.1);
-  transform: scale(1.06);
+  transform: scale(1.03);
 }
 
 .destaque-overlay {

@@ -17,7 +17,13 @@ export class HomeComponent {
 
   readonly destaquesBase = [
     'imagens/destaques/destaque1.png',
-    'imagens/destaques/destaque2.png'
+    'imagens/destaques/destaque2.png',
+    'imagens/destaques/pequenos-campeoes.png',
+    'imagens/destaques/seminario-1.png',
+    'imagens/destaques/seminario-2.png',
+    'imagens/destaques/seminario-3.png',
+    'imagens/destaques/seminario-4.png',
+    'imagens/destaques/seminario-5.png'
   ];
 
   readonly destaques = [...this.destaquesBase, ...this.destaquesBase, ...this.destaquesBase];

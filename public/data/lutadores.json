@@ -72,18 +72,6 @@
         "empates": 0
     },  
     {
-        "nome": "Felipe Ribeiro",
-        "apelido": "Felipe",
-        "grau": "Amador",
-        "descricao": "Atleta da categoria 80kg, focado em evolução técnica e força nos ringues da AMT.",
-        "imagemUrl": "imagens/Lutadores/Felipe Wesley.png",
-        "peso": "80 kg",
-        "totalLutas": 1,
-        "vitorias": 1,
-        "derrotas": 0,
-        "empates": 0
-    },
-    {
         "nome": "Raul Panizzon",
         "apelido": "Raul Soares",
         "grau": "Amador",

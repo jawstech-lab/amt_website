@@ -80,16 +80,16 @@ export class LocalTreinoComponent implements OnDestroy {
       lng: -45.91052097556601,
     },
     {
-      nome: 'Academia Giant Fitness',
+      nome: 'Poli Esportivo do Jardim Cerejeiras',
       cidade: 'São José dos Campos',
-      endereco: 'Estr. Mun. Nelson Tavares, 1310 — Bom Retiro, SJC',
+      endereco: 'Av. Vinte e Três de Dezembro, 400 — Jardim Cerejeiras, SJC',
       horarios: [
-        { dia: 'SÁB', horas: '09:00 – 10:30' }
+        { dia: 'SÁB', horas: '09:00' }
       ],
       treinador: 'Jéssica Telles',
       linkDireto: 'https://maps.app.goo.gl/pZf66',
-      lat: -23.201787965430107,
-      lng: -45.777435681746304,
+      lat: -23.19295,
+      lng: -45.79166,
     },
     {
       nome: 'Academia Sky Fit Leste',
